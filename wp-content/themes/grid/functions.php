@@ -56,6 +56,7 @@ class GL_Grid_Layout {
 	);
 	
 	/*
+	 * try to draw user actions scheme
 	 * create facade to call other widgets
 	 *
 	 * https://www.competethemes.com/tracks-live-demo/
@@ -134,6 +135,7 @@ class GL_Grid_Layout {
 		add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'add_widget'));
 		add_action('wp_ajax_gl_ajax_get_widget_preview', array($this->layout, 'get_widget_preview'));
 		add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'delete_widget'));
+		add_action('wp_ajax_gl_ajax_import_widget', array($this->layout, 'import_widget'));
 		add_action('wp_ajax_gl_ajax_save_layout', array($this->layout, 'save_layout'));
 		add_action('wp_ajax_gl_ajax_change_styles', array($this->styles, 'change'));
 		add_action('wp_ajax_gl_ajax_save_styles', array($this->styles, 'save'));

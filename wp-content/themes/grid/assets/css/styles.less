@@ -27,6 +27,37 @@ ul.gridster-widgets {
 .gridster {
 	margin-top: 20px;
 
+	&.import-process {
+		.grid-stack-item-content {
+			opacity: 0.4;
+			cursor: no-drop;
+
+			&.glyph {
+				opacity: 1;
+				cursor: copy;
+
+				&:hover {
+					border-color: #ccc;
+					border-color: rgba(82,168,236,.8);
+					outline: 0;
+					outline: thin dotted\9;
+					-webkit-box-shadow: 0 0 8px rgba(82,168,236,.6);
+					box-shadow: 0 0 8px rgba(82,168,236,.6);
+				}
+
+				&.disable-current {
+					opacity: 0.4;
+					cursor: no-drop;
+
+					&:hover {
+						border: none;
+						box-shadow: none;
+					}
+				}
+			}
+		}
+	}
+
 	.glyphicon.glyphicon-chevron-left {
 		left: 20px;
 		top: 5px;

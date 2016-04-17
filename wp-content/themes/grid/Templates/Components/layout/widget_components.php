@@ -1,6 +1,6 @@
 <div class="btn-group btn-group-widgets">
-	<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Add Post Part <span class="caret"></span>
+	<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Widget Components <span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu">
 		<?php foreach($widgets as $name => $title) { ?>

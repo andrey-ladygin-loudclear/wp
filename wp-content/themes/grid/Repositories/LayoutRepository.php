@@ -71,6 +71,10 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		return $this->query($sql);
 	}
 	
+	public function import($current_id, $parent_id = NULL) {
+		
+	}
+	
 	public function getGrid($post_id, $parent_type = 'page') {
 		$layoutTable = $this->getTable();
 

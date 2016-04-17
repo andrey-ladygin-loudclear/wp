@@ -10,9 +10,10 @@ Class Config {
 		'latest_posts' => 'Latest posts',
 		'blackquote' => 'Blackquote',
 		'comments' => 'Comments',
+		'standart_post_content' => 'Standart Post Content',
 	);
 	
-	public static $builder = array(
+	public static $widget_components = array(
 		'news' => 'News',
 		'block' => 'Block',
 		'gallery' => 'gallery',
@@ -23,7 +24,7 @@ Class Config {
 		'paralax' => 'Paralax',
 	);
 	
-	public static $widget_components = array(
+	public static $post_components = array(
 		'post_author' => 'Post Author',
 		'post_content' => 'Post Content',
 		'post_date' => 'Post Date',

@@ -26,7 +26,7 @@ use GL\Facades\WidgetCompositionFacade;
 
 <body <?php body_class(); ?>>
 	<div class="main-container <?= get_theme_mod('grid_theme', 'light'); ?>">
-		<?php View::load('Templates/Components/front/menu3'); ?>
+		<?php View::load('Templates/Frontend/Components/menu3'); ?>
 		
 		<!--h3 class="c1">Lorem Ipsum dolor set amet color die super </h3>
 		<h3 class="c2">Lorem Ipsum dolor set amet color die super </h3>

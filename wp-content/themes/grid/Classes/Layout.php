@@ -77,6 +77,22 @@ Class Layout extends LayoutRepository {
         wp_die();
     }
 
+    public function import_widget() {
+		$widgetToImport = $_POST['widgetToImport'];
+//		$widgetToImport = WidgetFactory::get($widgetToImport['name'], $widgetToImport['id']);
+		
+		$destinationWidget = $_POST['destinationWidget'];
+//		$destinationWidget = WidgetFactory::get($destinationWidget['name'], $destinationWidget['id']);
+	
+		$this->import()
+		
+//		$widgetToImport->fill(array(
+//			'parent'
+//		));
+		
+        wp_die();
+    }
+
     public function save_layout() {
         $json = $_POST['gl_json'];
         $post_id = $_POST['page_id'];

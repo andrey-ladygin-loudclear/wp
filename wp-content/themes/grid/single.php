@@ -11,7 +11,7 @@ the_post();
 
 <body <?php body_class(); ?>>
 
-<?php View::load('Templates/Components/front/menu3'); ?>
+<?php View::load('Templates/Frontend/Components/menu3'); ?>
 
 <?php
 $composition = WidgetCompositionFacade::buildStructure(NULL, 'single');

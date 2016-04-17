@@ -110,6 +110,7 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
 			'size_y' => $this->getHeight(),
 			'preview' => $this->getPreview(),
 			'title' => $this->getTitle(),
+			'glyph' => $this instanceof Glyph,
 		);
 	}
 }

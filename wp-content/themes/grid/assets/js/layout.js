@@ -23,6 +23,7 @@ jQuery(function($){ //DOM Ready
             if(typeof structure != 'undefined' && structure) {
                 $.each(structure, function(a) {
                     var widget = Widget(this.name, this.id);
+					widget.setChildOfGlyph(this.glyph);
 					widget.setTitle(this.title);
 					widget.setContent(this.preview);
 					gridster.addWidget(widget.baseHtml(), this.col, this.row, ~~this.size_x, ~~this.size_y);
@@ -36,7 +37,29 @@ jQuery(function($){ //DOM Ready
     });
 });
 
+jQuery(document).click(function(e) {
+	console.log('check import: ' + Layout.importProcess);
+	if(Layout.importProcess) {
+		var target = jQuery(e.target);
+		var targetContent = target.closest('.grid-stack-item-content');
+		var widgetNode = target.closest('.grid-stack-item');
+
+		if(targetContent.hasClass('disable-current')) return;
+
+		if(targetContent.length && targetContent.hasClass('glyph') && !targetContent.hasClass('disable-current')) {
+			var name = widgetNode.attr('data-gs-name');
+			var id 	 = widgetNode.attr('data-gs-id');
+			Layout.doImport(name, id);
+		} else {
+			Layout.disableImportProcess();
+		}
+	}
+});
+
 Layout = new function() {
+	this.importProcess = false;
+	this.widgetToImport = null;
+
     this.add = function(name, opt) {
         Widget(name).setOptions(opt).create(function(createdWidget) {
             gridster.addWidget(createdWidget.baseHtml(), null, null, 1, 1, true);
@@ -50,6 +73,43 @@ Layout = new function() {
             });
         }
     };
+
+    this.import = function(widgetNode, name, id) {
+		widgetNode.find('.grid-stack-item-content').addClass('disable-current');
+		this.enableImportProcess();
+		this.widgetToImport = Widget(name, id);
+    };
+
+    this.doImport = function(name, id) {
+		if(confirm('Do you really want import widget to '+name+'?')) {
+			var data = {
+				action: 'gl_ajax_import_widget',
+				destinationWidget: {
+					name: name,
+					id: id
+				},
+				widgetToImport: {
+					name: Layout.widgetToImport.getName(),
+					id: Layout.widgetToImport.getId()
+				}
+			};
+
+			jQuery.post(ajaxurl, data, function() {
+				//gridster.remove_widget(Layout.widgetToImport.getNode());
+			});
+		}
+    };
+
+    this.enableImportProcess = function() {
+		console.log('enable import');
+		this.importProcess = true;
+		jQuery('.gridster').addClass('import-process');
+	};
+    this.disableImportProcess = function() {
+		this.importProcess = false;
+		jQuery('.gridster').removeClass('import-process');
+		jQuery('.grid-stack-item-content').removeClass('disable-current');
+	};
 
     this.save = function() {
         var _this = this;
@@ -93,6 +153,7 @@ var Widget = function(name, id) {
 	var title = name.ucFirst();
 	var content = '';
 	var options = [];
+	var isChildOfGlyph = false;
 
 	var HtmlBuilder = new function() {
 		var html = '';
@@ -126,13 +187,14 @@ var Widget = function(name, id) {
 		};
 		this.addImportAndExportButton = function() {
 			html += '<span class="glyphicon glyphicon-import" aria-hidden="true"></span>';
-			html += '<span class="glyphicon glyphicon-export" aria-hidden="true"></span>';
+			//html += '<span class="glyphicon glyphicon-export" aria-hidden="true"></span>';
 		};
 		this.addTrashButton = function() {
 			html += '<span class="glyphicon glyphicon-trash"></span>';
 		};
 		this.build = function() {
-			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+html+'</div></div>';
+			var glyphClass = isChildOfGlyph ? 'glyph' : '';
+			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well '+glyphClass+'">'+html+'</div></div>';
 		};
 	};
 
@@ -146,6 +208,9 @@ var Widget = function(name, id) {
         	if(text) {
         		content = text;
 			}
+		};
+		this.setChildOfGlyph = function(bool) {
+			isChildOfGlyph = bool;
 		};
         this.setTitle = function(text) {
         	if(text) {
@@ -199,6 +264,12 @@ var Widget = function(name, id) {
 				}, 'json');
 			})
         };
+		this.getId = function() {
+			return id;
+		};
+		this.getName = function() {
+			return name;
+		};
 	};
 };
 //
@@ -271,7 +342,7 @@ var Widget = function(name, id) {
 //     };
 // };
 
-jQuery(document).on('click', '.glyphicon', function($) {
+jQuery(document).on('click', '.glyphicon', function(e) {
     var widgetNode = jQuery(this).closest('.grid-stack-item');
     var name = widgetNode.attr('data-gs-name');
     var id 	 = widgetNode.attr('data-gs-id');
@@ -283,6 +354,10 @@ jQuery(document).on('click', '.glyphicon', function($) {
 
     if(jQuery(this).hasClass('glyphicon-trash')) {
         return Layout.delete(widgetNode, name, id);
+    }
+
+    if(jQuery(this).hasClass('glyphicon-import')) {
+		return Layout.import(widgetNode, name, id);
     }
 });
 
