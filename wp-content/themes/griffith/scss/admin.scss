@@ -1,0 +1,92 @@
+@import 'config';
+@import 'icon-font';
+@import 'utilities';
+
+.lauruscrm_page_lauruscrm_sub_settings,
+.griffith_page_griffith_widgets,
+.toplevel_page_griffith_settings {
+    label {
+        display: inline-block;
+        width: 250px;
+        vertical-align: top;
+        &.checkbox {
+            width: auto;
+        }
+    }
+    textarea {
+        height: 100px;
+    }
+    input[type=input], textarea {
+        width: 250px;
+    }
+
+    input, textarea {
+        &.full {
+            width: 100%;
+        }
+    }
+    select {
+        width: 250px;
+        &#supported_states {
+            height: 200px;
+        }
+    }
+    .field-row-remove-button {
+        margin-left: 10px;
+    }
+    .col2set {
+        overflow: hidden;
+        .col-1, .col-2 {
+            float: left;
+            width: 40%;
+        }
+        .col-2 {
+            width: 55%;
+            margin-left: 2%;
+        }
+    }
+    small {
+        display: block;
+    }
+    .widefat {
+        width: 100%;
+    }
+    .short {
+        width: 120px;
+    }
+    table {
+        input, select {
+            width: auto;
+        }
+    }
+}
+
+@each $key, $value in $font-icons {
+    .icon-#{$key} {
+        @include icon(before, $key);
+    }
+}
+
+.wp-list-table {
+    [class*='icon-'] {
+        text-indent: -9999px;
+        position: relative;
+        text-align: center;
+        &:before {
+            text-indent: 0;
+            font-size: 45px;
+            line-height: 1;
+            display: block;
+        }
+    }
+}
+.search-options {
+    padding: 10px 0;
+    div {
+        display: inline;
+    }
+    input {
+        margin: 10px 0;
+    }
+
+}

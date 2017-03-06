@@ -1,0 +1,22 @@
+//-------------------------------------------- Animation keyframes
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+}
+@keyframes zoomIn {
+	from {
+		transform: scale(0);
+	}
+}
+@keyframes dropInRight {
+	from {
+		transform: scale(2) translateX(-50%);
+	}
+}
+@keyframes hinge {
+	from {
+		transform: rotateX(-90deg);
+	}
+}

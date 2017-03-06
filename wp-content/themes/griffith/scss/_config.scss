@@ -1,0 +1,136 @@
+//-------------------------------------------- Colors
+
+$red:									#c02424;
+$blue:									#007eb6;
+$gray:									#767676;
+$dark-gray:								#434343;
+
+//-------------------------------------------- Font stacks
+
+$sans-serif:							'Helvetica Neue', Arial, sans-serif;
+$foundry-sterling:						'Foundry Sterling', $sans-serif;
+$rockwell:								'Rockwell', serif;
+$icons:									Icons;
+
+//-------------------------------------------- Font icons
+
+@import 'font-icons';
+
+//-------------------------------------------- Global
+
+$global-transition-duration:			.3s;
+$onload-animation-delay:				.5s;
+$content-max-width:						1150px;
+$padding:								30px;
+$focus-color:							lighten($red, 5%);
+$dot-nav-max-items:						10;
+
+//-------------------------------------------- Buttons
+
+$red-button-color:						$red;
+$white-button-color:					darken(white, 13%);
+
+//-------------------------------------------- Site header
+
+$header-breakpoint-1:					600px;
+$header-breakpoint-2:					950px;
+$header-breakpoint-3:					1050px;
+$search-height:							30px;
+$search-button-width:					$search-height * 1.2;
+
+//-------------------------------------------- Enquiry form
+
+$form-breakpoint-1:						600px;
+$form-breakpoint-2:						800px;
+$form-header-width:						35%;
+$form-spacing:							20px;
+$form-toggle-width:						8em;
+$form-error-arrow-size:					8px;
+$form-error-color:						$red;
+$form-input-padding:					.7em;
+$form-select-icon-width:				.8em;
+
+//-------------------------------------------- Sub nav
+
+$sub-nav-breakpoint-1:					500px;
+$sub-nav-x-spacing:						1.3em;
+$sub-nav-y-spacing:						1.1em;
+$sub-nav-max-items:						6;
+
+//-------------------------------------------- Widgeted layout
+
+$widgets-breakpoint-1:					500px;
+$widgets-breakpoint-2:					800px;
+$widgets-breakpoint-3:					1000px;
+$widgets-width:							27%;
+$widgets-spacing:						2em;
+$widgets-padding:						1.2em;
+$widgets-max-items:						10;
+
+//-------------------------------------------- Primary heading
+
+$primary-heading-breakpoint-1:			600px;
+$primary-heading-breakpoint-2:			950px;
+$primary-heading-breakpoint-3:			$content-max-width;
+
+//-------------------------------------------- Generic content
+
+$generic-content-breakpoint-1:			600px;
+$generic-content-breakpoint-2:			850px;
+
+//-------------------------------------------- Search results
+
+$search-breakpoint-1:					500px;
+$search-breakpoint-2:					850px;
+$search-breakpoint-3:					1000px;
+
+//-------------------------------------------- Info table module
+
+$info-table-breakpoint-1:				$generic-content-breakpoint-1;
+
+//-------------------------------------------- Program list module
+
+$programs-breakpoint-1:					600px;
+$programs-breakpoint-2:					1000px;
+$programs-icon-size:					32px;
+$programs-spacing:						$padding;
+$programs-padding:						20px;
+$programs-max-items:					8;
+$programs-layers:						(
+											image,
+											gradient,
+											title,
+											icon
+										);
+
+//-------------------------------------------- CTA module
+
+$cta-module-breakpoint-1:				600px;
+$cta-module-breakpoint-2:				900px;
+$cta-module-divider-width:				1px;
+$cta-module-divider-color:				rgba(black, .1);
+
+//-------------------------------------------- Overview module
+
+$overview-breakpoint-1:					800px;
+$overview-breakpoint-2:					1000px;
+$overview-ratings-header-size:			5.8em;
+$overview-accordion-width:				42%;
+$overview-accordion-item-padding:		1.2em;
+$overview-accordion-icon-size:			1.8em;
+$overview-accordion-chevron-size:		.7em;
+$overview-accordion-max-items:			8;
+$overview-accordion-icons:				(
+											academical,
+											chat,
+											screen,
+											time,
+											users
+										);
+
+//-------------------------------------------- Landing page module
+
+$landing-breakpoint-1:					450px;
+$landing-breakpoint-2:					650px;
+$landing-breakpoint-3:					900px;
+$landing-breakpoint-4:					1000px;
