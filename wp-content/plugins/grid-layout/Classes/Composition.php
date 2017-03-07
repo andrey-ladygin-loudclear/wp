@@ -17,14 +17,19 @@ class Composition implements GlyphInterface {
 	}
 	
 	public function insert(GlyphInterface $widget) {
-		try {
+	    try {
 			$row = $this->childrens->offsetGet($widget->getRow());
-			//$row->add($widget->getCol(), $widget);
-			$row->push($widget);
 		} catch (\OutOfRangeException $e) {
 			$row = new \SplDoublyLinkedList();
-			$this->childrens->add($widget->getRow(), $row);
+			$this->childrens->push($row);
 		}
+
+        try {
+            $row->add($widget->getCol(), $widget);
+        } catch (\OutOfRangeException $e) {
+            $row->push($widget);
+        }
+
 	}
 	
 	public function getCol() {}
@@ -52,6 +57,10 @@ class Composition implements GlyphInterface {
 	}
 	
 	public function draw() {
+        echo "<pre>";
+        print_r($this->getChildren());
+        echo "</pre>";
+//        die;
 		$this->_compositor->compose($this);
 		
 		echo "<pre>";
