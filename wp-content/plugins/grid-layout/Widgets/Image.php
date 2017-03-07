@@ -5,8 +5,7 @@ namespace GL;
 class Image extends Widget {
 	private $_src;
 	
-	public function __construct($widget) {
-	    parent::__construct($widget);
+	public function __construct($widget = array()) {
 		$this->_src = $widget['src'];
 	}
 	

@@ -5,8 +5,7 @@ namespace GL;
 class Text extends Widget {
 	private $_text;
 	
-	public function __construct($widget) {
-	    parent::__construct($widget);
+	public function __construct($widget = array()) {
 		$this->_text = $widget['text'];
 	}
 	
