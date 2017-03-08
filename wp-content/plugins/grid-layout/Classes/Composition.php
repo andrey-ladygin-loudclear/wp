@@ -24,12 +24,14 @@ class Composition implements GlyphInterface {
 			$this->childrens->push($row);
 		}
 
-        try {
-            $row->add($widget->getCol(), $widget);
-        } catch (\OutOfRangeException $e) {
-            $row->push($widget);
-        }
-
+		foreach($row as $key => $col_widget) {
+			if($widget->getCol() < $col_widget->getCol()) {
+				$row->add($key, $widget);
+				return;
+			}
+		}
+		
+		$row->push($widget);
 	}
 	
 	public function getCol() {}
@@ -57,21 +59,21 @@ class Composition implements GlyphInterface {
 	}
 	
 	public function draw() {
-        echo "<pre>";
-        print_r($this->getChildren());
-        echo "</pre>";
-//        die;
 		$this->_compositor->compose($this);
 		
-		echo "<pre>";
-		print_r($this->getChildren());
-		echo "</pre>";
-		die;
+//		echo "<pre>";
+//		print_r($this->getChildren());
+//		echo "</pre>";
+//		die;
 
 		echo '<div class="container-fluid">';
 
-		foreach($this->getChildren() as $child) {
-			$child->draw();
+		foreach($this->getChildren() as $child_row) {
+			//echo "<div class='row'>";
+			foreach($child_row as $child_col) {
+				$child_col->draw();
+			}
+			//echo "</div>";
 		}
 
 		echo '</div>';

@@ -5,8 +5,8 @@ namespace GL;
 class Glyph implements GlyphInterface {
 	private $childrens = array();
     protected $id;
-    protected $padding = [0, 0, 0, 0,];
-    protected $margin = [0, 0, 0, 0,];
+    //protected $padding = [0, 0, 0, 0,];
+    //protected $margin = [0, 0, 0, 0,];
     protected $width = 1;
     protected $height = 1;
     protected $row = 0;
@@ -20,11 +20,19 @@ class Glyph implements GlyphInterface {
 	public function insert(GlyphInterface $widget) {
 		try {
 			$row = $this->childrens->offsetGet($widget->getRow());
-			$row->add($widget->getCol(), $widget);
 		} catch (\OutOfRangeException $e) {
 			$row = new \SplDoublyLinkedList();
-			$this->childrens->add($widget->getRow(), $row);
+			$this->childrens->push($row);
 		}
+		
+		foreach($row as $key => $col_widget) {
+			if($widget->getCol() < $col_widget->getCol()) {
+				$row->add($key, $widget);
+				return;
+			}
+		}
+		
+		$row->push($widget);
 	}
 	
 	public function getId() {
@@ -80,7 +88,7 @@ class Glyph implements GlyphInterface {
 	}
 	
 	public function draw() {
-        echo "<div class='container-fluid widget col-md-{$this->width} well' style='border: 1px solid red;'>";
+        echo "<div class='container-fluid widget col-md-{$this->width} well' style='border: 1px solid red;min-height: ".(60*$this->height)."px;'>";
 
 		foreach($this->getChildren() as $child) {
 			$child->draw();

@@ -10,7 +10,7 @@ class Text extends Widget {
 	}
 	
 	public function draw() {
-		echo "<div class='widget col-md-{$this->width} well' style='border: 1px solid;'>";
+		echo "<div class='widget col-md-{$this->width} well' style='border: 1px solid;min-height: ".(60*$this->height)."px;'>";
 		echo $this->_text;
 		echo "</div>";
 	}

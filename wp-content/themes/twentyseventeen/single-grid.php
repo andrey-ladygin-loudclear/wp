@@ -1,22 +1,4 @@
-<style>
-    .widget {
-        display: inline-block;
-        padding: 5px;
-        vertical-align: top;
-    }
-    .widget.w1 { width: 8.33% }
-    .widget.w2 { width: 16.66% }
-    .widget.w3 { width: 24.99% }
-    .widget.w4 { width: 33.33% }
-    .widget.w5 { width: 41.66% }
-    .widget.w6 { width: 49.99% }
-    .widget.w7 { width: 58.33% }
-    .widget.w8 { width: 66.66% }
-    .widget.w9 { width: 74.99% }
-    .widget.w10 { width: 83.33% }
-    .widget.w11 { width: 91.66% }
-    .widget.w12 { width: 99% }
-</style>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <h1>GRID</h1>
 <ul>
