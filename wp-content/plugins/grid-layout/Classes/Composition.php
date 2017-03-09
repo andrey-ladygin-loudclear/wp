@@ -3,35 +3,17 @@
 namespace GL;
 
 include_once dirname(__FILE__).'/../Interfaces/Glyph.php';
-include dirname(__FILE__).'/../Compositor/LightCompositor.php';
-include dirname(__FILE__).'/../Compositor/QueueCompositor.php';
+include_once dirname(__FILE__).'/../Widgets/System/Glyph.php';
+include_once dirname(__FILE__).'/../Compositor/LightCompositor.php';
+include_once dirname(__FILE__).'/../Compositor/QueueCompositor.php';
 
-class Composition implements GlyphInterface {
+class Composition extends Glyph {
 	
 	private $_compositor;
-	private $childrens = array();
+	public $childrens = array();
 	
 	public function __construct() {
-		$this->_compositor = new QueueCompositor();
-		$this->childrens = new \SplDoublyLinkedList();
-	}
-	
-	public function insert(GlyphInterface $widget) {
-	    try {
-			$row = $this->childrens->offsetGet($widget->getRow());
-		} catch (\OutOfRangeException $e) {
-			$row = new \SplDoublyLinkedList();
-			$this->childrens->push($row);
-		}
-
-		foreach($row as $key => $col_widget) {
-			if($widget->getCol() < $col_widget->getCol()) {
-				$row->add($key, $widget);
-				return;
-			}
-		}
-		
-		$row->push($widget);
+		$this->_compositor = new LightCompositor();
 	}
 	
 	public function getCol() {}
@@ -59,7 +41,7 @@ class Composition implements GlyphInterface {
 	}
 	
 	public function draw() {
-		$this->_compositor->compose($this);
+		$this->childrens = $this->_compositor->compose($this->childrens);
 		
 //		echo "<pre>";
 //		print_r($this->getChildren());
@@ -69,11 +51,9 @@ class Composition implements GlyphInterface {
 		echo '<div class="container-fluid">';
 
 		foreach($this->getChildren() as $child_row) {
-			//echo "<div class='row'>";
 			foreach($child_row as $child_col) {
 				$child_col->draw();
 			}
-			//echo "</div>";
 		}
 
 		echo '</div>';

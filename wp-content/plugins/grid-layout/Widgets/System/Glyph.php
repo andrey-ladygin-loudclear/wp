@@ -3,7 +3,7 @@
 namespace GL;
 
 class Glyph implements GlyphInterface {
-	private $childrens = array();
+	public $childrens = array();
     protected $id;
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];
@@ -12,27 +12,9 @@ class Glyph implements GlyphInterface {
     protected $row = 0;
     protected $col = 0;
     protected $full_widget = 0;
-
-	public function __construct() {
-		$this->childrens = new \SplDoublyLinkedList();
-	}
 	
 	public function insert(GlyphInterface $widget) {
-		try {
-			$row = $this->childrens->offsetGet($widget->getRow());
-		} catch (\OutOfRangeException $e) {
-			$row = new \SplDoublyLinkedList();
-			$this->childrens->push($row);
-		}
-		
-		foreach($row as $key => $col_widget) {
-			if($widget->getCol() < $col_widget->getCol()) {
-				$row->add($key, $widget);
-				return;
-			}
-		}
-		
-		$row->push($widget);
+		$this->childrens[] = $widget;
 	}
 	
 	public function getId() {

@@ -2,8 +2,8 @@
 
 namespace GL;
 
-class Block implements Glyph {
-    private $childrens = array();
+class Block extends Glyph {
+    public $childrens = array();
     protected $id;
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];

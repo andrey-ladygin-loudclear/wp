@@ -2,23 +2,45 @@
 
 namespace GL;
 
-class Row extends Widget {
-
-    private $_empty = FALSE;
-
-    public function __construct() {}
-
-    public function setEmpty() {
-        $this->_empty = TRUE;
-    }
-
-    public function draw() {
-        if($this->_empty) {
-            return;
-        }
-
-        echo "<div class='widget col-md-{$this->width} well' style='border: 1px solid orange;'>";
-        echo "&nbsp;";
-        echo "</div>";
-    }
+class Row extends Glyph {
+	
+	public function getRowsCount() {
+		$lastRow = 0;
+		
+		foreach($this->getChildren() as $widget) {
+			if($widget->getHeight() + $widget->getRow() > $lastRow) {
+				$lastRow = $widget->getHeight() + $widget->getRow();
+			}
+		}
+		
+		return $lastRow;
+	}
+	
+	public function getLockedCells() {
+		$lockedCells = array();
+		
+		foreach($this->getChildren() as $widget) {
+			$lastRow = $widget->getRow() + $widget->getHeight();
+			$lastCol = $widget->getCol() + $widget->getWidth();
+			
+			for($y = $widget->getRow(); $y < $lastRow; $y++) {
+				for($x = $widget->getCol(); $x < $lastCol; $x++) {
+					$lockedCells[] = array($y, $x);
+				}
+			}
+		}
+		
+		return $lockedCells;
+	}
+	
+	public function draw() {
+		echo "<div class='row'>";
+		
+		foreach($this->getChildren() as $child) {
+			$child->draw();
+		}
+		
+		echo "</div>";
+	}
+	
 }

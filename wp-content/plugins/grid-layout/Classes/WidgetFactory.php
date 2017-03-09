@@ -1,11 +1,13 @@
 <?php
 
 namespace GL;
-include dirname(__FILE__).'/Widget.php';
-include dirname(__FILE__).'/../Widgets/Glyph.php';
-include dirname(__FILE__).'/../Widgets/Image.php';
-include dirname(__FILE__).'/../Widgets/Text.php';
-include dirname(__FILE__).'/../Widgets/Blank.php';
+include_once dirname(__FILE__).'/Widget.php';
+include_once dirname(__FILE__).'/../Widgets/System/Glyph.php';
+include_once dirname(__FILE__).'/../Widgets/System/Blank.php';
+include_once dirname(__FILE__).'/../Widgets/System/Row.php';
+include_once dirname(__FILE__).'/../Widgets/Image.php';
+include_once dirname(__FILE__).'/../Widgets/Text.php';
+include_once dirname(__FILE__).'/../Widgets/Block.php';
 
 Class WidgetFactory {
 
