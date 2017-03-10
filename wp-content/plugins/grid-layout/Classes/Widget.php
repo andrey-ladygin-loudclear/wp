@@ -9,6 +9,7 @@ class Widget implements GlyphInterface {
     protected $childrens = array();
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];
+	public $offset = 0;
 	protected $width = 1;
     protected $height = 1;
 	protected $row = 0;

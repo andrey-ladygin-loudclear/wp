@@ -4,7 +4,8 @@ namespace GL;
 
 include_once dirname(__FILE__).'/../Interfaces/Glyph.php';
 include_once dirname(__FILE__).'/../Widgets/System/Glyph.php';
-include_once dirname(__FILE__).'/../Compositor/LightCompositor.php';
+include_once dirname(__FILE__).'/../Compositor/RowCompositor.php';
+include_once dirname(__FILE__).'/../Compositor/GapCompositor.php';
 include_once dirname(__FILE__).'/../Compositor/QueueCompositor.php';
 
 class Composition extends Glyph {
@@ -13,7 +14,7 @@ class Composition extends Glyph {
 	public $childrens = array();
 	
 	public function __construct() {
-		$this->_compositor = new LightCompositor();
+		$this->_compositor = new GapCompositor();
 	}
 	
 	public function getCol() {}
@@ -50,10 +51,8 @@ class Composition extends Glyph {
 
 		echo '<div class="container-fluid">';
 
-		foreach($this->getChildren() as $child_row) {
-			foreach($child_row as $child_col) {
-				$child_col->draw();
-			}
+		foreach($this->getChildren() as $widget) {
+			$widget->draw();
 		}
 
 		echo '</div>';

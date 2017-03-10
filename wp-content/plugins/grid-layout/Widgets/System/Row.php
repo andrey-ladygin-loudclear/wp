@@ -33,6 +33,32 @@ class Row extends Glyph {
 		return $lockedCells;
 	}
 	
+	public function concatVerticalBlankWidgets() {
+		foreach($this->childrens as &$widget) {
+			if($widget instanceof Blank) {
+				
+				foreach($this->getChildren() as $key => $check_widget) {
+					if($check_widget->getRow() > $widget->getRow() && $check_widget->getWidth() == $widget->getWidth() && $check_widget->getCol() == $widget->getCol()) {
+						$height = $widget->getHeight() + 1;
+						$widget->setHeight($height);
+						unset($this->childrens[$key]);
+					}
+				}
+				
+			}
+		}
+	}
+	
+	public function sort() {
+		usort($this->childrens, function($w1, $w2) {
+			if($w1->getRow() == $w2->getRow()) {
+				return ($w1->getCol() < $w2->getCol()) ? -1 : 1;
+			}
+			return ($w1->getRow() < $w2->getRow()) ? -1 : 1;
+		});
+		
+	}
+	
 	public function draw() {
 		echo "<div class='row'>";
 		

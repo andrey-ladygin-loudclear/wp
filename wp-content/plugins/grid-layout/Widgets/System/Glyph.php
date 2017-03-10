@@ -7,6 +7,7 @@ class Glyph implements GlyphInterface {
     protected $id;
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];
+    public $offset = 0;
     protected $width = 1;
     protected $height = 1;
     protected $row = 0;
@@ -70,7 +71,7 @@ class Glyph implements GlyphInterface {
 	}
 	
 	public function draw() {
-        echo "<div class='container-fluid widget col-md-{$this->width} well' style='border: 1px solid red;min-height: ".(60*$this->height)."px;'>";
+        echo "<div class='container-fluid widget col-md-{$this->width} col-md-offset-{$this->offset} well' style='border: 1px solid red;min-height: ".(60*$this->height)."px;'>";
 
 		foreach($this->getChildren() as $child) {
 			$child->draw();

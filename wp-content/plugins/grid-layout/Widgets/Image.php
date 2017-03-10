@@ -10,7 +10,7 @@ class Image extends Widget {
 	}
 	
 	public function draw() {
-		echo "<div class='widget col-md-{$this->width} well' style='border: 1px solid;min-height: ".(60*$this->height)."px;'>";
+		echo "<div class='widget col-md-{$this->width} col-md-offset-{$this->offset} well' style='border: 1px solid;min-height: ".(60*$this->height)."px;'>";
 		echo "<img src='{$this->_src}'>";
 		echo "</div>";
 	}

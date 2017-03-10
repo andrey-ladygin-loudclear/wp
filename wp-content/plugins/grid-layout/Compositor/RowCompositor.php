@@ -2,7 +2,7 @@
 
 namespace GL;
 
-class LightCompositor {
+class RowCompositor {
 	CONST MAX_COLS = 12;
 	
 	public function compose($childrens) {
@@ -31,11 +31,6 @@ class LightCompositor {
 		
 		$newStructure = $this->addBlankWidgets($newStructure);
 		
-		echo "<pre>";
-		print_r($newStructure);
-		echo "</pre>";
-		die;
-		
 		return $newStructure;
 	}
 	
@@ -43,15 +38,11 @@ class LightCompositor {
 		foreach($structure as $row) {
 			$rows = $row->getRowsCount();
 			$lockedCells = $row->getLockedCells();
-			
-			echo "<pre>";
-			var_dump($rows);
-			print_r($lockedCells);
-			
+						
 			for($y = 0; $y < $rows; $y++) {
 				$widgetWidth = 0;
 				
-				for($x = 0; $x < LightCompositor::MAX_COLS; $x++) {
+				for($x = 0; $x < RowCompositor::MAX_COLS; $x++) {
 					if(!in_array(array($y, $x), $lockedCells)) {
 						$widgetWidth++;
 					} elseif($widgetWidth) {
@@ -73,10 +64,11 @@ class LightCompositor {
 				}
 			}
 			
-			print_r($row);
-			echo "</pre>";
-			die;
+			$row->sort();
+			$row->concatVerticalBlankWidgets();
 		}
+		
+		return $structure;
 	}
 	
 }
