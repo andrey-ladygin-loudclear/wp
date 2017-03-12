@@ -53,6 +53,14 @@ Class DB {
         return array_merge($this->fields, $widget);
     }
 
+    public function deleteWidget($id, $name) {
+        return self::$wpdb->delete("wp_gl_widget_{$name}", array('id' => $id));
+    }
+
+    public function deleteAllRelatedWidgets($post_id, $parent_type) {
+        self::$wpdb->delete($this->table, array('parent_id' => $post_id, 'parent_type' => $parent_type));
+    }
+
     public function addOrUpdate($widget)
     {
         $widget = $this->prepare($widget);

@@ -7,7 +7,7 @@ class Glyph implements GlyphInterface {
     protected $id;
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];
-    public $offset = 0;
+    protected $offset = 0;
     protected $width = 1;
     protected $height = 1;
     protected $row = 0;
@@ -57,6 +57,14 @@ class Glyph implements GlyphInterface {
 	public function setCol($col = 0) {
 		$this->col = $col;
 	}
+
+    public function getOffset() {
+        return $this->offset;
+    }
+
+    public function setOffset($offset) {
+        $this->offset = $offset;
+    }
 	
 	public function getChildren() {
 	    if($this->childrens) {

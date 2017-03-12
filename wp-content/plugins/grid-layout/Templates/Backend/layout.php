@@ -12,12 +12,11 @@
         Add Widget <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-        <li><a href="javascript:void(0);" onclick="Widgets.add('glyph');">Glyph</a></li>
+        <li><a href="javascript:void(0);" onclick="Widgets.add('glyph');">Block</a></li>
         <li><a href="javascript:void(0);" onclick="Widgets.add('image');">Image</a></li>
         <li><a href="javascript:void(0);" onclick="Widgets.add('text');">Text</a></li>
     </ul>
 </div>
-<p><?php echo json_encode($widgets); ?></p>
 <div class="gridster ready">
     <input type="hidden" name="page_id" id="page_id" value="">
     <div class="gridster-widgets grid-stack"></div>

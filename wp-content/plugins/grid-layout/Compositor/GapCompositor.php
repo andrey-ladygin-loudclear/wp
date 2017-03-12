@@ -16,7 +16,8 @@ class GapCompositor {
 			}
 			
 			if($widget->getCol() != $prevCol) {
-				$widget->offset = $widget->getCol() - $prevCol;
+                $offset = $widget->getCol() - $prevCol;
+				$widget->setOffset($offset);
 			}
 			
 			$prevCol = $widget->getCol() + $widget->getWidth();
@@ -28,4 +29,5 @@ class GapCompositor {
 		
 		return $childrens;
 	}
+
 }

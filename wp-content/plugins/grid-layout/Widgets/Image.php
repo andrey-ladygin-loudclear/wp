@@ -8,10 +8,12 @@ class Image extends Widget {
 	public function __construct($widget = array()) {
 		$this->_src = $widget['src'];
 	}
-	
+
+	public function getSrc() {
+	    return $this->_src;
+    }
+	//http://jeroensormani.com/how-to-include-the-wordpress-media-selector-in-your-plugin/
 	public function draw() {
-		echo "<div class='widget col-md-{$this->width} col-md-offset-{$this->offset} well' style='border: 1px solid;min-height: ".(60*$this->height)."px;'>";
-		echo "<img src='{$this->_src}'>";
-		echo "</div>";
+        View::load("Templates/Frontend/image", array('widget' => $this));
 	}
 }

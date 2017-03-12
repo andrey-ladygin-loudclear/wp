@@ -37,8 +37,12 @@ li.well {
     right: 5px;
     top: 5px;
 }
-.gridster .glyphicon.glyphicon-link {
+.gridster .glyphicon.glyphicon-trash {
     right: 25px;
+    top: 5px;
+}
+.gridster .glyphicon.glyphicon-link {
+    right: 45px;
     top: 5px;
 }
 .gridster .glyphicon {
@@ -54,14 +58,15 @@ li.well {
 .modal-body iframe {
     min-height: 700px;
     border: none;
-}.grid-stack {
+}
+.grid-stack {
      background: lightgoldenrodyellow;
- }
-
+}
 .grid-stack-item-content {
     color: #2c3e50;
     text-align: center;
     background-color: #18bc9c;
+    overflow-y: hidden !important;
 }
 .gridster-widgets .well {
     margin-left: -20px;

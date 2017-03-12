@@ -15,39 +15,7 @@ jQuery(function($){ //DOM Ready
         var $gridStack = jQuery('.grid-stack');
         gridster = $gridStack.gridstack(options).data('gridstack');
 
-        $gridStack.on('change', function(event, items) {
-            Widgets.save();
-        });
-
         new function () {
-            this.items = [
-                {x: 0, y: 0, width: 2, height: 2},
-                {x: 3, y: 1, width: 1, height: 2},
-                {x: 4, y: 1, width: 1, height: 1},
-                {x: 2, y: 3, width: 3, height: 1},
-//                    {x: 1, y: 4, width: 1, height: 1},
-//                    {x: 1, y: 3, width: 1, height: 1},
-//                    {x: 2, y: 4, width: 1, height: 1},
-                {x: 2, y: 5, width: 1, height: 1}
-            ];
-
-            //gridster = $('.grid-stack').data('gridstack');
-
-            this.addNewWidget = function () {
-                var node = this.items.pop() || {
-                        x: 12 * Math.random(),
-                        y: 5 * Math.random(),
-                        width: 1 + 3 * Math.random(),
-                        height: 1 + 3 * Math.random()
-                    };
-                gridster.addWidget($('<div><div class="grid-stack-item-content well"></div></div>'),
-                    node.x, node.y, node.width, node.height);
-                return false;
-            }.bind(this);
-
-            $('#add-new-widget').click(this.addNewWidget);
-
-
             if(structure) {
                 $.each(structure, function(a) {
                     if(Widgets.get(this.widget_name)) {
@@ -55,6 +23,10 @@ jQuery(function($){ //DOM Ready
                     }
                 });
             }
+
+            $gridStack.on('change', function(event, items) {
+                Widgets.save();
+            });
         };
     });
 });
@@ -62,6 +34,14 @@ jQuery(function($){ //DOM Ready
 Widgets = new function() {
     this.get = function(widget) {
         return this[widget];
+    };
+
+    this.delete = function(widgetNode, name, id) {
+        if(confirm('Are you sure?')) {
+            gridster.remove_widget(widgetNode);
+            jQuery.post(ajaxurl, {action: 'gl_ajax_delete_widget',name: name,id: id});
+            Widgets.save();
+        }
     };
 
     this.add = function(name) {
@@ -132,6 +112,7 @@ Widgets = new function() {
             additionalHtml += '<a href="'+Widgets.getEditUrl(type, id, true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
         }
 
+        additionalHtml += '<span class="glyphicon glyphicon-trash"></span>';
         return '<div data-gs-name="'+type+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+content+additionalHtml+'</div></div>';
     };
 
@@ -179,7 +160,7 @@ Widgets = new function() {
         this.name = 'glyph';
 
         this.html = function(id, data) {
-            var content = 'Glyph Widget';
+            var content = 'Block Widget';
 
             if(data && data.text) {
                 content += '<div style="border: 1px solid"></div>';
@@ -189,7 +170,7 @@ Widgets = new function() {
         };
 
         this.edit = function(id) {
-            jQuery('.modal .modal-title').html('Edit Glyph');
+            jQuery('.modal .modal-title').html('Edit Block');
             jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl(this.name, id)+'" width="100%" height="100%"></iframe>');
             jQuery('.modal').modal('show')
         };
@@ -198,11 +179,14 @@ Widgets = new function() {
 
 jQuery(document).on('click', '.glyphicon', function($) {
     var widgetNode = jQuery(this).closest('.grid-stack-item');
+    var name = widgetNode.attr('data-gs-name');
+    var id 	 = widgetNode.attr('data-gs-id');
 
     if(jQuery(this).hasClass('glyphicon-cog') && !jQuery(this).hasClass('disable-popup')) {
-        var name = widgetNode.attr('data-gs-name');
-        var id 	 = widgetNode.attr('data-gs-id');
-
         return Widgets.get(name).edit(id);
+    }
+
+    if(jQuery(this).hasClass('glyphicon-trash')) {
+        return Widgets.delete(widgetNode, name, id);
     }
 });

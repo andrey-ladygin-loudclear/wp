@@ -8,10 +8,12 @@ class Text extends Widget {
 	public function __construct($widget = array()) {
 		$this->_text = $widget['text'];
 	}
+
+	public function getText() {
+	    return $this->_text;
+    }
 	
 	public function draw() {
-		echo "<div class='widget col-md-{$this->width} col-md-offset-{$this->offset} well' style='border: 1px solid;min-height: ".(60*$this->height)."px;'>";
-		echo $this->_text;
-		echo "</div>";
+	    View::load("Templates/Frontend/text", array('widget' => $this));
 	}
 }

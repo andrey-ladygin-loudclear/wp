@@ -27,6 +27,7 @@ class GL_Grid_Layout {
 
         add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'gl_ajax_add_widget_callback'));
         add_action('wp_ajax_gl_ajax_save_widget', array($this->layout, 'gl_ajax_save_widget_callback'));
+        add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'gl_ajax_delete_widget_callback'));
         add_action('save_post', array($this->layout, 'gl_save_grid_layout'), 10, 3);
 
         add_action('admin_menu', array($this, 'my_cool_plugin_create_menu'));

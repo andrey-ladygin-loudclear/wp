@@ -49,6 +49,12 @@ Class Layout {
         unset($data['widget-id']);
 
         $this->gldb->updateWidget($widget_name, $widget_id, $data);
+        $view = View::make('Templates/Backend/SaveSuccess', array('name' => $widget_name));
+        $assets = new Assets();
+        $assets->addJquery();
+        $assets->addBootstrap();
+        $view->add_assets($assets);
+        $view->show();
     }
 
     public function gl_ajax_add_widget_callback() {
@@ -58,6 +64,14 @@ Class Layout {
             'name' => $name,
             'id' => $id
         ));
+        wp_die();
+    }
+
+    public function gl_ajax_delete_widget_callback() {
+        $name = $_POST['name'];
+        $id = $_POST['id'];
+        $this->gldb->deleteWidget($id, $name);
+
         wp_die();
     }
 
@@ -87,6 +101,8 @@ Class Layout {
 
     public function save_layout_structure($json, $post_id, $parent_type = 'page') {
         $post_id = (int) $post_id;
+
+        $this->gldb->deleteAllRelatedWidgets($post_id, $parent_type);
 
         if(!empty($json)) {
             foreach($json as $widget) {
