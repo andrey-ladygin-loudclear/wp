@@ -34,6 +34,18 @@ class GL_Grid_Layout {
 
         add_action('gl_edit_widget_action', array($this, 'gl_edit_widget_action_callback'));
         add_action('gl_save_widget_action', array($this, 'gl_save_widget_action_callback'));
+	
+	
+	
+		function bartag_func( $atts ) {
+			$atts = shortcode_atts( array(
+				'foo' => 'no foo',
+				'baz' => 'default baz'
+			), $atts, 'bartag' );
+		
+			return "foo = {$atts['foo']}";
+		}
+		add_shortcode( 'bartag', 'bartag_func' );
     }
 
     public function create_grid_post_type() {
@@ -48,7 +60,7 @@ class GL_Grid_Layout {
                 'has_archive' => true,
             )
         );
-        remove_post_type_support( $post_type, 'editor');
+        remove_post_type_support($post_type, 'editor');
     }
 
     public function enqueue_scripts() {

@@ -2,7 +2,7 @@
 
 namespace GL;
 
-include_once dirname(__FILE__).'/../Interfaces/Glyph.php';
+include_once dirname(__FILE__).'/../Interfaces/GlyphInterface.php';
 include_once dirname(__FILE__).'/../Helpers/WidgetPriorityQueue.php';
 
 class Widget implements GlyphInterface {

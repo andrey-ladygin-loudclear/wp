@@ -96,21 +96,8 @@ Class Layout {
 
         $json = json_decode(stripcslashes($_POST['gl_json']));
 
-        $this->save_layout_structure($json, $post_id);
-    }
-
-    public function save_layout_structure($json, $post_id, $parent_type = 'page') {
-        $post_id = (int) $post_id;
-
-        $this->gldb->deleteAllRelatedWidgets($post_id, $parent_type);
-
-        if(!empty($json)) {
-            foreach($json as $widget) {
-                $widget = (array) $widget;
-                $widget['parent_id'] = $post_id;
-                $widget['parent_type'] = $parent_type;
-                $this->gldb->addOrUpdate($widget);
-            }
-        }
+		if(!empty($json)) {
+			$this->save_layout_structure($json, $post_id);
+		}
     }
 }

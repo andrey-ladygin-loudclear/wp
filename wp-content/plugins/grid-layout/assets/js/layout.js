@@ -16,7 +16,7 @@ jQuery(function($){ //DOM Ready
         gridster = $gridStack.gridstack(options).data('gridstack');
 
         new function () {
-            if(structure) {
+            if(typeof structure != 'undefined' && structure) {
                 $.each(structure, function(a) {
                     if(Widgets.get(this.widget_name)) {
                         gridster.addWidget(Widgets.get(this.widget_name).html(this.widget_id, this), this.col, this.row, ~~this.size_x, ~~this.size_y);
