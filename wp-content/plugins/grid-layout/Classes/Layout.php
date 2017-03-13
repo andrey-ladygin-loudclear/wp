@@ -13,7 +13,7 @@ Class Layout {
         $this->gldb = DB::getInstance();
     }
 
-    public function gl_edit_widget_page() {
+    public function edit() {
         $widget_name = $_GET['widget-name'];
         $widget_id = $_GET['widget-id'];
         $widget = $this->gldb->getWidget($widget_name, $widget_id);
@@ -40,7 +40,7 @@ Class Layout {
 		$view->show();
     }
 
-    public function gl_save_widget_page() {
+    public function save() {
         $data = $_POST;
         $widget_name = $data['widget-name'];
         $widget_id = $data['widget-id'];
@@ -57,7 +57,7 @@ Class Layout {
         $view->show();
     }
 
-    public function gl_ajax_add_widget_callback() {
+    public function add_widget() {
         $name = $_POST['name'];
         $id = $this->gldb->addWidget($name);
         echo json_encode(array(
@@ -67,7 +67,7 @@ Class Layout {
         wp_die();
     }
 
-    public function gl_ajax_delete_widget_callback() {
+    public function delete_widget() {
         $name = $_POST['name'];
         $id = $_POST['id'];
         $this->gldb->deleteWidget($id, $name);
@@ -75,7 +75,7 @@ Class Layout {
         wp_die();
     }
 
-    public function gl_ajax_save_widget_callback() {
+    public function save_widget() {
         $json = $_POST['gl_json'];
         $post_id = $_POST['page_id'];
         $parent_type = $_POST['parent_type'];
@@ -84,12 +84,12 @@ Class Layout {
         wp_die();
     }
 
-    public function grid_layout_html($post) {
+    public function grid($post) {
         $widgets = $this->gldb->getGrid($post->ID, 'page');
         View::load('Templates/Backend/layout', array('widgets' => $widgets));
     }
 
-    public function gl_save_grid_layout( $post_id, $post, $update ) {
+    public function save_grid( $post_id, $post, $update ) {
 
         $post_type = get_post_type($post_id);
         if ("grid" != $post_type) return;

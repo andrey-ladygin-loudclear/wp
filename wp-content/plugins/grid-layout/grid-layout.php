@@ -25,15 +25,15 @@ class GL_Grid_Layout {
         add_action('admin_init', array($this, 'enqueue_scripts'));
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
 
-        add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'gl_ajax_add_widget_callback'));
-        add_action('wp_ajax_gl_ajax_save_widget', array($this->layout, 'gl_ajax_save_widget_callback'));
-        add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'gl_ajax_delete_widget_callback'));
-        add_action('save_post', array($this->layout, 'gl_save_grid_layout'), 10, 3);
+        add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'add_widget'));
+        add_action('wp_ajax_gl_ajax_save_widget', array($this->layout, 'save_widget'));
+        add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'delete_widget'));
+        add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
 
         add_action('admin_menu', array($this, 'my_cool_plugin_create_menu'));
 
-        add_action('gl_edit_widget_action', array($this, 'gl_edit_widget_action_callback'));
-        add_action('gl_save_widget_action', array($this, 'gl_save_widget_action_callback'));
+        add_action('gl_edit_widget_action', array($this, 'edit_action_callback'));
+        add_action('gl_save_widget_action', array($this, 'save_action_callback'));
 	
 	
 	
@@ -75,11 +75,11 @@ class GL_Grid_Layout {
     }
 
     public function add_meta_box() {
-        add_meta_box( 'grid-meta-box-id', 'Grid Layout', array($this->layout, 'grid_layout_html'), 'grid', 'normal', 'high' );
+        add_meta_box( 'grid-meta-box-id', 'Grid Layout', array($this->layout, 'grid'), 'grid', 'normal', 'high' );
     }
 
     public function my_cool_plugin_create_menu() {
-        add_menu_page('My Cool Plugin Settings', 'Cool Settings', 'administrator', 'grid-layout', array($this->layout, 'gl_edit_widget_page') , plugins_url('/images/icon.png', __FILE__) );
+        add_menu_page('My Cool Plugin Settings', 'Cool Settings', 'administrator', 'grid-layout', array($this->layout, 'edit') , plugins_url('/images/icon.png', __FILE__) );
     }
 
     public function check_actions() {
@@ -91,11 +91,11 @@ class GL_Grid_Layout {
         }
     }
 
-    public function gl_edit_widget_action_callback() {
-        $this->layout->gl_edit_widget_page();
+    public function edit_action_callback() {
+        $this->layout->edit();
     }
-    public function gl_save_widget_action_callback() {
-        $this->layout->gl_save_widget_page();
+    public function save_action_callback() {
+        $this->layout->save();
     }
 }
 
