@@ -12,9 +12,9 @@
         Add Widget <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-        <li><a href="javascript:void(0);" onclick="Widgets.add('glyph');">Block</a></li>
-        <li><a href="javascript:void(0);" onclick="Widgets.add('image');">Image</a></li>
-        <li><a href="javascript:void(0);" onclick="Widgets.add('text');">Text</a></li>
+        <?php foreach(GL_Grid_Layout::$widgets as $name => $title) { ?>
+            <li><a href="javascript:void(0);" onclick="Layout.add('<?=$name;?>');"><?=$title;?></a></li>
+        <?php } ?>
     </ul>
 </div>
 <div class="gridster ready">

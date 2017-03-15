@@ -1,6 +1,6 @@
 <?php
 
-namespace GL;
+namespace GL\Interfaces;
 
 interface GlyphInterface {
 	public function insert(GlyphInterface $glyph);

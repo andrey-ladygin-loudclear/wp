@@ -1,6 +1,6 @@
 <?php
 
-namespace GL;
+namespace GL\Classes;
 
 include_once dirname(__FILE__).'/../Interfaces/Glyph.php';
 include_once dirname(__FILE__).'/../Widgets/System/Glyph.php';

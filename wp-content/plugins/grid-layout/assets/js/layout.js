@@ -50,7 +50,7 @@ Layout = new function() {
         var _this = this;
         var page_id = jQuery('#post_ID').val();
         var parent_type = jQuery('#parent_type').val();
-        var widgets = this.getAll();
+        var widgets = this.getAllWidgets();
 
         if(page_id) {
             if(_this.ajaxRef) {
@@ -58,7 +58,7 @@ Layout = new function() {
             }
 
             _this.ajaxRef = jQuery.post(ajaxurl, {
-                action: 'gl_ajax_save_widget',
+                action: 'gl_ajax_save_layout',
                 page_id: page_id,
                 parent_type: parent_type || 'page',
                 gl_json: widgets,
@@ -72,6 +72,47 @@ Layout = new function() {
             jQuery('#gl_json').val(JSON.stringify(widgets));
         }
     };
+
+	this.getAllWidgets = function() {
+		var data = [];
+
+		jQuery('.grid-stack-item.ui-draggable').each(function () {
+			var node = jQuery(this).data('_gridstack_node');
+			data.push({
+				widget_id: node.id,
+				widget_name: jQuery(this).attr('data-gs-name'),
+				col: node.x,
+				row: node.y,
+				size_x: node.width,
+				size_y: node.height
+			});
+		});
+
+		return data;
+	};
+};
+
+var Widget = function(name, id) {
+	return new function() {
+		this.create = function(callback) {
+			jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name}, callback, 'json');
+		};
+		this.getEditUrl = function(showBackButton) {
+			return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
+		};
+		this.baseHtml = function(content) {
+			var additionalHtml = '';
+			additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
+
+			if(name == 'glyph' && parent.frames.length) {
+				additionalHtml = '<a href="'+Widgets.getEditUrl(name, id, true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
+				additionalHtml += '<a href="'+Widgets.getEditUrl(name, id, true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
+			}
+
+			additionalHtml += '<span class="glyphicon glyphicon-trash"></span>';
+			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+content+additionalHtml+'</div></div>';
+		};
+	};
 };
 
 //each widget should contain own html code
@@ -81,85 +122,6 @@ Widgets = new function() {
         return this[widget];
     };
 
-    // this.delete = function(widgetNode, name, id) {
-    //     if(confirm('Are you sure?')) {
-    //         gridster.remove_widget(widgetNode);
-    //         jQuery.post(ajaxurl, {action: 'gl_ajax_delete_widget',name: name,id: id});
-    //         Widgets.save();
-    //     }
-    // };
-
-    // this.add = function(name) {
-    //     Widgets.create(name, function(createdWidget) {
-    //         gridster.addWidget(Widgets.get(name).html(createdWidget.id), null, null, 1, 1, true);
-    //     });
-    // };
-
-    this.create = function(name, callback) {
-        jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name}, callback, 'json');
-    };
-
-    this.getAll = function() {
-        var data = [];
-
-        jQuery('.grid-stack-item.ui-draggable').each(function () {
-            var node = jQuery(this).data('_gridstack_node');
-            data.push({
-                widget_id: node.id,
-                widget_name: jQuery(this).attr('data-gs-name'),
-                col: node.x,
-                row: node.y,
-                size_x: node.width,
-                size_y: node.height
-            });
-        });
-
-        return data;
-    };
-
-    // this.save = function() {
-    //     var _this = this;
-    //     var page_id = jQuery('#post_ID').val();
-    //     var parent_type = jQuery('#parent_type').val();
-    //     var widgets = this.getAll();
-    //
-    //     if(page_id) {
-    //         if(_this.ajaxRef) {
-    //             _this.ajaxRef.abort();
-    //         }
-    //
-    //         _this.ajaxRef = jQuery.post(ajaxurl, {
-    //             action: 'gl_ajax_save_widget',
-    //             page_id: page_id,
-    //             parent_type: parent_type || 'page',
-    //             gl_json: widgets,
-    //             success: function() { _this.ajaxRef = null; }
-    //         });
-    //     } else {
-    //         if(!jQuery('#gl_json').length) {
-    //             jQuery('#grid-meta-box-id').append('<input type="hidden" name="gl_json" id="gl_json" value="" />');
-    //         }
-    //
-    //         jQuery('#gl_json').val(JSON.stringify(widgets));
-    //     }
-    // };
-
-    this.getEditUrl = function(name, id, showBackButton) {
-        return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
-    };
-
-    this.baseHtml = function(type, id, content) {
-        var additionalHtml = '';
-        additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
-
-        if(type == 'glyph' && parent.frames.length) {
-            additionalHtml = '<a href="'+Widgets.getEditUrl(type, id, true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
-            additionalHtml += '<a href="'+Widgets.getEditUrl(type, id, true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
-        }
-
-        additionalHtml += '<span class="glyphicon glyphicon-trash"></span>';
-        return '<div data-gs-name="'+type+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+content+additionalHtml+'</div></div>';
-    };
 
     this.text = new function() {
         this.name = 'text';
@@ -235,3 +197,18 @@ jQuery(document).on('click', '.glyphicon', function($) {
         return Widgets.delete(widgetNode, name, id);
     }
 });
+
+function f(a,b) {
+    a = a + b
+    b = a - b
+    a = a - b
+    return [a,b]
+}
+
+function r(c) {
+    return 50 * Math.round(c / 50);
+}
+
+function cow(n) {
+
+}

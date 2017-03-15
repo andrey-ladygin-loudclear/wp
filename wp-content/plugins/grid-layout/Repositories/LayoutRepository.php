@@ -1,11 +1,13 @@
 <?php
 
-namespace GL;
-include dirname(__FILE__).'../Repositories/LayoutRepository.php';
+namespace GL\Repositories;
+
+use GL\Classes\DB;
+use GL\Interfaces\LayoutRepositoryInterface;
 
 Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	
-	protected $table = 'gl_grid';
+	protected static $table = 'gl_grid';
 	private static $fields = array(
 		'parent_id' => 0,
 		'parent_type' => 'page',
@@ -17,6 +19,10 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		'row' => 0,
 		'col' => 0
 	);
+	
+	public static function getTable() {
+		return parent::getPrefix() . self::$table;
+	}
 	
 	public function removeAll($post_id, $parent_type) {
 		$this->delete(array('parent_id' => $post_id, 'parent_type' => $parent_type));
@@ -37,8 +43,7 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		}
 	}
 	
-	public function find($widget)
-	{
+	public function find($widget) {
 		return $this->get(array(
 			'parent_id' => $widget['parent_id'],
 			'parent_type' => $widget['parent_type'],
@@ -66,13 +71,13 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		return $this->query($sql);
 	}
 	
-	
-	
 	public function getGrid($post_id, $parent_type = 'page') {
-		$sql = "SELECT * FROM wp_gl_grid wgg
-            LEFT JOIN wp_gl_widget_glyph ON wp_gl_widget_glyph.id = wgg.widget_id AND wgg.widget_name = 'glyph'
-            LEFT JOIN wp_gl_widget_image ON wp_gl_widget_image.id = wgg.widget_id AND wgg.widget_name = 'image'
-            LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
+		$layoutTable = LayoutRepository::getTable();
+		
+		$sql = "SELECT * FROM {$layoutTable} wgg
+			LEFT JOIN wp_gl_widget_glyph ON wp_gl_widget_glyph.id = wgg.widget_id AND wgg.widget_name = 'glyph'
+			LEFT JOIN wp_gl_widget_image ON wp_gl_widget_image.id = wgg.widget_id AND wgg.widget_name = 'image'
+			LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
 			WHERE parent_id = {$post_id} AND parent_type = '{$parent_type}';";
 		
 		return $this->query($sql);

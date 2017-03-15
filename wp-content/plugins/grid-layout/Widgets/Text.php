@@ -1,18 +1,21 @@
 <?php
 
-namespace GL;
+
+use GL\Classes\View;
+use GL\Widgets\System\Widget;
 
 class Text extends Widget {
-	private $_text;
 	protected $table = 'gl_widget_text';
 	
-	public function __construct($widget = array()) {
-		parent::__construct();
-		$this->_text = $widget['text'];
+	public $text;
+	
+	public function fill($data) {
+		$this->text = $data['text'];
+		return parent::fill($data);
 	}
-
+	
 	public function getText() {
-	    return $this->_text;
+	    return $this->text;
     }
 	
 	public function draw() {

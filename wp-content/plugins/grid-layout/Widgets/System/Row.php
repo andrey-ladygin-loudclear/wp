@@ -1,6 +1,6 @@
 <?php
 
-namespace GL;
+namespace GL\Widgets\System;
 
 class Row extends Glyph {
 	

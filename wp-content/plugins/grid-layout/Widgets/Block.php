@@ -1,6 +1,8 @@
 <?php
 
-namespace GL;
+namespace GL\Widgets;
+
+use GL\View;
 
 class Block extends Glyph {
 

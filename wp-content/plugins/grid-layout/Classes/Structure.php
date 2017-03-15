@@ -1,7 +1,6 @@
 <?php
 
-namespace GL;
-include dirname(__FILE__).'/WidgetFactory.php';
+namespace GL\Classes;
 
 Class Structure {
 

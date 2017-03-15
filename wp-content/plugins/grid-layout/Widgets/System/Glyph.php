@@ -1,6 +1,9 @@
 <?php
 
-namespace GL;
+namespace GL\Widgets\System;
+
+use GL\Classes\Structure;
+use GL\Interfaces\GlyphInterface;
 
 class Glyph implements GlyphInterface {
 	public $childrens = array();

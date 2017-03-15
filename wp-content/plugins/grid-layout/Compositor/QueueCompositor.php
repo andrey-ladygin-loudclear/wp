@@ -1,6 +1,6 @@
 <?php
 
-namespace GL;
+namespace GL\Compositor;
 
 class QueueCompositor {
 	CONST MAX_COLS = 12;

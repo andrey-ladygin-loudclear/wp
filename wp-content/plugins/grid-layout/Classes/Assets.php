@@ -1,6 +1,6 @@
 <?php
 
-namespace GL;
+namespace GL\Classes;
 
 Class Assets {
 

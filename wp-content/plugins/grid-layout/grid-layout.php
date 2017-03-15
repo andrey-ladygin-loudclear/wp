@@ -10,24 +10,42 @@ Author URI: http://google.com
 
 //include "Classes/Layout.php";
 
+use GL\Classes\Assets;
+use GL\Classes\Layout;
+
 class GL_Grid_Layout {
 	public static $PLUG_DIR;
 	public static $PLUG_URL;
 	
+	public static $widgets = array(
+		'glyph' => 'Block',
+		'image' => 'Image',
+		'text' => 'Text',
+	);
+	
     public function __construct() {
 		self::$PLUG_URL = plugins_url('/', __FILE__);
 		//self::$PLUG_DIR = dir(__FILE__);
+	
+	
+		// if __autoload is active, put it on the spl_autoload stack
+		if ( is_array(spl_autoload_functions()) && in_array( '__autoload', spl_autoload_functions()) ) {
+			spl_autoload_register('__autoload');
+		}
+	
+		// Add the autoloader
+		spl_autoload_register(array($this, 'autoloader'));
 		
-        $this->layout = new \GL\Layout();
-        $this->assets = new \GL\Assets();
+        $this->layout = new Layout();
+        $this->assets = new Assets();
 
         add_action('init', array($this, 'create_grid_post_type'));
         add_action('admin_init', array($this, 'enqueue_scripts'));
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
 
         add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'add_widget'));
-        add_action('wp_ajax_gl_ajax_save_widget', array($this->layout, 'save_widget'));
         add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'delete_widget'));
+		add_action('wp_ajax_gl_ajax_save_layout', array($this->layout, 'save_layout'));
         add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
 
         add_action('admin_menu', array($this, 'my_cool_plugin_create_menu'));
@@ -35,13 +53,6 @@ class GL_Grid_Layout {
         add_action('gl_edit_widget_action', array($this, 'edit_action_callback'));
         add_action('gl_save_widget_action', array($this, 'save_action_callback'));
 	
-		// if __autoload is active, put it on the spl_autoload stack
-		if ( is_array(spl_autoload_functions()) && in_array( '__autoload', spl_autoload_functions()) ) {
-			spl_autoload_register('__autoload');
-		}
-
-		// Add the autoloader
-		spl_autoload_register(array($this, 'frm_forms_autoloader'));
 	
 		function bartag_func( $atts ) {
 			$atts = shortcode_atts( array(
@@ -54,8 +65,22 @@ class GL_Grid_Layout {
 		add_shortcode( 'bartag', 'bartag_func' );
     }
     
-    public function frm_forms_autoloader($class) {
-    	var_dump($class);die;
+    public function autoloader($class) {
+    	if(strstr($class, "GL") === FALSE) {
+    		return;
+		}
+    	
+		$class = str_replace('GL', '', $class);
+		$class = str_replace('\\', '/', $class);
+		$file = dirname(__FILE__) . "/{$class}.php";
+		
+		
+		if(file_exists($file)) {
+			include $file;
+			return;
+		}
+		
+		throw new Exception("File does not exists {$file}");
 	}
 
     public function create_grid_post_type() {
@@ -105,7 +130,7 @@ class GL_Grid_Layout {
         $this->layout->edit();
     }
     public function save_action_callback() {
-        $this->layout->save();
+        $this->layout->save_widget();
     }
 }
 

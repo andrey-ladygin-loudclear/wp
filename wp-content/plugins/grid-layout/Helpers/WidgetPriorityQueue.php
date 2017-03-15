@@ -1,5 +1,5 @@
 <?php
-namespace GL;
+namespace GL\Helpers;
 
 class WidgetPriorityQueue extends \SplPriorityQueue
 {

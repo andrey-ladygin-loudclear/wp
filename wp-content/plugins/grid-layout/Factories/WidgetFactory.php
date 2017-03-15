@@ -1,16 +1,30 @@
 <?php
 
-namespace GL;
-include_once dirname(__FILE__).'/Widget.php';
-include_once dirname(__FILE__).'/../Widgets/System/Glyph.php';
-include_once dirname(__FILE__).'/../Widgets/System/Blank.php';
-include_once dirname(__FILE__).'/../Widgets/System/Row.php';
-include_once dirname(__FILE__).'/../Widgets/Image.php';
-include_once dirname(__FILE__).'/../Widgets/Text.php';
-include_once dirname(__FILE__).'/../Widgets/Block.php';
+namespace GL\Factories;
+
+
+use GL\Interfaces\GlyphInterface;
+use GL\Interfaces\WidgetRepositoryInterface;
 
 Class WidgetFactory {
-
+	
+	/**
+	 * @return WidgetRepositoryInterface|GlyphInterface
+	 */
+	public static function add($name) {
+		$class = "\\GL\\".ucfirst($name);
+		$widget = new $class;
+		return $widget->add();
+	}
+	/**
+	 * @return WidgetRepositoryInterface
+	 */
+	public static function get($name, $id) {
+		$class = "\\GL\\".ucfirst($name);
+		$widget = new $class;
+		return $widget->find($id);
+	}
+	
     public static function factory($name, $data = array()) {
         $class = "\\GL\\".ucfirst($name);
         $widget = new $class($data);

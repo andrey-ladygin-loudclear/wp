@@ -1,14 +1,15 @@
 <?php
 
-namespace GL;
+namespace GL\Widgets\System;
 
-include_once dirname(__FILE__).'/../Interfaces/GlyphInterface.php';
-include_once dirname(__FILE__).'/../Helpers/WidgetPriorityQueue.php';
+use GL\Interfaces\GlyphInterface;
+use GL\Repositories\WidgetRepository;
 
 class Widget extends WidgetRepository implements GlyphInterface {
     protected $childrens = array();
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];
+    protected $id = 0;
     protected $offset = 0;
 	protected $width = 1;
     protected $height = 1;
@@ -56,9 +57,13 @@ class Widget extends WidgetRepository implements GlyphInterface {
         $this->offset = $offset;
     }
 	
-	public function setId($id) {}
+	public function setId($id) {
+		$this->id = $id;
+	}
     
-	public function getId() {}
+	public function getId() {
+		return $this->id;
+	}
 
 	public function insert(GlyphInterface $widget) {}
 

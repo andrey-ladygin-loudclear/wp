@@ -1,6 +1,6 @@
 <?php
 
-namespace GL;
+namespace GL\Widgets;
 
 class Image extends Widget {
 	private $_src;
