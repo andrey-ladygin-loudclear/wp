@@ -5,7 +5,7 @@ namespace GL;
 include_once dirname(__FILE__).'/../Interfaces/GlyphInterface.php';
 include_once dirname(__FILE__).'/../Helpers/WidgetPriorityQueue.php';
 
-class Widget implements GlyphInterface {
+class Widget extends WidgetRepository implements GlyphInterface {
     protected $childrens = array();
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];
@@ -15,8 +15,6 @@ class Widget implements GlyphInterface {
 	protected $row = 0;
 	protected $col = 0;
     protected $full_widget = 0;
-
-    public function __construct() {}
 	
 	public function getCol() {
 		return $this->col;

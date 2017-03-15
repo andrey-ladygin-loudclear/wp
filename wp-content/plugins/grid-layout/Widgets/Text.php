@@ -4,8 +4,10 @@ namespace GL;
 
 class Text extends Widget {
 	private $_text;
+	protected $table = 'gl_widget_text';
 	
 	public function __construct($widget = array()) {
+		parent::__construct();
 		$this->_text = $widget['text'];
 	}
 

@@ -8,7 +8,7 @@ Author: Andrey Ladygin
 Author URI: http://google.com
 */
 
-include "Classes/Layout.php";
+//include "Classes/Layout.php";
 
 class GL_Grid_Layout {
 	public static $PLUG_DIR;
@@ -35,7 +35,13 @@ class GL_Grid_Layout {
         add_action('gl_edit_widget_action', array($this, 'edit_action_callback'));
         add_action('gl_save_widget_action', array($this, 'save_action_callback'));
 	
-	
+		// if __autoload is active, put it on the spl_autoload stack
+		if ( is_array(spl_autoload_functions()) && in_array( '__autoload', spl_autoload_functions()) ) {
+			spl_autoload_register('__autoload');
+		}
+
+		// Add the autoloader
+		spl_autoload_register(array($this, 'frm_forms_autoloader'));
 	
 		function bartag_func( $atts ) {
 			$atts = shortcode_atts( array(
@@ -47,6 +53,10 @@ class GL_Grid_Layout {
 		}
 		add_shortcode( 'bartag', 'bartag_func' );
     }
+    
+    public function frm_forms_autoloader($class) {
+    	var_dump($class);die;
+	}
 
     public function create_grid_post_type() {
         $post_type = 'grid';

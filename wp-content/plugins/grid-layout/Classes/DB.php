@@ -14,16 +14,21 @@ Class DB {
         $this->table = $wpdb->prefix . $this->table;
     }
     
-    protected function delete($where) {
+    protected function delete(array $where) {
 		return $this->wpdb->delete($this->table, $where);
 	}
 	
-	protected function insert($data) {
-		return $this->wpdb->insert($this->table, $data);
+	protected function insert(array $data) {
+		$this->wpdb->insert($this->table, $data);
+		return $this->wpdb->insert_id;
 	}
 	
 	protected function get(array $where) {
 		return $this->wpdb->get_row("SELECT * FROM {$this->table} WHERE ".$this->implode($where).";", ARRAY_A);
+	}
+	
+	protected function update(array $data, array $where) {
+		return $this->wpdb->update($this->table, $data, $where);
 	}
 	
 	protected function query($sql) {
