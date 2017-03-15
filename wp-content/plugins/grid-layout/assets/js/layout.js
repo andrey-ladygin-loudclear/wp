@@ -18,8 +18,12 @@ jQuery(function($){ //DOM Ready
         new function () {
             if(typeof structure != 'undefined' && structure) {
                 $.each(structure, function(a) {
-                    if(Widgets.get(this.widget_name)) {
-                        gridster.addWidget(Widgets.get(this.widget_name).html(this.widget_id, this), this.col, this.row, ~~this.size_x, ~~this.size_y);
+                    // if(Widgets.get(this.widget_name)) {
+                    //     gridster.addWidget(Widgets.get(this.widget_name).html(this.widget_id, this), this.col, this.row, ~~this.size_x, ~~this.size_y);
+                    // }
+                    var widget = Widget(this.widget_name, this.widget_id);
+                    if(widget.check()) {
+                        gridster.addWidget(widget.baseHtml(), this.col, this.row, ~~this.size_x, ~~this.size_y);
                     }
                 });
             }
@@ -34,7 +38,8 @@ jQuery(function($){ //DOM Ready
 Layout = new function() {
     this.add = function(name) {
         Widgets.create(name, function(createdWidget) {
-            gridster.addWidget(Widgets.get(name).html(createdWidget.id), null, null, 1, 1, true);
+            //gridster.addWidget(Widgets.get(name).html(createdWidget.id), null, null, 1, 1, true);
+            gridster.addWidget(widget.baseHtml(), null, null, 1, 1, true);
         });
     };
 
@@ -94,6 +99,12 @@ Layout = new function() {
 
 var Widget = function(name, id) {
 	return new function() {
+	    this.getNode = function() {
+            return jQuery('div[data-gs-name="'+name+'"][data-gs-id="'+id+'"]');
+        };
+	    this.check = function() {
+	        return this.getNode().length;
+        };
 		this.create = function(callback) {
 			jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name}, callback, 'json');
 		};
@@ -101,7 +112,8 @@ var Widget = function(name, id) {
 			return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
 		};
 		this.baseHtml = function(content) {
-			var additionalHtml = '';
+			var additionalHtml = name + ' Widget';
+			additionalHtml += '<div class="content">'+content+'</div>';
 			additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
 
 			if(name == 'glyph' && parent.frames.length) {
@@ -110,8 +122,16 @@ var Widget = function(name, id) {
 			}
 
 			additionalHtml += '<span class="glyphicon glyphicon-trash"></span>';
-			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+content+additionalHtml+'</div></div>';
+			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+additionalHtml+'</div></div>';
 		};
+		this.updateWidgetContent = function(content) {
+            this.getNode().find('.content').html(content);
+        };
+		this.edit = function() {
+            jQuery('.modal .modal-title').html('Edit ' + name);
+            jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl()+'" width="100%" height="100%"></iframe>');
+            jQuery('.modal').modal('show')
+        };
 	};
 };
 
@@ -190,7 +210,8 @@ jQuery(document).on('click', '.glyphicon', function($) {
     var id 	 = widgetNode.attr('data-gs-id');
 
     if(jQuery(this).hasClass('glyphicon-cog') && !jQuery(this).hasClass('disable-popup')) {
-        return Widgets.get(name).edit(id);
+        // return Widgets.get(name).edit(id);
+        return Widgets(name, id).edit();
     }
 
     if(jQuery(this).hasClass('glyphicon-trash')) {
