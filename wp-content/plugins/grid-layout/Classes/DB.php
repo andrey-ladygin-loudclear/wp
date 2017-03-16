@@ -5,13 +5,16 @@ namespace GL\Classes;
 Class DB {
 
     private $wpdb;
-    private $prefix;
 	protected static $table;
     
 	public function __construct() {
         global $wpdb;
 		$this->wpdb = $wpdb;
     }
+    
+    public static function getTable() {
+    	return self::getPrefix() . static::$table;
+	}
     
     public static function getPrefix() {
 		return 'wp_';
@@ -20,20 +23,20 @@ Class DB {
 	}
     
     protected function delete(array $where) {
-		return $this->wpdb->delete(self::$table, $where);
+		return $this->wpdb->delete(self::getTable(), $where);
 	}
 	
 	protected function insert(array $data) {
-		$this->wpdb->insert(self::$table, $data);
+		$this->wpdb->insert(self::getTable(), $data);
 		return $this->wpdb->insert_id;
 	}
 	
 	protected function get(array $where) {
-		return $this->wpdb->get_row("SELECT * FROM ".self::$table." WHERE ".$this->implode($where).";", ARRAY_A);
+		return $this->wpdb->get_row("SELECT * FROM ".self::getTable()." WHERE ".$this->implode($where).";", ARRAY_A);
 	}
 	
 	protected function update(array $data, array $where) {
-		return $this->wpdb->update(self::$table, $data, $where);
+		return $this->wpdb->update(self::getTable(), $data, $where);
 	}
 	
 	protected function query($sql) {

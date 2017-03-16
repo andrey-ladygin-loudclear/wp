@@ -13,7 +13,7 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface {
 	protected $id;
 	
 	public function add() {
-		$id = $this->insert(array('id' => NULL));
+		$id = parent::insert(array('id' => NULL));
 		$this->id = $id;
 		return $this;
 	}

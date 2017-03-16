@@ -18,18 +18,14 @@ jQuery(function($){ //DOM Ready
         new function () {
             if(typeof structure != 'undefined' && structure) {
                 $.each(structure, function(a) {
-                    // if(Widgets.get(this.widget_name)) {
-                    //     gridster.addWidget(Widgets.get(this.widget_name).html(this.widget_id, this), this.col, this.row, ~~this.size_x, ~~this.size_y);
-                    // }
                     var widget = Widget(this.widget_name, this.widget_id);
-                    if(widget.check()) {
-                        gridster.addWidget(widget.baseHtml(), this.col, this.row, ~~this.size_x, ~~this.size_y);
-                    }
+					widget.setContent(this);
+					gridster.addWidget(widget.baseHtml(), this.col, this.row, ~~this.size_x, ~~this.size_y);
                 });
             }
 
             $gridStack.on('change', function(event, items) {
-                Widgets.save();
+				Layout.save();
             });
         };
     });
@@ -37,9 +33,8 @@ jQuery(function($){ //DOM Ready
 
 Layout = new function() {
     this.add = function(name) {
-        Widgets.create(name, function(createdWidget) {
-            //gridster.addWidget(Widgets.get(name).html(createdWidget.id), null, null, 1, 1, true);
-            gridster.addWidget(widget.baseHtml(), null, null, 1, 1, true);
+        Widget(name).create(function(createdWidget) {
+            gridster.addWidget(createdWidget.baseHtml(), null, null, 1, 1, true);
         });
     };
 
@@ -47,7 +42,7 @@ Layout = new function() {
         if(confirm('Are you sure?')) {
             gridster.remove_widget(widgetNode);
             jQuery.post(ajaxurl, {action: 'gl_ajax_delete_widget',name: name,id: id});
-            Widgets.save();
+			Layout.save();
         }
     };
 
@@ -98,21 +93,31 @@ Layout = new function() {
 };
 
 var Widget = function(name, id) {
+	var content = '';
+
 	return new function() {
 	    this.getNode = function() {
             return jQuery('div[data-gs-name="'+name+'"][data-gs-id="'+id+'"]');
         };
+        this.setContent = function(data) {
+        	if(name == 'text') {
+        		content = data.text;
+			}
+        	return '';
+		};
 	    this.check = function() {
 	        return this.getNode().length;
         };
 		this.create = function(callback) {
-			jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name}, callback, 'json');
+			jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name}, function(response) {
+				callback(Widget(name, response.id));
+			}, 'json');
 		};
 		this.getEditUrl = function(showBackButton) {
 			return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
 		};
-		this.baseHtml = function(content) {
-			var additionalHtml = name + ' Widget';
+		this.baseHtml = function() {
+			var additionalHtml = name.ucFirst() + ' Widget';
 			additionalHtml += '<div class="content">'+content+'</div>';
 			additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
 
@@ -218,6 +223,14 @@ jQuery(document).on('click', '.glyphicon', function($) {
         return Widgets.delete(widgetNode, name, id);
     }
 });
+
+String.prototype.ucFirst = function() {
+	var str = this;
+	if(str.length) {
+		str = str.charAt(0).toUpperCase() + str.slice(1);
+	}
+	return str;
+};
 
 function f(a,b) {
     a = a + b

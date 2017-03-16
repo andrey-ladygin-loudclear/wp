@@ -34,7 +34,7 @@ Class Layout extends LayoutRepository {
 		$view->show();
     }
 
-    public function save_layout() {
+    public function save_widget() {
         $data = $_POST;
         $widget_name = $data['widget-name'];
         $widget_id = $data['widget-id'];
@@ -72,7 +72,7 @@ Class Layout extends LayoutRepository {
         wp_die();
     }
 
-    public function save_widget() {
+    public function save_layout() {
         $json = $_POST['gl_json'];
         $post_id = $_POST['page_id'];
         $parent_type = $_POST['parent_type'];

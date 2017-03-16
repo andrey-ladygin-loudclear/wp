@@ -2,7 +2,8 @@
 
 namespace GL\Widgets;
 
-use GL\View;
+use GL\Classes\View;
+use GL\Widgets\System\Glyph;
 
 class Block extends Glyph {
 

@@ -12,8 +12,14 @@ Class WidgetFactory {
 	 * @return WidgetRepositoryInterface|GlyphInterface
 	 */
 	public static function add($name) {
-		$class = "\\GL\\".ucfirst($name);
-		$widget = new $class;
+		try {
+			$class = "\\GL\\Widgets\\".ucfirst($name);
+			$widget = new $class;
+		} catch (\Exception $e) {
+			$class = "\\GL\\Widgets\\System\\".ucfirst($name);
+			$widget = new $class;
+		}
+		
 		return $widget->add();
 	}
 	/**

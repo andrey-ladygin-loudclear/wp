@@ -4,8 +4,12 @@ namespace GL\Widgets\System;
 
 use GL\Classes\Structure;
 use GL\Interfaces\GlyphInterface;
+use GL\Repositories\WidgetRepository;
 
-class Glyph implements GlyphInterface {
+class Glyph extends WidgetRepository implements GlyphInterface {
+	
+	protected static $table = 'gl_widget_glyph';
+	
 	public $childrens = array();
     protected $id;
     //protected $padding = [0, 0, 0, 0,];
