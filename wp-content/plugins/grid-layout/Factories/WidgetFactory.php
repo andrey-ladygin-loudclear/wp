@@ -7,18 +7,24 @@ use GL\Interfaces\GlyphInterface;
 use GL\Interfaces\WidgetRepositoryInterface;
 
 Class WidgetFactory {
-	
+
+    public static function getObject($name) {
+        try {
+            $class = "\\GL\\Widgets\\".ucfirst($name);
+            $widget = new $class;
+        } catch (\Exception $e) {
+            $class = "\\GL\\Widgets\\System\\".ucfirst($name);
+            $widget = new $class;
+        }
+
+        return $widget;
+    }
+
 	/**
 	 * @return WidgetRepositoryInterface|GlyphInterface
 	 */
 	public static function add($name) {
-		try {
-			$class = "\\GL\\Widgets\\".ucfirst($name);
-			$widget = new $class;
-		} catch (\Exception $e) {
-			$class = "\\GL\\Widgets\\System\\".ucfirst($name);
-			$widget = new $class;
-		}
+		$widget = self::getObject($name);
 		
 		return $widget->add();
 	}
@@ -31,34 +37,9 @@ Class WidgetFactory {
 		return $widget->find($id);
 	}
 	
-    public static function factory($name, $data = array()) {
-        $class = "\\GL\\".ucfirst($name);
-        $widget = new $class($data);
-	
-		if(!empty($data['widget_id'])) {
-			$widget->setId($data['widget_id']);
-		}
-		
-		if(!empty($data['row'])) {
-			$widget->setRow($data['row']);
-		}
-		
-		if(!empty($data['col'])) {
-			$widget->setCol($data['col']);
-		}
-		
-		if(!empty($data['size_x'])) {
-			$widget->setWidth($data['size_x']);
-		}
-		
-		if(!empty($data['size_y'])) {
-			$widget->setHeight($data['size_y']);
-		}
-		
-		if(!empty($data['full_widget'])) {
-			$widget->setFull($data['full_widget']);
-		}
-		
+    public static function factory($data = array()) {
+        $widget = self::getObject($data['widget_name']);
+        $widget->fill($data);
 		return $widget;
     }
 }

@@ -14,6 +14,10 @@ class Image extends Widget {
 		$this->src = $attributes['src'];
 		return parent::fill($attributes);
 	}
+
+	public function getPreview() {
+	    return "<img src='{$this->src}'>";
+    }
 	
 	public function getSrc() {
 	    return $this->src;

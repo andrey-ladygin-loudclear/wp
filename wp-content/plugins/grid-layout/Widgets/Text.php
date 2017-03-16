@@ -15,6 +15,10 @@ class Text extends Widget {
 		$this->text = $attributes['text'];
 		return parent::fill($attributes);
 	}
+
+    public function getPreview() {
+        return $this->text;
+    }
 	
 	public function getText() {
 	    return $this->text;

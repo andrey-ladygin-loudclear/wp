@@ -3,6 +3,7 @@
 namespace GL\Repositories;
 
 use GL\Classes\DB;
+use GL\Factories\WidgetFactory;
 use GL\Interfaces\LayoutRepositoryInterface;
 
 Class LayoutRepository extends DB implements LayoutRepositoryInterface {
@@ -79,7 +80,13 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 			LEFT JOIN wp_gl_widget_image ON wp_gl_widget_image.id = wgg.widget_id AND wgg.widget_name = 'image'
 			LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
 			WHERE parent_id = {$post_id} AND parent_type = '{$parent_type}';";
-		
-		return $this->query($sql);
+
+		$widgets = array();
+
+		foreach($this->query($sql) as $row) {
+		    $widgets[] = WidgetFactory::factory($row);
+        }
+
+		return $widgets;
 	}
 }

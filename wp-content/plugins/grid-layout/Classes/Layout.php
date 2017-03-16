@@ -82,6 +82,8 @@ Class Layout extends LayoutRepository {
     }
 
     public function grid($post) {
+        //json_encode(get_object_vars($error));
+        //JsonSerializable::jsonSerialize
         $widgets = $this->getGrid($post->ID, 'page');
         View::load('Templates/Backend/layout', array('widgets' => $widgets));
     }
