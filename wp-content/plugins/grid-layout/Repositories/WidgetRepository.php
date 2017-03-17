@@ -4,10 +4,11 @@ namespace GL\Repositories;
 
 use GL\Classes\DB;
 use GL\Interfaces\WidgetRepositoryInterface;
+use JsonSerializable;
 
 include dirname(__FILE__).'../Repositories/WidgetRepository.php';
 
-Class WidgetRepository extends DB implements WidgetRepositoryInterface {
+Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSerializable {
 	
 	protected static $table;
 	protected $id;
@@ -67,5 +68,26 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface {
 		}
 		
 		return $this;
+	}
+	
+	public function getName() {
+		return strtolower(end(explode('\\', static::class)));
+	}
+	
+	public function getPreview() {
+		return '';
+	}
+	
+	public function jsonSerialize() {
+		return array(
+			'widget_id' => $this->getId(),
+			'widget_name' => $this->getName(),
+			'row' => $this->getRow(),
+			'col' => $this->getCol(),
+			'size_x' => $this->getWidth(),
+			'size_y' => $this->getHeight(),
+			//'full_widget' => $this->getFull(),
+			'preview' => $this->getPreview(),
+		);
 	}
 }

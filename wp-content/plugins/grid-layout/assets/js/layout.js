@@ -19,7 +19,7 @@ jQuery(function($){ //DOM Ready
             if(typeof structure != 'undefined' && structure) {
                 $.each(structure, function(a) {
                     var widget = Widget(this.widget_name, this.widget_id);
-					widget.setContent(this);
+					widget.setContent(this.preview);
 					gridster.addWidget(widget.baseHtml(), this.col, this.row, ~~this.size_x, ~~this.size_y);
                 });
             }
@@ -99,11 +99,10 @@ var Widget = function(name, id) {
 	    this.getNode = function() {
             return jQuery('div[data-gs-name="'+name+'"][data-gs-id="'+id+'"]');
         };
-        this.setContent = function(data) {
-        	if(name == 'text') {
-        		content = data.text;
+        this.setContent = function(text) {
+        	if(text) {
+        		content = text;
 			}
-        	return '';
 		};
 	    this.check = function() {
 	        return this.getNode().length;
@@ -134,7 +133,7 @@ var Widget = function(name, id) {
         };
 		this.edit = function() {
             jQuery('.modal .modal-title').html('Edit ' + name);
-            jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl()+'" width="100%" height="100%"></iframe>');
+            jQuery('.modal .modal-body').html('<iframe src="'+this.getEditUrl()+'" width="100%" height="100%"></iframe>');
             jQuery('.modal').modal('show')
         };
 	};
@@ -216,11 +215,11 @@ jQuery(document).on('click', '.glyphicon', function($) {
 
     if(jQuery(this).hasClass('glyphicon-cog') && !jQuery(this).hasClass('disable-popup')) {
         // return Widgets.get(name).edit(id);
-        return Widgets(name, id).edit();
+        return Widget(name, id).edit();
     }
 
     if(jQuery(this).hasClass('glyphicon-trash')) {
-        return Widgets.delete(widgetNode, name, id);
+        return Layout.delete(widgetNode, name, id);
     }
 });
 

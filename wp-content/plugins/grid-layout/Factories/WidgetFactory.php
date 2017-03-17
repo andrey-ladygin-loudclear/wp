@@ -32,8 +32,7 @@ Class WidgetFactory {
 	 * @return WidgetRepositoryInterface
 	 */
 	public static function get($name, $id) {
-		$class = "\\GL\\".ucfirst($name);
-		$widget = new $class;
+		$widget = self::getObject($name);
 		return $widget->find($id);
 	}
 	
