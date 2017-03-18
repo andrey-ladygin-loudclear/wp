@@ -6,8 +6,6 @@ use GL\Classes\DB;
 use GL\Interfaces\WidgetRepositoryInterface;
 use JsonSerializable;
 
-include dirname(__FILE__).'../Repositories/WidgetRepository.php';
-
 Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSerializable {
 	
 	protected static $table;

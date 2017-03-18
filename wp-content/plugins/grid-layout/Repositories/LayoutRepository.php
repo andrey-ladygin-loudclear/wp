@@ -21,10 +21,6 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		'col' => 0
 	);
 	
-	public static function getTable() {
-		return parent::getPrefix() . self::$table;
-	}
-	
 	public function removeAll($post_id, $parent_type) {
 		$this->delete(array('parent_id' => $post_id, 'parent_type' => $parent_type));
 	}
@@ -61,7 +57,7 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	
 	public function getHierarchy($parent_id, $parent_type = 'page') {
 		$sql = "SELECT wgg.*, wp_gl_widget_glyph.*, wp_gl_widget_image.*, wp_gl_widget_text.*
-            FROM {$this->table} wgg
+            FROM {$this->getTable()} wgg
             LEFT JOIN wp_gl_widget_glyph ON wp_gl_widget_glyph.id = wgg.widget_id AND wgg.widget_name = 'glyph'
             LEFT JOIN wp_gl_widget_image ON wp_gl_widget_image.id = wgg.widget_id AND wgg.widget_name = 'image'
             LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
@@ -73,8 +69,9 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	}
 	
 	public function getGrid($post_id, $parent_type = 'page') {
-		$layoutTable = LayoutRepository::getTable();
-		
+		//$layoutTable = LayoutRepository::getTable();
+		$layoutTable = $this->getTable();
+
 		$sql = "SELECT * FROM {$layoutTable} wgg
 			LEFT JOIN wp_gl_widget_glyph ON wp_gl_widget_glyph.id = wgg.widget_id AND wgg.widget_name = 'glyph'
 			LEFT JOIN wp_gl_widget_image ON wp_gl_widget_image.id = wgg.widget_id AND wgg.widget_name = 'image'

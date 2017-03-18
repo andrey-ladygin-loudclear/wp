@@ -2,11 +2,8 @@
 
 namespace GL\Classes;
 
-include_once dirname(__FILE__).'/../Interfaces/Glyph.php';
-include_once dirname(__FILE__).'/../Widgets/System/Glyph.php';
-include_once dirname(__FILE__).'/../Compositor/RowCompositor.php';
-include_once dirname(__FILE__).'/../Compositor/GapCompositor.php';
-include_once dirname(__FILE__).'/../Compositor/QueueCompositor.php';
+use GL\Compositor\GapCompositor;
+use GL\Widgets\System\Glyph;
 
 class Composition extends Glyph {
 	
@@ -14,6 +11,7 @@ class Composition extends Glyph {
 	public $childrens = array();
 	
 	public function __construct() {
+	    parent::__construct();
 		$this->_compositor = new GapCompositor();
 	}
 	
@@ -43,18 +41,6 @@ class Composition extends Glyph {
 	
 	public function draw() {
 		$this->childrens = $this->_compositor->compose($this->childrens);
-		
-//		echo "<pre>";
-//		print_r($this->getChildren());
-//		echo "</pre>";
-//		die;
-
-		echo '<div class="container-fluid">';
-
-		foreach($this->getChildren() as $widget) {
-			$widget->draw();
-		}
-
-		echo '</div>';
+		View::load('Templates/Frontend/composition', array('widgets' => $this->getChildren()));
 	}
 }
