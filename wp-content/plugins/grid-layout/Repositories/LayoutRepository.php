@@ -29,13 +29,14 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		$post_id = (int) $post_id;
 		
 		$this->removeAll($post_id, $parent_type);
-		
+		var_dump($this->getLastQuery());//die;
+		print_r($json);
 		if(!empty($json)) {
 			foreach($json as $widget) {
 				$widget = (array) $widget;
 				$widget['parent_id'] = $post_id;
 				$widget['parent_type'] = $parent_type;
-				$this->add($widget);
+				var_dump($this->add($widget));
 			}
 		}
 	}
@@ -52,7 +53,8 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	public function add($widget)
 	{
 		$widget = array_merge(self::$fields, $widget);
-		return $this->insert($widget);
+		var_dump($widget);
+		return parent::insert($widget);
 	}
 	
 	public function getHierarchy($parent_id, $parent_type = 'page') {

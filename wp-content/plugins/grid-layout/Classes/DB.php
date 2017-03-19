@@ -27,7 +27,9 @@ Class DB {
 	}
 	
 	protected function insert(array $data) {
-		$this->wpdb->insert(self::getTable(), $data);
+		$res = $this->wpdb->insert(self::getTable(), $data);
+//		var_dump($res);
+//		var_dump($this->getLastQuery());
 		return $this->wpdb->insert_id;
 	}
 	
@@ -42,6 +44,10 @@ Class DB {
 	protected function query($sql) {
 		return $this->wpdb->get_results($sql, ARRAY_A);
 	}
+
+	protected function getLastQuery() {
+	    return $this->wpdb->last_query;
+    }
 	
 	private function implode($arr) {
 		$queryStr = '';

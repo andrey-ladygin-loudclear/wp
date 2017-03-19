@@ -40,9 +40,9 @@ Layout = new function() {
 
     this.delete = function(widgetNode, name, id) {
         if(confirm('Are you sure?')) {
-            gridster.remove_widget(widgetNode);
-            jQuery.post(ajaxurl, {action: 'gl_ajax_delete_widget',name: name,id: id});
-			Layout.save();
+            jQuery.post(ajaxurl, {action: 'gl_ajax_delete_widget',name: name,id: id}, function() {
+                gridster.remove_widget(widgetNode);
+            });
         }
     };
 
@@ -78,6 +78,7 @@ Layout = new function() {
 
 		jQuery('.grid-stack-item.ui-draggable').each(function () {
 			var node = jQuery(this).data('_gridstack_node');
+			//console.log(node);
 			data.push({
 				widget_id: node.id,
 				widget_name: jQuery(this).attr('data-gs-name'),
@@ -118,12 +119,13 @@ var Widget = function(name, id) {
 		this.baseHtml = function() {
 			var additionalHtml = name.ucFirst() + ' Widget';
 			additionalHtml += '<div class="content">'+content+'</div>';
-			additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
 
 			if(name == 'glyph' && parent.frames.length) {
-				additionalHtml = '<a href="'+Widgets.getEditUrl(name, id, true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
-				additionalHtml += '<a href="'+Widgets.getEditUrl(name, id, true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
-			}
+				additionalHtml += '<a href="'+this.getEditUrl(true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
+				additionalHtml += '<a href="'+this.getEditUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
+			} else {
+                additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
+            }
 
 			additionalHtml += '<span class="glyphicon glyphicon-trash"></span>';
 			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+additionalHtml+'</div></div>';

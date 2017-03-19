@@ -5,7 +5,8 @@
 </script>
 
 <?php
-$widgets = \GL\DB::getInstance()->getGrid($widget_id, 'glyph');
-$template = \GL\View::load('Templates/Backend/layout', array('widgets' => $widgets));
+$layout = new \GL\Classes\Layout();
+$widgets = $layout->getGrid($widget_id, 'glyph');
+GL\Classes\View::load('Templates/Backend/layout', array('widgets' => $widgets));
 ?>
 
