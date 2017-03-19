@@ -25,7 +25,7 @@ Class WidgetFactory {
 	 */
 	public static function add($name) {
 		$widget = self::getObject($name);
-		
+
 		return $widget->add();
 	}
 	/**

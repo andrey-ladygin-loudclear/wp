@@ -18,6 +18,7 @@ class GL_Grid_Layout {
 	public static $PLUG_URL;
 	
 	public static $widgets = array(
+		'news' => 'News',
 		'glyph' => 'Block',
 		'image' => 'Image',
 		'text' => 'Text',

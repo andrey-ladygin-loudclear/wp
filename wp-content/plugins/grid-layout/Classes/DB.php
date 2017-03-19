@@ -27,9 +27,7 @@ Class DB {
 	}
 	
 	protected function insert(array $data) {
-		$res = $this->wpdb->insert(self::getTable(), $data);
-//		var_dump($res);
-//		var_dump($this->getLastQuery());
+		$this->wpdb->insert(self::getTable(), $data);
 		return $this->wpdb->insert_id;
 	}
 	

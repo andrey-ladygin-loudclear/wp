@@ -120,11 +120,13 @@ var Widget = function(name, id) {
 			var additionalHtml = name.ucFirst() + ' Widget';
 			additionalHtml += '<div class="content">'+content+'</div>';
 
-			if(name == 'glyph' && parent.frames.length) {
-				additionalHtml += '<a href="'+this.getEditUrl(true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
-				additionalHtml += '<a href="'+this.getEditUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
-			} else {
-                additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
+			if(id) {
+			    if(name == 'glyph' && parent.frames.length) {
+                    additionalHtml += '<a href="'+this.getEditUrl(true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
+                    additionalHtml += '<a href="'+this.getEditUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
+                } else {
+                    additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
+                }
             }
 
 			additionalHtml += '<span class="glyphicon glyphicon-trash"></span>';
