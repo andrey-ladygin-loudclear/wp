@@ -23,6 +23,11 @@ class GL_Grid_Layout {
 		'image' => 'Image',
 		'text' => 'Text',
 	);
+
+	/*
+	main content widget
+	posts (N, autoload = False) maybe pagination
+	*/
 	
     public function __construct() {
 		self::$PLUG_URL = plugins_url('/', __FILE__);
