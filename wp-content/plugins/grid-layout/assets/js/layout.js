@@ -126,6 +126,10 @@ var Widget = function(name, id) {
                     additionalHtml += '<a href="'+this.getEditUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
                 } else {
                     additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
+
+					if(name == 'image') {
+						additionalHtml += '<span class="glyphicon glyphicon-picture upload-button" aria-hidden="true"></span>';
+					}
                 }
             }
 

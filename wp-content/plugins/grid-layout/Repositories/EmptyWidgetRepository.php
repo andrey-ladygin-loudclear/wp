@@ -21,18 +21,16 @@ Class EmptyWidgetRepository extends DB implements WidgetRepositoryInterface, Jso
 	}
 	
 	public function find($widget_id) {
-		$widget_table = self::getTable();
 		$layout_table = LayoutRepository::getTable();
 		
 		$sql = "SELECT * FROM {$layout_table} wgg
-			LEFT JOIN $widget_table wt ON wt.id = wgg.widget_id AND wgg.widget_name = 'glyph'
-			WHERE wt.id = {$widget_id};";
+			WHERE id = {$widget_id};";
 		
 		return $this->fill($this->query($sql));
 	}
 	
 	public function save($widget_id, $data) {
-		$this->update($data, array('id' => $widget_id));
+		return TRUE;
 	}
 	
 	public function fill(array $attributes) {

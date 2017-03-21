@@ -37,7 +37,7 @@ Class View {
 
     public function show() {
         if(!empty($this->assets)) {
-            self::load('Templates/Backend/assets', array('css' => $this->assets->getCss()));
+            self::load('Templates/Components/assets', array('css' => $this->assets->getCss()));
         }
 
         foreach($this->templates as $template) {
@@ -45,12 +45,12 @@ Class View {
         }
 
         if(!empty($this->assets)) {
-            self::load('Templates/Backend/assets', array('js' => $this->assets->getJs()));
+            self::load('Templates/Components/assets', array('js' => $this->assets->getJs()));
         }
     }
 
     public static function load_assets(Assets $assets) {
-        self::load('Templates/Backend/assets', array(
+        self::load('Templates/Components/assets', array(
             'js' => $assets->getJs(),
             'css' => $assets->getCss()
         ));

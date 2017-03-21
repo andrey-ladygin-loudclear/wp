@@ -8,10 +8,6 @@ use GL\Widgets\System\Widget;
 
 class News extends Widget {
 
-    public function add() {
-        $this->id = NULL;
-        return $this;
-    }
 // add NULL value for widget_id in DB
 // add empty widget repository
 // add admin view for widgets

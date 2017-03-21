@@ -12,6 +12,7 @@ Author URI: http://google.com
 
 use GL\Classes\Assets;
 use GL\Classes\Layout;
+use GL\Classes\Settings;
 
 class GL_Grid_Layout {
 	public static $PLUG_DIR;
@@ -39,6 +40,7 @@ class GL_Grid_Layout {
 		
         $this->layout = new Layout();
         $this->assets = new Assets();
+        $this->settings = new Settings();
 
         add_action('init', array($this, 'create_grid_post_type'));
         add_action('admin_init', array($this, 'enqueue_scripts'));
@@ -49,22 +51,34 @@ class GL_Grid_Layout {
 		add_action('wp_ajax_gl_ajax_save_layout', array($this->layout, 'save_layout'));
         add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
 
-        add_action('admin_menu', array($this, 'my_cool_plugin_create_menu'));
+        add_action('admin_menu', array($this, 'add_settings_menu_page'));
 
         add_action('gl_edit_widget_action', array($this, 'edit_action_callback'));
         add_action('gl_save_widget_action', array($this, 'save_action_callback'));
 	
-	
-		function bartag_func( $atts ) {
-			$atts = shortcode_atts( array(
-				'foo' => 'no foo',
-				'baz' => 'default baz'
-			), $atts, 'bartag' );
+		add_filter('the_content', array($this, 'the_content_filter'));
 		
-			return "foo = {$atts['foo']}";
-		}
-		add_shortcode( 'bartag', 'bartag_func' );
+		add_shortcode('gl-grid-tag', array($this, 'shortcode'));
     }
+    
+    public function shortcode($atts) {
+		$atts = shortcode_atts( array(
+			'foo' => 'no foo',
+			'baz' => 'default baz'
+		), $atts, 'bartag' );
+	
+		return "foo = {$atts['foo']}";
+	}
+    
+    public function the_content_filter($content) {
+		var_dump(get_the_ID());die;
+		// assuming you have created a page/post entitled 'debug'
+		if ($GLOBALS['post']->post_name == 'debug') {
+			return var_export($GLOBALS['post'], TRUE );
+		}
+		// otherwise returns the database content
+		return $content;
+	}
     
     public function autoloader($class) {
     	if(strstr($class, "GL") === FALSE) {
@@ -101,6 +115,7 @@ class GL_Grid_Layout {
 
     public function enqueue_scripts() {
 		$this->assets->addDefaults();
+		wp_enqueue_media();
 		
 		foreach($this->assets->getCss() as $css) {
 			wp_enqueue_style($css['name'], $css['src']);
@@ -111,11 +126,12 @@ class GL_Grid_Layout {
     }
 
     public function add_meta_box() {
-        add_meta_box( 'grid-meta-box-id', 'Grid Layout', array($this->layout, 'grid'), 'grid', 'normal', 'high' );
+        add_meta_box('grid-meta-box-id', 'Grid Layout', array($this->layout, 'grid'), 'grid', 'normal', 'high');
     }
 
-    public function my_cool_plugin_create_menu() {
-        add_menu_page('My Cool Plugin Settings', 'Cool Settings', 'administrator', 'grid-layout', array($this->layout, 'edit') , plugins_url('/images/icon.png', __FILE__) );
+    public function add_settings_menu_page() {
+		add_options_page('My Cool Plugin Settings', 'Cool Settings', 'administrator', 'grid-layout', array($this->settings, 'page'));
+        add_submenu_page('edit.php?post_type=grid', 'Grid Layout', 'Settings', 'administrator', 'grid-layout-options', array($this->settings, 'page'));
     }
 
     public function check_actions() {

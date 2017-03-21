@@ -45,7 +45,7 @@ Class Layout extends LayoutRepository {
         $widget = WidgetFactory::get($widget_name, $widget_id);
 		$widget->save($widget_id, $data);
         
-		$view = View::make('Templates/Backend/SaveSuccess', array('name' => $widget_name));
+		$view = View::make('Templates/Components/SaveSuccess', array('name' => $widget_name));
         $assets = new Assets();
         $assets->addJquery();
         $assets->addBootstrap();

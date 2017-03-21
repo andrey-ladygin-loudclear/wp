@@ -60,6 +60,7 @@ Class Assets {
     public function addLayout() {
 		$this->_css[] = array('name' => 'gl-layout-style', 'src' => self::getFileUrl('/assets/css/styles.css'));
 		$this->_js[] = array('name' => 'gl-layout-script', 'src' => self::getFileUrl('/assets/js/layout.js'));
+		$this->_js[] = array('name' => 'gl-main-script', 'src' => self::getFileUrl('/assets/js/main.js'));
 
     }
     
