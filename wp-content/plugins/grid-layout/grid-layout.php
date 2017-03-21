@@ -13,6 +13,7 @@ Author URI: http://google.com
 use GL\Classes\Assets;
 use GL\Classes\Layout;
 use GL\Classes\Settings;
+use GL\Facades\WidgetCompositionFacade;
 
 class GL_Grid_Layout {
 	public static $PLUG_DIR;
@@ -24,9 +25,19 @@ class GL_Grid_Layout {
 		'image' => 'Image',
 		'text' => 'Text',
 	);
+	
+	public static $exclude_post_types = array(
+		'attachment',
+		'revision',
+		'nav_menu_item',
+		'custom_css',
+		'customize_changeset',
+		'grid', // it necessarily for this post type
+	);
 
 	/*
 	main content widget
+	own template files
 	posts (N, autoload = False) maybe pagination
 	*/
 	
@@ -57,32 +68,65 @@ class GL_Grid_Layout {
         add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
 
         add_action('admin_menu', array($this, 'add_settings_menu_page'));
+		add_action('admin_menu', array($this, 'my_menu_pages'));
 
         add_action('gl_edit_widget_action', array($this, 'edit_action_callback'));
         add_action('gl_save_widget_action', array($this, 'save_action_callback'));
 	
-		add_filter('the_content', array($this, 'the_content_filter'));
+		if($this->settings->get('use_the_content_filter')) {
+			add_filter('the_content', array($this, 'the_content_filter'));
+		}
 		
-		add_shortcode('gl-grid-tag', array($this, 'shortcode'));
+		if($this->settings->get('use_shortcode')) {
+			add_shortcode('gl-grid-tag', array($this, 'shortcode'));
+		}
     }
     
+    public function my_menu_pages() {
+		$hook = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget', function() {});
+		add_action('load-' . $hook, function() {
+			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');
+//
+//			wp_enqueue_script('tiny_mce');
+//			wp_enqueue_script( 'thickbox' );
+//			wp_enqueue_style( 'thickbox' );
+//			wp_enqueue_script('media-upload');
+			
+			do_action('wp_head');
+			$this->layout->edit();
+			do_action('wp_footer');
+			exit;
+		});
+	}
+    
     public function shortcode($atts) {
-		$atts = shortcode_atts( array(
-			'foo' => 'no foo',
-			'baz' => 'default baz'
-		), $atts, 'bartag' );
+		$atts = shortcode_atts(array(
+			'id' => FALSE
+		), $atts);
 	
-		return "foo = {$atts['foo']}";
+		if(!empty($atts['id'])) {
+			$composition = WidgetCompositionFacade::buildStructure($atts['id']);
+			
+			if($composition->isEmpty()) {
+				return '';
+			}
+			
+			return $composition->draw();
+		}
+		
+		return "";
 	}
     
     public function the_content_filter($content) {
-		var_dump(get_the_ID());die;
-		// assuming you have created a page/post entitled 'debug'
-		if ($GLOBALS['post']->post_name == 'debug') {
-			return var_export($GLOBALS['post'], TRUE );
+		$composition = WidgetCompositionFacade::buildStructure(get_the_ID());
+		    	
+		if($composition->isEmpty()) {
+			return $content;
 		}
-		// otherwise returns the database content
-		return $content;
+		
+		//wp_enqueue_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+		
+    	return $composition->draw();
 	}
     
     public function autoloader($class) {
@@ -132,10 +176,16 @@ class GL_Grid_Layout {
 
     public function add_meta_box() {
         add_meta_box('grid-meta-box-id', 'Grid Layout', array($this->layout, 'grid'), 'grid', 'normal', 'high');
+	
+		if($post_types = $this->settings->get('meta_box')) {
+			foreach($post_types as $post_type => $val) {
+				add_meta_box("grid-{$post_type}-meta-box-id", "Grid {$post_type} Layout", array($this->layout, 'grid'), $post_type, 'normal', 'high');
+			}
+		}
     }
 
     public function add_settings_menu_page() {
-		add_options_page('My Cool Plugin Settings', 'Cool Settings', 'administrator', 'grid-layout', array($this->settings, 'page'));
+		add_options_page('Grid Layout', 'Grid Layout', 'administrator', 'grid-layout', array($this->settings, 'page'));
         add_submenu_page('edit.php?post_type=grid', 'Grid Layout', 'Settings', 'administrator', 'grid-layout-options', array($this->settings, 'page'));
     }
 

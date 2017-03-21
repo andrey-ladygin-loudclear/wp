@@ -1,4 +1,5 @@
-if(typeof tinymce != 'undefined') {
+console.log(tinymce);
+if(typeof tinymce != 'undefined' && tinymce) {
 	tinymce.init({
 		selector:'textarea',
 		theme: 'modern',

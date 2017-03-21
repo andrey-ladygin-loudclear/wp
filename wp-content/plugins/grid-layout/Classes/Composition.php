@@ -39,6 +39,10 @@ class Composition extends Glyph {
 		return $this->childrens;
 	}
 	
+	public function isEmpty() {
+		return empty($this->getChildren());
+	}
+	
 	public function draw() {
 		$this->childrens = $this->_compositor->compose($this->childrens);
 		View::load('Templates/Frontend/composition', array('widgets' => $this->getChildren()));

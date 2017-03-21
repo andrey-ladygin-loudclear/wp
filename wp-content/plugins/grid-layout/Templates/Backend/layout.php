@@ -6,6 +6,11 @@
 	</div>
 <?php } ?>
 
+<?php if(get_post_type() == 'grid') { ?>
+<div class="pull-right">
+    You can use shortcode to this layout: <span class="label label-default">[gl-grid-tag id="<?= get_the_ID(); ?>"]</span>
+</div>
+<?php } ?>
 
 <div class="btn-group btn-group-widgets">
     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,6 +22,7 @@
         <?php } ?>
     </ul>
 </div>
+
 <div class="gridster ready">
     <input type="hidden" name="page_id" id="page_id" value="">
     <div class="gridster-widgets grid-stack"></div>

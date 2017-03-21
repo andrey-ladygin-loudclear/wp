@@ -30,7 +30,7 @@ Class Layout extends LayoutRepository {
             'widget' => $widget,
         ));
 	
-		$view->add_assets($assets);
+		//$view->add_assets($assets);
 		$view->show();
     }
 

@@ -13,6 +13,9 @@ jQuery(function($){ //DOM Ready
         };
 
         var $gridStack = jQuery('.grid-stack');
+
+		if(!$gridStack.length) return;
+
         gridster = $gridStack.gridstack(options).data('gridstack');
 
         new function () {
@@ -114,7 +117,8 @@ var Widget = function(name, id) {
 			}, 'json');
 		};
 		this.getEditUrl = function(showBackButton) {
-			return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
+			return '/wp-admin/edit.php?post_type=grid&page=gl-edit-widget&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
+			//return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
 		};
 		this.baseHtml = function() {
 			var additionalHtml = name.ucFirst() + ' Widget';
