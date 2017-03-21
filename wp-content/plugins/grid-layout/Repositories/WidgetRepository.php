@@ -30,10 +30,12 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 		$layout_table = LayoutRepository::getTable();
 		
 		$sql = "SELECT * FROM {$layout_table} wgg
-			LEFT JOIN $widget_table wt ON wt.id = wgg.widget_id AND wgg.widget_name = 'glyph'
+			LEFT JOIN $widget_table wt ON wt.id = wgg.widget_id AND wgg.widget_name = '{$this->getName()}'
 			WHERE wt.id = {$widget_id};";
-		
-		return $this->fill($this->query($sql));
+
+		$res = $this->query($sql);
+		return $this->fill($res[0]);
+		//return $this->fill($this->query($sql));
 	}
 	
 	public function save($widget_id, $data) {

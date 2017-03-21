@@ -1,5 +1,16 @@
 <h1>Layout</h1>
+<?php
 
+//global $wp_filter;
+//echo "<pre>";
+////print_r($wp_filter);
+//foreach($wp_filter as $k => $v) {
+//    echo $k."\n";
+//}
+//echo "</pre>";
+//die;
+
+?>
 <?php if(!empty($_GET['showBackButton'])) { ?>
 	<div class="btn-group btn-group-widgets">
 		<a class="btn btn-default" href="javascript:window.history.back();">Back</a>

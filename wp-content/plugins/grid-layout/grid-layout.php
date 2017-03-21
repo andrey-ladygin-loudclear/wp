@@ -95,6 +95,42 @@ class GL_Grid_Layout {
 			do_action('wp_head');
 			$this->layout->edit();
 			do_action('wp_footer');
+			do_action('wp_print_footer_scripts');
+			do_action('wp_print_styles');
+
+            do_action("admin_print_scripts");
+            do_action("admin_print_footer_scripts");
+            do_action("admin_print_styles");
+            do_action("wp_default_styles");
+
+
+            do_action("wp_default_scripts");
+            do_action("wp_enqueue_scripts");
+            do_action("wp_print_scripts");
+            do_action("print_scripts_array");
+
+
+            do_action("admin_print_scripts-appearance_page_custom-header");
+            do_action("admin_print_styles-appearance_page_custom-header");
+            do_action("admin_head-appearance_page_custom-header");
+            do_action("admin_bar_menu");
+            do_action("admin_footer");
+//
+//
+//
+//
+
+//
+//
+//
+//
+
+
+
+
+
+
+
 			exit;
 		});
 	}

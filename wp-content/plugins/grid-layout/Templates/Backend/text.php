@@ -5,13 +5,9 @@
     <input type="hidden" name="widget-id" value="<?= $widget_id; ?>">
     <?php View::padding(); ?>
     <?php //View::text('text', 'text', 'Text', $widget->text, 6); ?>
-    <?php
-    $content = '';
-    $editor_id = 'mycustomeditor';
-
-    wp_editor( $content, $editor_id );
-
-    ?>
+    <div class="form-group">
+    <?php wp_editor($widget->getText(), 'text'); ?>
+    </div>
     <input type="submit" class="btn btn-success" value="Save">
 </form>
 <script>
