@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var $widget GL\Widgets\Text
+ */
+?>
+
 <?php use GL\Classes\View; ?>
 <form action="/wp-admin/admin.php" method="post">
     <input type="hidden" name="action" value="gl_save_widget_action">

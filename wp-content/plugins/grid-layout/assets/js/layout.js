@@ -35,8 +35,8 @@ jQuery(function($){ //DOM Ready
 });
 
 Layout = new function() {
-    this.add = function(name) {
-        Widget(name).create(function(createdWidget) {
+    this.add = function(name, opt) {
+        Widget(name).setOptions(opt).create(function(createdWidget) {
             gridster.addWidget(createdWidget.baseHtml(), null, null, 1, 1, true);
         });
     };
@@ -98,6 +98,7 @@ Layout = new function() {
 
 var Widget = function(name, id) {
 	var content = '';
+	var options = [];
 
 	return new function() {
 	    this.getNode = function() {
@@ -108,11 +109,15 @@ var Widget = function(name, id) {
         		content = text;
 			}
 		};
+        this.setOptions = function(opt) {
+			options = opt
+        	return this;
+		};
 	    this.check = function() {
 	        return this.getNode().length;
         };
 		this.create = function(callback) {
-			jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name}, function(response) {
+			jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name, options:options}, function(response) {
 				callback(Widget(name, response.id));
 			}, 'json');
 		};

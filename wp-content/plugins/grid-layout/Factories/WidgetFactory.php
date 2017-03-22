@@ -23,9 +23,9 @@ Class WidgetFactory {
 	/**
 	 * @return WidgetRepositoryInterface|GlyphInterface
 	 */
-	public static function add($name) {
+	public static function add($name, $options = array()) {
 		$widget = self::getObject($name);
-		return $widget->add();
+		return $widget->add($options);
 	}
 
 	/**

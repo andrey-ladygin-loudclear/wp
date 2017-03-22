@@ -37,8 +37,13 @@ class GL_Grid_Layout {
 
 	/*
 	main content widget
+	link to custom/one widget
+	split bootstrap
+	widget that has the same html like another widget (some of link to another widget)
 	own template files
 	posts (N, autoload = False) maybe pagination
+	add different composers
+	trt to create own widgegt https://codex.wordpress.org/Widgets_API
 	*/
 	
     public function __construct() {
@@ -81,8 +86,8 @@ class GL_Grid_Layout {
 			add_shortcode('gl-grid-tag', array($this, 'shortcode'));
 		}
     }
-    
-    public function my_menu_pages() {
+
+	public function my_menu_pages() {
 		$hook = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget', function() {});
 		add_action('load-' . $hook, function() {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');

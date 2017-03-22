@@ -58,11 +58,12 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	}
 	
 	public function getHierarchy($parent_id, $parent_type = 'page') {
-		$sql = "SELECT wgg.*, wp_gl_widget_glyph.*, wp_gl_widget_image.*, wp_gl_widget_text.*
+		$sql = "SELECT *
             FROM {$this->getTable()} wgg
             LEFT JOIN wp_gl_widget_glyph ON wp_gl_widget_glyph.id = wgg.widget_id AND wgg.widget_name = 'glyph'
             LEFT JOIN wp_gl_widget_image ON wp_gl_widget_image.id = wgg.widget_id AND wgg.widget_name = 'image'
             LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
+			LEFT JOIN wp_gl_wp_widgets ON wp_gl_wp_widgets.id = wgg.widget_id AND wgg.widget_name = 'wp'
             WHERE wgg.parent_id = {$parent_id} AND wgg.parent_type = '{$parent_type}'
             ORDER BY row, col
         ;";
@@ -78,6 +79,7 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 			LEFT JOIN wp_gl_widget_glyph ON wp_gl_widget_glyph.id = wgg.widget_id AND wgg.widget_name = 'glyph'
 			LEFT JOIN wp_gl_widget_image ON wp_gl_widget_image.id = wgg.widget_id AND wgg.widget_name = 'image'
 			LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
+			LEFT JOIN wp_gl_wp_widgets ON wp_gl_wp_widgets.id = wgg.widget_id AND wgg.widget_name = 'wp'
 			WHERE parent_id = {$post_id} AND parent_type = '{$parent_type}';";
 
 		$widgets = array();

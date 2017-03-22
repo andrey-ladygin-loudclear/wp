@@ -55,7 +55,8 @@ Class Layout extends LayoutRepository {
 
     public function add_widget() {
         $name = $_POST['name'];
-        $widget = WidgetFactory::add($name);
+        $options = $_POST['options'];
+        $widget = WidgetFactory::add($name, $options);
 
         echo json_encode(array(
             'name' => $name,

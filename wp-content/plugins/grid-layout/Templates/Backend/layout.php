@@ -11,6 +11,7 @@
 //die;
 
 ?>
+
 <?php if(!empty($_GET['showBackButton'])) { ?>
 	<div class="btn-group btn-group-widgets">
 		<a class="btn btn-default" href="javascript:window.history.back();">Back</a>
@@ -32,6 +33,18 @@
             <li><a href="javascript:void(0);" onclick="Layout.add('<?=$name;?>');"><?=$title;?></a></li>
         <?php } ?>
     </ul>
+</div>
+<div class="btn-group btn-group-widgets">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Add Wordpress Widget <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu">
+		<?php
+		global $wp_widget_factory;
+		foreach($wp_widget_factory->widgets as $name => $widget) { ?>
+			<li><a href="javascript:void(0);" onclick="Layout.add('WP', {name:'<?=$name;?>'});"><?=$widget->name;?></a></li>
+		<?php } ?>
+	</ul>
 </div>
 
 <div class="gridster ready">

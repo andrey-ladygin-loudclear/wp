@@ -11,8 +11,9 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 	protected static $table;
 	protected $id;
 	
-	public function add() {
-		$id = parent::insert(array('id' => NULL));
+	public function add($options = array()) {
+		$data = array_merge(array('id' => NULL), (array) $options);
+		$id = parent::insert($data);
 		$this->id = $id;
 		return $this;
 	}
