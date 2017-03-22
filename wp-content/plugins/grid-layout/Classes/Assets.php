@@ -71,7 +71,7 @@ Class Assets {
 		$this->addBootstrap();
     	$this->addJqueryUI();
     	$this->addGridister();
-		$this->addTinyMCE();
+		//$this->addTinyMCE();
     	$this->addLayout();
 	}
 }

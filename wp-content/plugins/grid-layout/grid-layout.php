@@ -87,7 +87,7 @@ class GL_Grid_Layout {
 		add_action('load-' . $hook, function() {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');
 //
-//			wp_enqueue_script('tiny_mce');
+			wp_enqueue_script('tiny_mce');
 //			wp_enqueue_script( 'thickbox' );
 //			wp_enqueue_style( 'thickbox' );
 //			wp_enqueue_script('media-upload');
@@ -104,26 +104,17 @@ class GL_Grid_Layout {
             do_action("wp_default_styles");
 
 
-            do_action("wp_default_scripts");
-            do_action("wp_enqueue_scripts");
-            do_action("wp_print_scripts");
-            do_action("print_scripts_array");
+//            do_action("wp_default_scripts");
+//            do_action("wp_enqueue_scripts");
+//            do_action("wp_print_scripts");
+//            do_action("print_scripts_array");
 
 
-            do_action("admin_print_scripts-appearance_page_custom-header");
-            do_action("admin_print_styles-appearance_page_custom-header");
-            do_action("admin_head-appearance_page_custom-header");
+//            do_action("admin_print_scripts-appearance_page_custom-header");
+//            do_action("admin_print_styles-appearance_page_custom-header");
+//            do_action("admin_head-appearance_page_custom-header");
             do_action("admin_bar_menu");
             do_action("admin_footer");
-//
-//
-//
-//
-
-//
-//
-//
-//
 
 
 

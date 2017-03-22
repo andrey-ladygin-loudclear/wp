@@ -1,4 +1,3 @@
-console.log(tinymce);
 if(typeof tinymce != 'undefined' && tinymce) {
 	tinymce.init({
 		selector:'textarea',
@@ -19,6 +18,7 @@ jQuery(document).ready(function($){
 	var mediaUploader;
 
 	$(document).on('click', '.upload-button', function(e) {
+		var $imagesLayout = $(this).closest('form').find('.images-layout');
 
 		e.preventDefault();
 		// If the uploader object has already been created, reopen the dialog
@@ -36,10 +36,28 @@ jQuery(document).ready(function($){
 		// When a file is selected, grab the URL and set it as the text field's value
 		mediaUploader.on('select', function() {
 			var attachment = mediaUploader.state().get('selection').first().toJSON();
-			$('#image-url').val(attachment.url);
+			$imagesLayout.append(getImageHtmlBlock(attachment.url))
 		});
 		// Open the uploader dialog
 		mediaUploader.open();
 	});
 
+	$(document).on('click', '.glyphicon-remove', function() {
+		$(this).parent().remove();
+	});
+
+	function getImageHtmlBlock(url) {
+		var html = '<div class="form-group">';
+		html += '<img src="'+url+'" class="img-thumbnail">';
+		html += '<input type="hidden" name="images[]" value="'+url+'">';
+		html += '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
+		html += '</div>';
+		return html;
+	}
+
+	if(typeof images != 'undefined' && images && images.length) {
+		for(var i=0;i<images.length;i++) {
+			$('.images-layout').append(getImageHtmlBlock(images[i]));
+		}
+	}
 });

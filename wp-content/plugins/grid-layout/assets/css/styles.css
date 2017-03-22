@@ -1,73 +1,105 @@
-.gridster-widgets li {
-    background-color: lightgray;
-    list-style: none;
-    margin: 0;
-    padding: 20px;
-    position: absolute;
-}
 ul.gridster-widgets {
-    width: 1320px!important;
-    position: relative;
-    border: 1px solid;
+  width: 1320px!important;
+  position: relative;
+  border: 1px solid;
 }
-li.well {
-    cursor: pointer;
-    overflow: hidden;
+ul.gridster-widgets li {
+  background-color: lightgray;
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  position: absolute;
 }
-.btn-group-widgets {
-    margin-bottom: 20px;
+ul.gridster-widgets li.well {
+  cursor: pointer;
+  overflow: hidden;
+}
+ul.gridster-widgets .well {
+  margin-left: -20px;
+}
+ul.gridster-widgets .btn-group-widgets {
+  margin-bottom: 20px;
+}
+.gridster {
+  margin-top: 20px;
 }
 .gridster .glyphicon.glyphicon-chevron-left {
-    left: 20px;
-    top: 5px;
+  left: 20px;
+  top: 5px;
 }
 .gridster .glyphicon.glyphicon-chevron-right {
-    left: 35px;
-    top: 5px;
+  left: 35px;
+  top: 5px;
 }
 .gridster .glyphicon.glyphicon-chevron-up {
-    left: 5px;
-    top: 20px;
+  left: 5px;
+  top: 20px;
 }
 .gridster .glyphicon.glyphicon-chevron-down {
-    left: 5px;
-    top: 35px;
+  left: 5px;
+  top: 35px;
 }
 .gridster .glyphicon.glyphicon-cog {
-    right: 5px;
-    top: 5px;
+  right: 5px;
+  top: 5px;
 }
 .gridster .glyphicon.glyphicon-trash {
-    right: 25px;
-    top: 5px;
+  right: 25px;
+  top: 5px;
 }
 .gridster .glyphicon.glyphicon-link {
-    right: 45px;
-    top: 5px;
+  right: 45px;
+  top: 5px;
 }
 .gridster .glyphicon {
-    position: absolute;
-    opacity: .3;
+  position: absolute;
+  opacity: .3;
 }
 .gridster .well:hover .glyphicon {
-    opacity: 1;
+  opacity: 1;
 }
 .gridster .glyphicon:hover {
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.gridster img {
+  margin-right: 10px;
+  vertical-align: top;
 }
 .modal-body iframe {
-    min-height: 700px;
-    border: none;
+  min-height: 700px;
+  border: none;
 }
 .grid-stack {
-     background: lightgoldenrodyellow;
+  background: lightgoldenrodyellow;
 }
 .grid-stack-item-content {
-    color: #2c3e50;
-    text-align: center;
-    background-color: #18bc9c;
-    overflow-y: hidden !important;
+  color: #2c3e50;
+  text-align: center;
+  background-color: #18bc9c;
+  overflow-y: hidden !important;
 }
-.gridster-widgets .well {
-    margin-left: -20px;
+.wp-editor-container {
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.images-layout {
+  margin-bottom: 20px;
+}
+.images-layout .form-group {
+  position: relative;
+  margin-right: 15px;
+}
+.images-layout .form-group:hover .glyphicon-remove {
+  color: gray;
+}
+.images-layout .glyphicon-remove {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+.images-layout img {
+  width: 200px;
 }

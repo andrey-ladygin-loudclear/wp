@@ -3,8 +3,13 @@
     <input type="hidden" name="widget-name" value="<?= $widget_name; ?>">
     <input type="hidden" name="widget-id" value="<?= $widget_id; ?>">
     
-    <input type="hidden" name="src">
-    <input class="upload-button button" type="button" value="Upload Image" />
+    <div class="form-inline images-layout"></div>
     
-    <input type="submit" class="btn btn-success" value="Save">
+    <div class="form-group">
+        <input class="upload-button button" type="button" value="Add Image" />
+        <input type="submit" class="btn btn-success" value="Save">
+    </div>
 </form>
+<script>
+	var images = <?= json_encode($widget->images); ?>;
+</script>
