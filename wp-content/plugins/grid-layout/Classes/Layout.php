@@ -4,6 +4,7 @@ namespace GL\Classes;
 
 use GL\Factories\WidgetFactory;
 use GL\Repositories\LayoutRepository;
+use GL\Widgets\System\Glyph;
 
 Class Layout extends LayoutRepository {
 
@@ -19,7 +20,7 @@ Class Layout extends LayoutRepository {
 		$assets->addTinyMCE();
 		$assets->addMainScript();
 		
-		if($widget_name == 'glyph') {
+		if($widget instanceof Glyph) {
 			$assets->addGridister();
 			$assets->addLayout();
 		}
@@ -32,6 +33,15 @@ Class Layout extends LayoutRepository {
 	
 		//$view->add_assets($assets);
 		$view->show();
+    }
+    
+    public function view() {
+        $widget_name = $_GET['widget-name'];
+        $widget_id = $_GET['widget-id'];
+        $widget = WidgetFactory::get($widget_name, $widget_id);
+		View::load('Templates/Backend/style', array(
+			'widget' => $widget
+		));
     }
 
     public function save_widget() {

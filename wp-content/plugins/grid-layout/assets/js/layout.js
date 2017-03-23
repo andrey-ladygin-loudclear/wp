@@ -110,7 +110,7 @@ var Widget = function(name, id) {
 			}
 		};
         this.setOptions = function(opt) {
-			options = opt
+			options = opt;
         	return this;
 		};
 	    this.check = function() {
@@ -121,6 +121,9 @@ var Widget = function(name, id) {
 				callback(Widget(name, response.id));
 			}, 'json');
 		};
+		this.getViewUrl = function() {
+			return '/wp-admin/edit.php?post_type=grid&page=gl-view-widget&widget-name='+name+'&widget-id='+id;
+		};
 		this.getEditUrl = function(showBackButton) {
 			return '/wp-admin/edit.php?post_type=grid&page=gl-edit-widget&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
 			//return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
@@ -128,6 +131,8 @@ var Widget = function(name, id) {
 		this.baseHtml = function() {
 			var additionalHtml = name.ucFirst() + ' Widget';
 			additionalHtml += '<div class="content">'+content+'</div>';
+
+			additionalHtml += '<a href="'+this.getViewUrl()+'" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>';
 
 			if(id) {
 			    if(name == 'glyph' && parent.frames.length) {
