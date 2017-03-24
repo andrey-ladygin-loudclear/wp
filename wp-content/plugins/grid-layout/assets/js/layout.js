@@ -160,13 +160,13 @@ var Widget = function(name, id) {
 			HtmlBuilder.addContent();
 			//HtmlBuilder.addViewButton();
 
-			if(id) {
+			//if(id) {
 			    if(name == 'glyph' && parent.frames.length) {
 					HtmlBuilder.addGlyphButtons();
                 } else {
 					HtmlBuilder.addConfigButton();
                 }
-            }
+            //}
 
 			HtmlBuilder.addTrashButton();
 			return HtmlBuilder.build();

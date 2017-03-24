@@ -7,7 +7,7 @@ use GL\Interfaces\GlyphInterface;
 use GL\Repositories\EmptyWidgetRepository;
 use GL\Repositories\WidgetRepository;
 
-class Glyph extends EmptyWidgetRepository implements GlyphInterface {
+class Glyph extends WidgetRepository implements GlyphInterface {
 	
 	protected static $table = 'gl_widget_glyph';
 	

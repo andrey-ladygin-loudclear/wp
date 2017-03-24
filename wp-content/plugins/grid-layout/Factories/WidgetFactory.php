@@ -18,7 +18,7 @@ Class WidgetFactory {
 				$widget = self::getStaticWidget($name);
 			}
         }
-
+        
         return $widget;
     }
 

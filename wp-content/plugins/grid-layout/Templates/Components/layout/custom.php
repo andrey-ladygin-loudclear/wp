@@ -5,7 +5,7 @@
 	<ul class="dropdown-menu">
 		<?php
 		foreach($widgets as $name => $widget) { ?>
-			<li><a href="javascript:void(0);" onclick="Layout.add('', {name:'<?=$name;?>'});"><?=$widget->name;?></a></li>
+			<li><a href="javascript:void(0);" onclick="Layout.add('<?=$name?>');"><?=$widget;?></a></li>
 		<?php } ?>
 		<li><a href="javascript:void(0);" onclick="Layout.add('Custom');">Build Your Widget</a></li>
 	</ul>

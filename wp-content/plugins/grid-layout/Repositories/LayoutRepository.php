@@ -35,6 +35,7 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 				$widget = (array) $widget;
 				$widget['parent_id'] = $post_id;
 				$widget['parent_type'] = $parent_type;
+				$this->add($widget);
 			}
 		}
 	}
@@ -78,7 +79,7 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 			LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
 			LEFT JOIN wp_gl_wp_widgets ON wp_gl_wp_widgets.id = wgg.widget_id AND wgg.widget_name = 'wp'
 			WHERE parent_id = {$post_id} AND parent_type = '{$parent_type}';";
-
+		
 		$widgets = array();
 
 		foreach($this->query($sql) as $row) {

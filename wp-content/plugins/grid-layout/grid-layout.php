@@ -24,6 +24,16 @@ class GL_Grid_Layout {
 		'glyph' => 'Block',
 		'image' => 'Image',
 		'text' => 'Text',
+		'Post_iteration' => 'Post iteration',
+	);
+	public static $custom = array(
+	);
+	
+	public static $widget_components = array(
+		'Post_title' => 'Post Title',
+		'Post_content' => 'Post Content',
+		'Post_thumbnail' => 'Post Thumbnail',
+		'Sidebar' => 'Sidebar',
 	);
 	
 	public static $exclude_post_types = array(
@@ -108,14 +118,14 @@ class GL_Grid_Layout {
 		$hook_edit = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget', function() {});
 		add_action('load-' . $hook_edit, function() {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');
-//
-			echo "<pre>";
-			var_dump($_GET);
-			$name = stripslashes($_GET['widget-name']);
-			$c = new $name;
-			print_r($c);
-			var_dump($c);
-			die;
+
+//			echo "<pre>";
+//			var_dump($_GET);
+//			$name = stripslashes($_GET['widget-name']);
+//			$c = new $name;
+//			print_r($c);
+//			var_dump($c);
+//			die;
 			wp_enqueue_script('tiny_mce');
 //			wp_enqueue_script( 'thickbox' );
 //			wp_enqueue_style( 'thickbox' );
@@ -130,7 +140,7 @@ class GL_Grid_Layout {
             do_action("admin_print_scripts");
             do_action("admin_print_footer_scripts");
             do_action("admin_print_styles");
-            do_action("wp_default_styles");
+           // do_action("wp_default_styles");
 
 
 //            do_action("wp_default_scripts");
@@ -142,7 +152,7 @@ class GL_Grid_Layout {
 //            do_action("admin_print_scripts-appearance_page_custom-header");
 //            do_action("admin_print_styles-appearance_page_custom-header");
 //            do_action("admin_head-appearance_page_custom-header");
-            do_action("admin_bar_menu");
+            //do_action("admin_bar_menu");
             do_action("admin_footer");
 
 
@@ -167,7 +177,11 @@ class GL_Grid_Layout {
 				return '';
 			}
 			
-			return $composition->draw();
+			
+			$composition->draw();
+			var_dump('1111111111111111111111111111');
+			
+			return ;
 		}
 		
 		return "";
