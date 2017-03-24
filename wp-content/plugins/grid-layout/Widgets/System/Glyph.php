@@ -4,9 +4,10 @@ namespace GL\Widgets\System;
 
 use GL\Classes\Structure;
 use GL\Interfaces\GlyphInterface;
+use GL\Repositories\EmptyWidgetRepository;
 use GL\Repositories\WidgetRepository;
 
-class Glyph extends WidgetRepository implements GlyphInterface {
+class Glyph extends EmptyWidgetRepository implements GlyphInterface {
 	
 	protected static $table = 'gl_widget_glyph';
 	

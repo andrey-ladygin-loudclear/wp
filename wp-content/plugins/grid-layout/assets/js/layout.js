@@ -100,6 +100,40 @@ var Widget = function(name, id) {
 	var content = '';
 	var options = [];
 
+	var HtmlBuilder = new function() {
+		var html = '';
+
+		this.getViewUrl = function() {
+			return '/wp-admin/edit.php?post_type=grid&page=gl-view-widget&widget-name='+name+'&widget-id='+id;
+		};
+		this.getEditUrl = function(showBackButton) {
+			return '/wp-admin/edit.php?post_type=grid&page=gl-edit-widget&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
+			//return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
+		};
+		this.addTitle = function() {
+			html += name.ucFirst() + ' Widget';
+		};
+		this.addContent = function() {
+			html += '<div class="content">'+content+'</div>';
+		};
+		this.addViewButton = function() {
+			html += '<a href="'+this.getViewUrl()+'" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>';
+		};
+		this.addGlyphButtons = function() {
+			html += '<a href="'+this.getEditUrl(true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
+			html += '<a href="'+this.getEditUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
+		};
+		this.addConfigButton = function() {
+			html += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
+		};
+		this.addTrashButton = function() {
+			html += '<span class="glyphicon glyphicon-trash"></span>';
+		};
+		this.build = function() {
+			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+html+'</div></div>';
+		};
+	};
+
 	return new function() {
 	    this.getNode = function() {
             return jQuery('div[data-gs-name="'+name+'"][data-gs-id="'+id+'"]');
@@ -121,37 +155,28 @@ var Widget = function(name, id) {
 				callback(Widget(name, response.id));
 			}, 'json');
 		};
-		this.getViewUrl = function() {
-			return '/wp-admin/edit.php?post_type=grid&page=gl-view-widget&widget-name='+name+'&widget-id='+id;
-		};
-		this.getEditUrl = function(showBackButton) {
-			return '/wp-admin/edit.php?post_type=grid&page=gl-edit-widget&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
-			//return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
-		};
 		this.baseHtml = function() {
-			var additionalHtml = name.ucFirst() + ' Widget';
-			additionalHtml += '<div class="content">'+content+'</div>';
-
-			additionalHtml += '<a href="'+this.getViewUrl()+'" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>';
+			HtmlBuilder.addTitle();
+			HtmlBuilder.addContent();
+			//HtmlBuilder.addViewButton();
 
 			if(id) {
 			    if(name == 'glyph' && parent.frames.length) {
-                    additionalHtml += '<a href="'+this.getEditUrl(true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
-                    additionalHtml += '<a href="'+this.getEditUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
+					HtmlBuilder.addGlyphButtons();
                 } else {
-                    additionalHtml += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
+					HtmlBuilder.addConfigButton();
                 }
             }
 
-			additionalHtml += '<span class="glyphicon glyphicon-trash"></span>';
-			return '<div data-gs-name="'+name+'" data-gs-id="' + id + '" ><div class="grid-stack-item-content well">'+additionalHtml+'</div></div>';
+			HtmlBuilder.addTrashButton();
+			return HtmlBuilder.build();
 		};
 		this.updateWidgetContent = function(content) {
             this.getNode().find('.content').html(content);
         };
 		this.edit = function() {
             jQuery('.modal .modal-title').html('Edit ' + name);
-            jQuery('.modal .modal-body').html('<iframe src="'+this.getEditUrl()+'" width="100%" height="100%"></iframe>');
+            jQuery('.modal .modal-body').html('<iframe src="'+HtmlBuilder.getEditUrl()+'" width="100%" height="100%"></iframe>');
             jQuery('.modal').modal('show')
         };
 	};
@@ -250,9 +275,9 @@ String.prototype.ucFirst = function() {
 };
 
 function f(a,b) {
-    a = a + b
-    b = a - b
-    a = a - b
+    a = a + b;
+    b = a - b;
+    a = a - b;
     return [a,b]
 }
 

@@ -109,6 +109,13 @@ class GL_Grid_Layout {
 		add_action('load-' . $hook_edit, function() {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');
 //
+			echo "<pre>";
+			var_dump($_GET);
+			$name = stripslashes($_GET['widget-name']);
+			$c = new $name;
+			print_r($c);
+			var_dump($c);
+			die;
 			wp_enqueue_script('tiny_mce');
 //			wp_enqueue_script( 'thickbox' );
 //			wp_enqueue_style( 'thickbox' );

@@ -1,23 +1,22 @@
-<h1>Builder</h1>
+<?php use GL\Classes\View; ?>
 
+<h1>Widget Builder</h1>
 
-<div class="btn-group btn-group-widgets">
-	<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Add Widget <span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu">
-		<?php foreach(GL_Grid_Layout::$widgets as $name => $title) { ?>
-			<li><a href="javascript:void(0);" onclick="Layout.add('<?=$name;?>');"><?=$title;?></a></li>
-		<?php } ?>
-	</ul>
-</div>
-
-<div class="gridster ready">
-	<input type="hidden" name="page_id" id="page_id" value="">
-	<div class="gridster-widgets grid-stack"></div>
-</div>
-
-<!-- Scripts -->
+<input type="hidden" name="post_ID" id="post_ID" value="<?= $widget_id; ?>">
+<input type="hidden" name="parent_type" id="parent_type" value="widget_builder">
 <script>
-	var structure = <?php echo json_encode($widgets); ?>;
+	var ajaxurl = "/wp-admin/admin-ajax.php";
 </script>
+
+<?php
+$layout = new \GL\Classes\Layout();
+$widgets = $layout->getGrid($widget_id, 'widget_builder');
+?>
+
+<?php View::load('Templates/Components/layout/parts', array('widgets' => [
+		'Post_content' => 'Post Content',
+		'Post_iteration' => 'Post Iteration',
+		'Sidebar' => 'Sidebar',
+])); ?>
+
+<?php View::load('Templates/Components/grid', array('widgets' => $widgets)); ?>
