@@ -7,6 +7,18 @@ use GL\Classes\View;
 use GL\Widgets\System\Glyph;
 
 class Post_iteration extends Glyph {
+	
+	public $options = array(
+		'category__in' => array(),
+		'tag__in' => array(),
+		'post_parent' => '',
+		'author_name' => '',
+		'post_type' => 'post',
+		'post_status' => 'publish',
+		'order' => 'DESC',
+		'orderby' => 'modified',
+	);
+	
 	public function draw() {
 		$query = new \WP_Query(array('post_type' => 'post'));
 		View::load('Templates/Frontend/post_iteration', array(

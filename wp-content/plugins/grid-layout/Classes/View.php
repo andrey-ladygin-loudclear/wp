@@ -60,11 +60,19 @@ Class View {
         self::load('Templates/Components/paddingInput');
     }
     
-    public static function input($name, $id, $label = '', $placeholder = '', $value = '') {
-        self::load('Templates/Components/input', func_get_args());
+    public static function input($name, $label = '', $value = '') {
+        self::load('Templates/Components/form/input', array('name' => $name, 'label' => $label, 'value' => $value));
+    }
+    
+    public static function select($name, $label = '', $options = array(), $value = '') {
+        self::load('Templates/Components/form/select', array('name' => $name, 'label' => $label, 'options' => $options, 'value' => $value));
+    }
+    
+    public static function multipleSelect($name, $label = '', $options = array(), $values = array()) {
+        self::load('Templates/Components/form/multipleSelect', array('name' => $name, 'label' => $label, 'options' => $options, 'values' => (array) $values));
     }
 
     public static function text($name, $id, $label = '', $value = '', $rows = '') {
-    	self::load('Templates/Components/textarea', array('name' => $name,'id' => $id,'label' => $label,'value' => $value,'rows' => $rows,));
+    	self::load('Templates/Components/form/textarea', array('name' => $name,'id' => $id,'label' => $label,'value' => $value,'rows' => $rows,));
     }
 }

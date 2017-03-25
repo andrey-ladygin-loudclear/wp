@@ -11,6 +11,9 @@ class Glyph extends WidgetRepository implements GlyphInterface {
 	
 	protected static $table = 'gl_widget_glyph';
 	
+	public $alias;
+	public $options;
+	
 	public $childrens = array();
     protected $id;
     //protected $padding = [0, 0, 0, 0,];
@@ -22,6 +25,19 @@ class Glyph extends WidgetRepository implements GlyphInterface {
     protected $col = 0;
     protected $full_widget = 0;
 	
+	public function fill(array $attributes) {
+		if($options = json_decode($attributes['options'])) {
+			$this->options = json_decode($attributes['options']);
+		}
+		$this->alias = $attributes['alias'];
+		return parent::fill($attributes);
+	}
+	
+	public function save($widget_id, $data) {
+		$data['options'] = json_encode($data['options']);
+		parent::save($widget_id, $data);
+	}
+    
 	public function insert(GlyphInterface $widget) {
 		$this->childrens[] = $widget;
 	}

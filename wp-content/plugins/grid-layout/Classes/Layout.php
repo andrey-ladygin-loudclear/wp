@@ -26,8 +26,6 @@ Class Layout extends LayoutRepository {
 		}
 		
 		$view = View::make("Templates/Backend/{$widget_name}", array(
-            'widget_name' => $widget_name,
-            'widget_id' => $widget_id,
             'widget' => $widget,
         ));
 	
@@ -48,10 +46,13 @@ Class Layout extends LayoutRepository {
         $data = $_POST;
         $widget_name = $data['widget-name'];
         $widget_id = $data['widget-id'];
+        echo '<pre>';
+        print_r(array_intersect_key($data, array_flip(array('options','alias'))));
+        
         unset($data['action']);
         unset($data['widget-name']);
         unset($data['widget-id']);
-
+	
         $widget = WidgetFactory::get($widget_name, $widget_id);
 		$widget->save($widget_id, $data);
         

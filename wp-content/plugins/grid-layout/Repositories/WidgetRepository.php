@@ -33,7 +33,7 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 		$sql = "SELECT * FROM {$layout_table} wgg
 			LEFT JOIN $widget_table wt ON wt.id = wgg.widget_id AND wgg.widget_name = '{$this->getName()}'
 			WHERE wt.id = {$widget_id};";
-
+		
 		$res = $this->query($sql);
 		return $this->fill($res[0]);
 		//return $this->fill($this->query($sql));

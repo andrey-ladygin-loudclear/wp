@@ -2,13 +2,13 @@
 <?php global $wp_widget_factory; ?>
 
 <?php View::load('Templates/Components/glyph-inputs', array(
-	'widget_id' => $widget_id,
+	'widget_id' => $widget->getId(),
 	'alias' => ''
 )); ?>
 
 <?php
 $layout = new \GL\Classes\Layout();
-$widgets = $layout->getGrid($widget_id, 'glyph');
+$widgets = $layout->getGrid($widget->getId(), 'glyph');
 ?>
 
 

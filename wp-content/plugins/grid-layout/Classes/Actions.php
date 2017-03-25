@@ -5,7 +5,7 @@ namespace GL\Classes;
 Class Actions {
 	
 	public function check_actions() {
-		if(empty($_GET['action'])) {
+		if(empty($_GET['action']) && empty($_POST['action'])) {
 			return;
 		}
 		
