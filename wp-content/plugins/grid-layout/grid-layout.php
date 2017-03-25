@@ -10,6 +10,7 @@ Author URI: http://google.com
 
 //include "Classes/Layout.php";
 
+use GL\Classes\Actions;
 use GL\Classes\Assets;
 use GL\Classes\Layout;
 use GL\Classes\Settings;
@@ -24,16 +25,16 @@ class GL_Grid_Layout {
 		'glyph' => 'Block',
 		'image' => 'Image',
 		'text' => 'Text',
-		'Post_iteration' => 'Post iteration',
+		'post_iteration' => 'Post iteration',
 	);
 	public static $custom = array(
 	);
 	
 	public static $widget_components = array(
-		'Post_title' => 'Post Title',
-		'Post_content' => 'Post Content',
-		'Post_thumbnail' => 'Post Thumbnail',
-		'Sidebar' => 'Sidebar',
+		'post_title' => 'Post Title',
+		'post_content' => 'Post Content',
+		'post_thumbnail' => 'Post Thumbnail',
+		'sidebar' => 'Sidebar',
 	);
 	
 	public static $exclude_post_types = array(
@@ -60,9 +61,8 @@ class GL_Grid_Layout {
 		self::$PLUG_URL = plugins_url('/', __FILE__);
 		//self::$PLUG_DIR = dir(__FILE__);
 	
-		
 		// if __autoload is active, put it on the spl_autoload stack
-		if ( is_array(spl_autoload_functions()) && in_array( '__autoload', spl_autoload_functions()) ) {
+		if (is_array(spl_autoload_functions()) && in_array('__autoload', spl_autoload_functions())) {
 			spl_autoload_register('__autoload');
 		}
 	
@@ -72,6 +72,7 @@ class GL_Grid_Layout {
         $this->layout = new Layout();
         $this->assets = new Assets();
         $this->settings = new Settings();
+        $this->actions = new Actions();
 
         add_action('init', array($this, 'create_grid_post_type'));
         add_action('admin_init', array($this, 'enqueue_scripts'));
@@ -81,12 +82,15 @@ class GL_Grid_Layout {
         add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'delete_widget'));
 		add_action('wp_ajax_gl_ajax_save_layout', array($this->layout, 'save_layout'));
         add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
-
+		
+		add_action('gl_edit_widget_action', array($this->layout, 'edit'));
+		add_action('gl_save_widget_action', array($this->layout, 'save_widget'));
+		add_action('gl_delete_template_action', array($this->actions, 'delete_template'));
+		add_action('gl_update_template_action', array($this->actions, 'update_template'));
+		add_action('gl_create_template_action', array($this->actions, 'create_template'));
+        
         add_action('admin_menu', array($this, 'add_settings_menu_page'));
 		add_action('admin_menu', array($this, 'my_menu_pages'));
-
-        add_action('gl_edit_widget_action', array($this, 'edit_action_callback'));
-        add_action('gl_save_widget_action', array($this, 'save_action_callback'));
 	
 		if($this->settings->get('use_the_content_filter')) {
 			add_filter('the_content', array($this, 'the_content_filter'));
@@ -170,6 +174,8 @@ class GL_Grid_Layout {
 			'id' => FALSE
 		), $atts);
 	
+		remove_shortcode('gl-grid-tag');
+		
 		if(!empty($atts['id'])) {
 			$composition = WidgetCompositionFacade::buildStructure($atts['id']);
 			
@@ -177,11 +183,7 @@ class GL_Grid_Layout {
 				return '';
 			}
 			
-			
-			$composition->draw();
-			var_dump('1111111111111111111111111111');
-			
-			return ;
+			return $composition->draw();
 		}
 		
 		return "";
@@ -189,7 +191,9 @@ class GL_Grid_Layout {
     
     public function the_content_filter($content) {
 		$composition = WidgetCompositionFacade::buildStructure(get_the_ID());
-		    	
+	
+		remove_filter('the_content', array($this, 'the_content_filter'));
+		
 		if($composition->isEmpty()) {
 			return $content;
 		}
@@ -234,7 +238,7 @@ class GL_Grid_Layout {
 
     public function enqueue_scripts() {
 		$this->assets->addDefaults();
-		wp_enqueue_media();
+		//wp_enqueue_media();
 		
 		foreach($this->assets->getCss() as $css) {
 			wp_enqueue_style($css['name'], $css['src']);
@@ -259,25 +263,10 @@ class GL_Grid_Layout {
         add_submenu_page('edit.php?post_type=grid', 'Grid Layout', 'Settings', 'administrator', 'grid-layout-options', array($this->settings, 'page'));
     }
 
-    public function check_actions() {
-        if(!empty($_GET['action']) && $_GET['action'] == 'gl_edit_widget_action') {
-            do_action('gl_edit_widget_action');
-        }
-        if(!empty($_POST['action']) && $_POST['action'] == 'gl_save_widget_action') {
-            do_action('gl_save_widget_action');
-        }
-    }
-
-    public function edit_action_callback() {
-        $this->layout->edit();
-    }
-    public function save_action_callback() {
-        $this->layout->save_widget();
-    }
 }
 
 $gl_grid_layout = new GL_Grid_Layout();
-$gl_grid_layout->check_actions();
+$gl_grid_layout->actions->check_actions();
 
 
 

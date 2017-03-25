@@ -1,4 +1,5 @@
 var gridster;
+var ajaxurl = "/wp-admin/admin-ajax.php";
 
 jQuery(function($){ //DOM Ready
 

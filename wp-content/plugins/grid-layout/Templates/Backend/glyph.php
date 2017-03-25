@@ -1,11 +1,10 @@
 <?php use GL\Classes\View; ?>
 <?php global $wp_widget_factory; ?>
 
-<input type="hidden" name="post_ID" id="post_ID" value="<?= $widget_id; ?>">
-<input type="hidden" name="parent_type" id="parent_type" value="glyph">
-<script>
-    var ajaxurl = "/wp-admin/admin-ajax.php";
-</script>
+<?php View::load('Templates/Components/glyph-inputs', array(
+	'widget_id' => $widget_id,
+	'alias' => ''
+)); ?>
 
 <?php
 $layout = new \GL\Classes\Layout();
