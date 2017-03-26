@@ -1,14 +1,21 @@
-<?php use GL\Classes\View;
-use GL\Helpers\ObjectHelper; ?>
+<?php
+/**
+ * @var $widget GL\Widgets\System\Glyph
+ */
+?>
+<?php
+use GL\Classes\View;
+use GL\Helpers\ObjectHelper;
+?>
 
 <h1>Widget Builder</h1>
 
 <form action="/wp-admin/admin.php" method="post">
 
-	<?php View::load('Templates/Components/glyph-inputs', array(
-		'widget_id' => $widget->getId(),
-		'alias' => $widget->alias
-	)); ?>
+	<input type="hidden" name="action" value="gl_save_widget_action">
+	<input type="hidden" name="post_ID" id="post_ID" value="<?= $widget->getId(); ?>">
+	<input type="hidden" name="parent_type" id="parent_type" value="glyph">
+	<?php View::input('alias', 'Widget Name', $widget->alias); ?>
 	<input type="hidden" name="widget-name" value="<?= $widget->getName(); ?>">
 	<input type="hidden" name="widget-id" value="<?= $widget->getId(); ?>">
 	
@@ -19,10 +26,10 @@ use GL\Helpers\ObjectHelper; ?>
 		<div class="collapse" id="collapseInputs">
 			<div class="well clearfix">
 				<?php $categories = ObjectHelper::create(get_categories())->lists('term_id', 'name'); ?>
-				<?php View::multipleSelect('options[category__in]', 'Categories', $categories, $widget->options['category__in']); ?>
+				<?php View::multipleSelect('options[category__in][]', 'Categories', $categories, $widget->options['category__in']); ?>
 				
 				<?php $tags = ObjectHelper::create(get_tags())->lists('term_id', 'name'); ?>
-				<?php View::multipleSelect('options[tag__in]', 'Tags', $tags, $widget->options['tag__in']); ?>
+				<?php View::multipleSelect('options[tag__in][]', 'Tags', $tags, $widget->options['tag__in']); ?>
 				
 				<?php View::input('options[post_parent]', 'Post Parent', $widget->options['post_parent']); ?>
 				<?php View::input('options[author_name]', 'Author Name', $widget->options['author_name']); ?>

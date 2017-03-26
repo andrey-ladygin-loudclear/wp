@@ -12,7 +12,6 @@ $layout = new \GL\Classes\Layout();
 $widgets = $layout->getGrid($widget->getId(), 'glyph');
 ?>
 
-<?php View::load('Templates/Components/layout/parts', array('widgets' => GL_Grid_Layout::$widget_components)); ?>
-
+<?php View::load('Templates/Components/layout/widgets-nav'); ?>
 <?php View::load('Templates/Components/grid', array('widgets' => $widgets)); ?>
 

@@ -1,5 +1,5 @@
 <div class="btn-group btn-group-widgets">
-	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		Your Widgets <span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu">

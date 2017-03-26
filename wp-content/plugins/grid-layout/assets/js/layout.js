@@ -136,6 +136,8 @@ var Widget = function(name, id) {
 	};
 
 	return new function() {
+		var _this = this;
+
 	    this.getNode = function() {
             return jQuery('div[data-gs-name="'+name+'"][data-gs-id="'+id+'"]');
         };
@@ -162,7 +164,7 @@ var Widget = function(name, id) {
 			//HtmlBuilder.addViewButton();
 
 			//if(id) {
-			    if(name == 'glyph' && parent.frames.length) {
+			    if(name == 'glyph' && parent.frames.length > 1) {
 					HtmlBuilder.addGlyphButtons();
                 } else {
 					HtmlBuilder.addConfigButton();
@@ -178,7 +180,12 @@ var Widget = function(name, id) {
 		this.edit = function() {
             jQuery('.modal .modal-title').html('Edit ' + name);
             jQuery('.modal .modal-body').html('<iframe src="'+HtmlBuilder.getEditUrl()+'" width="100%" height="100%"></iframe>');
-            jQuery('.modal').modal('show')
+            jQuery('.modal').modal('show').on('hide.bs.modal', function (e) {
+				jQuery.post(ajaxurl, {action: 'gl_ajax_get_widget_preview', name:name, id:id}, function(response) {
+					_this.updateWidgetContent(response);
+					jQuery('.modal').unbind();
+				}, 'json');
+			})
         };
 	};
 };

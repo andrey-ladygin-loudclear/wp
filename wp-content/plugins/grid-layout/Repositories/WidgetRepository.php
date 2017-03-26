@@ -8,8 +8,13 @@ use JsonSerializable;
 
 Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSerializable {
 	
-	protected static $table;
+	protected static $table = 'gl_widget';
+	protected $fillable = array('alias', 'options', 'classes');
 	protected $id;
+	
+	public $alias;
+	public $options;
+	public $classes;
 	
 	public function add($options = array()) {
 		$data = array_merge(array('id' => NULL), (array) $options);
@@ -40,6 +45,8 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 	}
 	
 	public function save($widget_id, $data) {
+		$data['options'] = json_encode($data['options']);
+		$data = array_intersect_key($data, array_flip($this->fillable));
 		$this->update($data, array('id' => $widget_id));
 	}
 	
@@ -67,6 +74,12 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 		if(!empty($attributes['full_widget'])) {
 			$this->setFull($attributes['full_widget']);
 		}
+		
+		if($options = json_decode($attributes['options'])) {
+			$this->options = (array) json_decode($attributes['options']);
+		}
+		
+		$this->alias = $attributes['alias'];
 		
 		return $this;
 	}

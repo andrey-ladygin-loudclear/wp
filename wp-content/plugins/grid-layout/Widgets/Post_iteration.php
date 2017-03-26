@@ -29,7 +29,6 @@ class Post_iteration extends Glyph {
 	}
 	
 	public function draw_old() {
-		//get_pages();
 		if (have_posts()) {
 			while (have_posts()) {
 				the_post();

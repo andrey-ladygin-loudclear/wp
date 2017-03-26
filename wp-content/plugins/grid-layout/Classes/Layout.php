@@ -46,8 +46,6 @@ Class Layout extends LayoutRepository {
         $data = $_POST;
         $widget_name = $data['widget-name'];
         $widget_id = $data['widget-id'];
-        echo '<pre>';
-        print_r(array_intersect_key($data, array_flip(array('options','alias'))));
         
         unset($data['action']);
         unset($data['widget-name']);
@@ -63,6 +61,14 @@ Class Layout extends LayoutRepository {
         $view->add_assets($assets);
         $view->show();
     }
+    
+    public function get_widget_preview() {
+		$widget_name = $_POST['name'];
+		$widget_id = $_POST['id'];
+		$widget = WidgetFactory::get($widget_name, $widget_id);
+		echo json_encode($widget->getPreview());
+		wp_die();
+	}
 
     public function add_widget() {
         $name = $_POST['name'];

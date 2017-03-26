@@ -1,5 +1,4 @@
 <?php use GL\Classes\View; ?>
-<?php global $wp_widget_factory; ?>
 
 <h1>Layout</h1>
 
@@ -20,10 +19,6 @@
 </div>
 <?php } ?>
 
-<?php View::load('Templates/Components/layout/widgets', array('widgets' => GL_Grid_Layout::$widgets)); ?>
-<?php View::load('Templates/Components/layout/wp-widgets', array('widgets' => $wp_widget_factory->widgets)); ?>
-<?php View::load('Templates/Components/layout/custom', array('widgets' => GL_Grid_Layout::$custom)); ?>
-
-
+<?php View::load('Templates/Components/layout/widgets-nav'); ?>
 <?php View::load('Templates/Components/grid', array('widgets' => $widgets)); ?>
 <?php View::load('Templates/Components/layout/popup'); ?>

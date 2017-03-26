@@ -31,9 +31,15 @@ class GL_Grid_Layout {
 	);
 	
 	public static $widget_components = array(
-		'post_title' => 'Post Title',
+		'post_author' => 'Post Author',
+		'post_author_link' => 'Post Author Link',
 		'post_content' => 'Post Content',
+		'post_date' => 'Post Date',
+		'post_permalink' => 'Post Permalink',
+		'post_tags' => 'Post Tags',
 		'post_thumbnail' => 'Post Thumbnail',
+		'post_time' => 'Post Time',
+		'post_title' => 'Post Title',
 		'sidebar' => 'Sidebar',
 	);
 	
@@ -79,6 +85,7 @@ class GL_Grid_Layout {
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
 
         add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'add_widget'));
+        add_action('wp_ajax_gl_ajax_get_widget_preview', array($this->layout, 'get_widget_preview'));
         add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'delete_widget'));
 		add_action('wp_ajax_gl_ajax_save_layout', array($this->layout, 'save_layout'));
         add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
@@ -90,7 +97,7 @@ class GL_Grid_Layout {
 		add_action('gl_create_template_action', array($this->actions, 'create_template'));
         
         add_action('admin_menu', array($this, 'add_settings_menu_page'));
-		add_action('admin_menu', array($this, 'my_menu_pages'));
+		add_action('admin_menu', array($this, 'empty_wp_page'));
 	
 		if($this->settings->get('use_the_content_filter')) {
 			add_filter('the_content', array($this, 'the_content_filter'));
@@ -101,7 +108,7 @@ class GL_Grid_Layout {
 		}
     }
 
-	public function my_menu_pages() {
+	public function empty_wp_page() {
 		$hook_view = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-view-widget', function() {});
 		add_action('load-' . $hook_view, function() {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');

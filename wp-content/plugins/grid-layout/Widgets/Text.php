@@ -10,6 +10,7 @@ class Text extends Widget {
 	protected static $table = 'gl_widget_text';
 	
 	public $text;
+	protected $fillable = ['text'];
 	
 	public function fill(array $attributes) {
 		$this->text = $attributes['text'];

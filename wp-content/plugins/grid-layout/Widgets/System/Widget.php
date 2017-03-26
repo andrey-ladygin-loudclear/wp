@@ -6,6 +6,7 @@ use GL\Interfaces\GlyphInterface;
 use GL\Repositories\WidgetRepository;
 
 class Widget extends WidgetRepository implements GlyphInterface {
+	
     protected $childrens = array();
     //protected $padding = [0, 0, 0, 0,];
     //protected $margin = [0, 0, 0, 0,];
