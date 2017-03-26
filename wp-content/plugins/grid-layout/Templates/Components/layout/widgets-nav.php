@@ -5,5 +5,8 @@ use GL\Classes\View;
 	<?php View::load('Templates/Components/layout/widgets', array('widgets' => GL_Grid_Layout::$widgets)); ?>
 	<?php View::load('Templates/Components/layout/wp-widgets'); ?>
 	<?php View::load('Templates/Components/layout/parts', array('widgets' => GL_Grid_Layout::$widget_components)); ?>
-	<?php View::load('Templates/Components/layout/custom', array('widgets' => GL_Grid_Layout::$custom)); ?>
+	
+	<?php if(empty($hideCustom)) { ?>
+		<?php View::load('Templates/Components/layout/custom', array('widgets' => GL_Grid_Layout::$custom)); ?>
+	<?php } ?>
 </div>

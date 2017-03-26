@@ -66,7 +66,10 @@ Class Layout extends LayoutRepository {
 		$widget_name = $_POST['name'];
 		$widget_id = $_POST['id'];
 		$widget = WidgetFactory::get($widget_name, $widget_id);
-		echo json_encode($widget->getPreview());
+		echo json_encode(array(
+			'title' => $widget->getName(),
+			'preview' => $widget->getPreview(),
+		));
 		wp_die();
 	}
 

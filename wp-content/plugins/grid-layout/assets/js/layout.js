@@ -23,6 +23,7 @@ jQuery(function($){ //DOM Ready
             if(typeof structure != 'undefined' && structure) {
                 $.each(structure, function(a) {
                     var widget = Widget(this.widget_name, this.widget_id);
+					widget.setTitle(this.title);
 					widget.setContent(this.preview);
 					gridster.addWidget(widget.baseHtml(), this.col, this.row, ~~this.size_x, ~~this.size_y);
                 });
@@ -98,6 +99,7 @@ Layout = new function() {
 };
 
 var Widget = function(name, id) {
+	var title = name.ucFirst() + ' Widget';
 	var content = '';
 	var options = [];
 
@@ -112,7 +114,7 @@ var Widget = function(name, id) {
 			//return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
 		};
 		this.addTitle = function() {
-			html += name.ucFirst() + ' Widget';
+			html += '<span class="title">'+title+'</span>';
 		};
 		this.addContent = function() {
 			html += '<div class="content">'+content+'</div>';
@@ -146,6 +148,11 @@ var Widget = function(name, id) {
         		content = text;
 			}
 		};
+        this.setTitle = function(text) {
+        	if(text) {
+				title = text;
+			}
+		};
         this.setOptions = function(opt) {
 			options = opt;
         	return this;
@@ -174,6 +181,9 @@ var Widget = function(name, id) {
 			HtmlBuilder.addTrashButton();
 			return HtmlBuilder.build();
 		};
+		this.updateWidgetTitle = function(title) {
+            this.getNode().find('.title').html(title);
+        };
 		this.updateWidgetContent = function(content) {
             this.getNode().find('.content').html(content);
         };
@@ -182,7 +192,8 @@ var Widget = function(name, id) {
             jQuery('.modal .modal-body').html('<iframe src="'+HtmlBuilder.getEditUrl()+'" width="100%" height="100%"></iframe>');
             jQuery('.modal').modal('show').on('hide.bs.modal', function (e) {
 				jQuery.post(ajaxurl, {action: 'gl_ajax_get_widget_preview', name:name, id:id}, function(response) {
-					_this.updateWidgetContent(response);
+					_this.updateWidgetTitle(response.title);
+					_this.updateWidgetContent(response.preview);
 					jQuery('.modal').unbind();
 				}, 'json');
 			})

@@ -92,6 +92,10 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 		return '';
 	}
 	
+	public function getTitle() {
+		return '';
+	}
+	
 	public function jsonSerialize() {
 		return array(
 			'widget_id' => $this->getId(),
@@ -102,6 +106,7 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 			'size_y' => $this->getHeight(),
 			//'full_widget' => $this->getFull(),
 			'preview' => $this->getPreview(),
+			'title' => $this->getTitle(),
 		);
 	}
 }
