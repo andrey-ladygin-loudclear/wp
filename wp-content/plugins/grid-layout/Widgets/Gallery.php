@@ -16,7 +16,12 @@ class Gallery extends Widget {
 	];
 	
 	protected $js = array(
-		'assets/plugins/jssor/js/jssor.slider.min.js'
+		'assets/plugins/owlcarousel/js/owl.carousel.js'
+	);
+	
+	protected $css = array(
+		'assets/plugins/owlcarousel/css/owl.carousel.css',
+		'assets/plugins/owlcarousel/css/owl.theme.default.css',
 	);
 	
 	public function fill(array $attributes) {
