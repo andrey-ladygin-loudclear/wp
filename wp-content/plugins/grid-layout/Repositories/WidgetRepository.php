@@ -9,12 +9,13 @@ use JsonSerializable;
 Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSerializable {
 	
 	protected static $table = 'gl_widget';
-	protected $fillable = array('alias', 'options', 'classes');
+	protected $fillable = array('alias', 'options', 'classes', 'full_widget');
 	protected $id;
 	
 	public $alias;
 	public $options;
 	public $classes;
+	public $full_widget;
 	
 	public function add($options = array()) {
 		$data = array_merge(array('id' => NULL), (array) $options);
@@ -39,7 +40,7 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 			LEFT JOIN $widget_table wt ON wt.id = wgg.widget_id AND wgg.widget_name = '{$this->getName()}'
 			WHERE wt.id = {$widget_id};";
 		
-		$res = $this->query($sql);
+		$res = $this->query($sql);;
 		return $this->fill($res[0]);
 		//return $this->fill($this->query($sql));
 	}
@@ -79,7 +80,18 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 			$this->options = (array) json_decode($attributes['options']);
 		}
 		
-		$this->alias = $attributes['alias'];
+//		if(isset($this->options['alias'])) {
+//			$this->alias = $this->options['alias'];
+//			unset($this->options['alias']);
+//		}
+//		if(isset($this->options['classes'])) {
+//			$this->classes = $this->options['classes'];
+//			unset($this->options['classes']);
+//		}
+//		if(isset($this->options['full_widget'])) {
+//			$this->full_widget = $this->options['full_widget'];
+//			unset($this->options['full_widget']);
+//		}
 		
 		return $this;
 	}
@@ -93,7 +105,7 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 	}
 	
 	public function getTitle() {
-		return '';
+		return !empty($this->alias) ? $this->alias : $this->getName();
 	}
 	
 	public function jsonSerialize() {

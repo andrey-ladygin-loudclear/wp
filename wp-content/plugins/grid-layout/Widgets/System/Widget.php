@@ -2,10 +2,11 @@
 
 namespace GL\Widgets\System;
 
+use GL\Classes\Grid_Widget;
 use GL\Interfaces\GlyphInterface;
 use GL\Repositories\WidgetRepository;
 
-class Widget extends WidgetRepository implements GlyphInterface {
+class Widget extends Grid_Widget implements GlyphInterface {
 	
     protected $childrens = array();
     protected $id = 0;
@@ -14,7 +15,7 @@ class Widget extends WidgetRepository implements GlyphInterface {
     protected $height = 1;
 	protected $row = 0;
 	protected $col = 0;
-    protected $full_widget = 0;
+    public $full_widget = 0;
 
     protected $js = [];
     protected $css = [];

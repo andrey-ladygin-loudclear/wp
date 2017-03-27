@@ -7,13 +7,22 @@ use GL\Widgets\System\Widget;
 
 class Gallery extends Widget {
 	protected static $table = 'gl_widget_gallery';
-	protected $fillable = ['images'];
+	protected $fillable = ['images', 'options'];
 	
 	public $images;
 	
-	public $options = [
-		'classes' => 'well'
+	public $default = [
+		'loop' => true,
+		'margin' => '20',
+		'items' => '3',
+		'autoPlay' => '3000',
+		'dots' => true,
+		'nav' => true,
+		'animateOut' => 'slideOutDown',
+		'animateIn' => 'slideOutUp',
 	];
+	
+	public $options = [];
 	
 	protected $js = array(
 		'assets/plugins/owlcarousel/js/owl.carousel.js'
@@ -39,7 +48,7 @@ class Gallery extends Widget {
 			$output = '';
 			
 			foreach($this->images as $image) {
-				$output .= "<img src='{$image}' width='100px'>";
+				$output .= "<img src='{$image}' width='100px' height='100px'>";
 			}
 			
 			return $output;

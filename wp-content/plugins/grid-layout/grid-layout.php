@@ -111,18 +111,13 @@ class GL_Grid_Layout {
 		$hook_view = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-view-widget', function() {});
 		add_action('load-' . $hook_view, function() {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');
+			wp_enqueue_media();
 			wp_enqueue_script('tiny_mce');
-			do_action('wp_head');
 			$this->layout->view();
-			do_action('wp_footer');
-			do_action('wp_print_footer_scripts');
-			do_action('wp_print_styles');
+			do_action("admin_footer");
 			do_action("admin_print_scripts");
 			do_action("admin_print_footer_scripts");
 			do_action("admin_print_styles");
-			//do_action("wp_default_styles");
-			//do_action("admin_bar_menu");
-			do_action("admin_footer");
 			exit;
 		});
 		$hook_edit = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget', function() {});
@@ -131,7 +126,10 @@ class GL_Grid_Layout {
 			wp_enqueue_media();
 			wp_enqueue_script('tiny_mce');
 			$this->layout->edit();
-			do_action('wp_footer');
+			do_action("admin_footer");
+			do_action("admin_print_scripts");
+			do_action("admin_print_footer_scripts");
+			do_action("admin_print_styles");
 			exit;
 		});
 	}

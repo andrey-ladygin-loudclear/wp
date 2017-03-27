@@ -5,8 +5,11 @@ namespace GL\Classes;
 use GL\Interfaces\GlyphInterface;
 use GL\Repositories\WidgetRepository;
 
-class GLWidget extends WidgetRepository {
+class Grid_Widget extends WidgetRepository {
 	
+	
+	// What this should be? wp_gl_grid params or wp_gl_widget?
+	//
 	protected $js = [];
 	protected $css = [];
 	

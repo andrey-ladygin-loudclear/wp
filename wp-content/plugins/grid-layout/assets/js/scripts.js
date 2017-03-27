@@ -1,10 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$('.widget.gallery').owlCarousel({
-		loop:true,
-		margin:0,
-		nav:true
-	});
+
 
 	// var slider = function (containerId) {
 	//

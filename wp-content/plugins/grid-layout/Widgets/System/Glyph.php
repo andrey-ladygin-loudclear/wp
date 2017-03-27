@@ -2,11 +2,12 @@
 
 namespace GL\Widgets\System;
 
+use GL\Classes\Grid_Widget;
 use GL\Classes\Structure;
 use GL\Interfaces\GlyphInterface;
 use GL\Repositories\WidgetRepository;
 
-class Glyph extends WidgetRepository implements GlyphInterface {
+class Glyph extends Grid_Widget implements GlyphInterface {
 	
 	public $childrens = array();
     
@@ -94,6 +95,7 @@ class Glyph extends WidgetRepository implements GlyphInterface {
 	}
 	
 	public function draw() {
+		var_dump('Glyph still output info in class');
         echo "<div class='container-fluid widget col-md-{$this->width} col-md-offset-{$this->offset} well' style='border: 1px solid red;min-height: ".(60*$this->height)."px;'>";
 
 		foreach($this->getChildren() as $child) {
