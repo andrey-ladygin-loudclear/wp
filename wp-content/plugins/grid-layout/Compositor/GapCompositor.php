@@ -2,6 +2,8 @@
 
 namespace GL\Compositor;
 
+use GL\Classes\Assets;
+
 class GapCompositor {
 	
 	public function compose($childrens) {
@@ -9,6 +11,9 @@ class GapCompositor {
 		$prevCol = 0;
 		
 		foreach($childrens as &$widget) {
+			
+			Assets::addPack($widget->getJs());
+			Assets::addPack($widget->getCss());
 			
 			if($widget->getRow() != $currRow) {
 				$prevCol = 0;

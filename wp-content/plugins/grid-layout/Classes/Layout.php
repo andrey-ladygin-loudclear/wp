@@ -12,25 +12,12 @@ Class Layout extends LayoutRepository {
         $widget_name = $_GET['widget-name'];
         $widget_id = $_GET['widget-id'];
         $widget = WidgetFactory::get($widget_name, $widget_id);
-        
-		$assets = new Assets();
-		$assets->addJquery();
-		$assets->addBootstrap();
-		$assets->addJqueryUI();
-		$assets->addTinyMCE();
-		$assets->addMainScript();
+    	Assets::addDefaults();
+		Assets::enqueue();
 		
-		if($widget instanceof Glyph) {
-			$assets->addGridister();
-			$assets->addLayout();
-		}
-		
-		$view = View::make("Templates/Backend/{$widget_name}", array(
+		View::load("Templates/Backend/{$widget_name}", array(
             'widget' => $widget,
         ));
-	
-		//$view->add_assets($assets);
-		$view->show();
     }
     
     public function view() {
@@ -104,7 +91,9 @@ Class Layout extends LayoutRepository {
     }
 
     public function grid($post) {
-        $widgets = $this->getGrid($post->ID, 'page');
+    	Assets::addDefaults();
+		Assets::enqueue();
+		$widgets = $this->getGrid($post->ID, 'page');
         View::load('Templates/Backend/layout', array('widgets' => $widgets));
     }
 

@@ -45,6 +45,8 @@ class Composition extends Glyph {
 	
 	public function draw() {
 		$this->childrens = $this->_compositor->compose($this->childrens);
+		Assets::add('assets/js/scripts.js');
+		Assets::enqueue();
 		View::load('Templates/Frontend/composition', array('widgets' => $this->getChildren()));
 	}
 }

@@ -23,7 +23,7 @@ class GL_Grid_Layout {
 	public static $widgets = array(
 		'news' => 'News',
 		'glyph' => 'Block',
-		'image' => 'Image',
+		'gallery' => 'gallery',
 		'text' => 'Text',
 		'post_iteration' => 'Post iteration',
 	);
@@ -81,7 +81,6 @@ class GL_Grid_Layout {
         $this->actions = new Actions();
 
         add_action('init', array($this, 'create_grid_post_type'));
-        add_action('admin_init', array($this, 'enqueue_scripts'));
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
 
         add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'add_widget'));
@@ -129,49 +128,10 @@ class GL_Grid_Layout {
 		$hook_edit = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget', function() {});
 		add_action('load-' . $hook_edit, function() {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');
-
-//			echo "<pre>";
-//			var_dump($_GET);
-//			$name = stripslashes($_GET['widget-name']);
-//			$c = new $name;
-//			print_r($c);
-//			var_dump($c);
-//			die;
+			wp_enqueue_media();
 			wp_enqueue_script('tiny_mce');
-//			wp_enqueue_script( 'thickbox' );
-//			wp_enqueue_style( 'thickbox' );
-//			wp_enqueue_script('media-upload');
-			
-			do_action('wp_head');
 			$this->layout->edit();
 			do_action('wp_footer');
-			do_action('wp_print_footer_scripts');
-			do_action('wp_print_styles');
-
-            do_action("admin_print_scripts");
-            do_action("admin_print_footer_scripts");
-            do_action("admin_print_styles");
-           // do_action("wp_default_styles");
-
-
-//            do_action("wp_default_scripts");
-//            do_action("wp_enqueue_scripts");
-//            do_action("wp_print_scripts");
-//            do_action("print_scripts_array");
-
-
-//            do_action("admin_print_scripts-appearance_page_custom-header");
-//            do_action("admin_print_styles-appearance_page_custom-header");
-//            do_action("admin_head-appearance_page_custom-header");
-            //do_action("admin_bar_menu");
-            do_action("admin_footer");
-
-
-
-
-
-
-
 			exit;
 		});
 	}
@@ -241,18 +201,6 @@ class GL_Grid_Layout {
             )
         );
         remove_post_type_support($post_type, 'editor');
-    }
-
-    public function enqueue_scripts() {
-		$this->assets->addDefaults();
-		//wp_enqueue_media();
-		
-		foreach($this->assets->getCss() as $css) {
-			wp_enqueue_style($css['name'], $css['src']);
-		}
-		foreach($this->assets->getJs() as $js) {
-			wp_enqueue_script($js['name'], $js['src']);
-		}
     }
 
     public function add_meta_box() {

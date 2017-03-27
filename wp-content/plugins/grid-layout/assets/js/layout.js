@@ -83,7 +83,6 @@ Layout = new function() {
 
 		jQuery('.grid-stack-item.ui-draggable').each(function () {
 			var node = jQuery(this).data('_gridstack_node');
-			//console.log(node);
 			data.push({
 				widget_id: node.id,
 				widget_name: jQuery(this).attr('data-gs-name'),
@@ -99,7 +98,7 @@ Layout = new function() {
 };
 
 var Widget = function(name, id) {
-	var title = name.ucFirst() + ' Widget';
+	var title = name.ucFirst();
 	var content = '';
 	var options = [];
 
@@ -194,7 +193,7 @@ var Widget = function(name, id) {
 				jQuery.post(ajaxurl, {action: 'gl_ajax_get_widget_preview', name:name, id:id}, function(response) {
 					_this.updateWidgetTitle(response.title);
 					_this.updateWidgetContent(response.preview);
-					jQuery('.modal').unbind();
+					jQuery('.modal').unbind('hide');
 				}, 'json');
 			})
         };

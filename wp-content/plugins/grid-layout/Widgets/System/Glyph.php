@@ -17,7 +17,10 @@ class Glyph extends WidgetRepository implements GlyphInterface {
     protected $row = 0;
     protected $col = 0;
     protected $full_widget = 0;
-    
+	
+	protected $js = [];
+	protected $css = [];
+	
 	public function insert(GlyphInterface $widget) {
 		$this->childrens[] = $widget;
 	}
@@ -69,6 +72,14 @@ class Glyph extends WidgetRepository implements GlyphInterface {
     public function setOffset($offset) {
         $this->offset = $offset;
     }
+	
+	public function getJs() {
+		return $this->js;
+	}
+	
+	public function getCss() {
+		return $this->css;
+	}
 	
 	public function getChildren() {
 	    if($this->childrens) {

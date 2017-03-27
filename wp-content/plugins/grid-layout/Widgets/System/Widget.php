@@ -8,8 +8,6 @@ use GL\Repositories\WidgetRepository;
 class Widget extends WidgetRepository implements GlyphInterface {
 	
     protected $childrens = array();
-    //protected $padding = [0, 0, 0, 0,];
-    //protected $margin = [0, 0, 0, 0,];
     protected $id = 0;
     protected $offset = 0;
 	protected $width = 1;
@@ -17,6 +15,9 @@ class Widget extends WidgetRepository implements GlyphInterface {
 	protected $row = 0;
 	protected $col = 0;
     protected $full_widget = 0;
+
+    protected $js = [];
+    protected $css = [];
 	
 	public function getCol() {
 		return $this->col;
@@ -64,6 +65,14 @@ class Widget extends WidgetRepository implements GlyphInterface {
     
 	public function getId() {
 		return $this->id;
+	}
+	
+	public function getJs() {
+		return $this->js;
+	}
+	
+	public function getCss() {
+		return $this->css;
 	}
 
 	public function insert(GlyphInterface $widget) {}
