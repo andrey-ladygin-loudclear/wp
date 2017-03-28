@@ -10,7 +10,8 @@ class Gallery extends Widget {
 	protected $fillable = ['images', 'options'];
 	
 	public $images;
-	
+
+//https://colorlib.com/wp/free-wordpress-themes//
 	public $schema = [
 		'loop' => 'bool',
 		'margin' => 'int',
