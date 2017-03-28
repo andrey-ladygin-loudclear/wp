@@ -5,8 +5,8 @@ use GL\Classes\View;
 
 class FormHelper {
 		
-	public static function showOptionField($name, $value, $defaults) {
-		$default = !empty($defaults[$name]) ? $defaults[$name] : '';
+	public static function showOptionField($name, $value, $schema) {
+		$schema = !empty($schema[$name]) ? $schema[$name] : '';
 		self::showField("options[$name]", self::nameToLabel($name), $value);
 	}
 	

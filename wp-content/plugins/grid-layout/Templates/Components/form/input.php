@@ -1,4 +1,2 @@
-<div class="form-group">
-    <label for="<?=$name;?>"><?=$label;?></label>
-    <input type="text" name="<?=$name;?>" class="form-control" id="<?=$name;?>" placeholder="<?=$placeholder;?>" value="<?=$value;?>">
-</div>
+<label for="<?=$name;?>"><?=$label;?></label>
+<input type="text" name="<?=$name;?>" class="form-control" id="<?=$name;?>" placeholder="<?=$placeholder;?>" value="<?=$value;?>">

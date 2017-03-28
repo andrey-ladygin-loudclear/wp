@@ -11,7 +11,18 @@ class Gallery extends Widget {
 	
 	public $images;
 	
-	public $default = [
+	public $schema = [
+		'loop' => 'bool',
+		'margin' => 'int',
+		'items' => 'int',
+		'autoPlay' => 'int',
+		'dots' => 'bool',
+		'nav' => 'bool',
+		'animateOut' => 'slideOutDown',
+		'animateIn' => 'slideOutUp',
+	];
+	
+	public $options = [
 		'loop' => true,
 		'margin' => '20',
 		'items' => '3',
@@ -21,8 +32,6 @@ class Gallery extends Widget {
 		'animateOut' => 'slideOutDown',
 		'animateIn' => 'slideOutUp',
 	];
-	
-	public $options = [];
 	
 	protected $js = array(
 		'assets/plugins/owlcarousel/js/owl.carousel.js'

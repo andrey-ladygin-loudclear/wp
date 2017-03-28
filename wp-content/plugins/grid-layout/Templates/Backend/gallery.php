@@ -13,10 +13,24 @@ use GL\Helpers\FormHelper;
 		</button>
 		<div class="collapse" id="collapseInputs">
 			<div class="well clearfix">
-				<?php View::load('Templates/Components/layout/standard-inputs', array('options' => $widget->options)) ?>
-				<?php foreach($widget->options as $key => $value) { ?>
-					<?php FormHelper::showOptionField($key, $value, $widget->defaults); ?>
-				<?php } ?>
+				
+				<div class="form-inline">
+					<?php $count = 0; ?>
+					<?php foreach($widget->options as $key => $value) { ?>
+						<?php $count++; ?>
+					
+						<div class="form-group col-md-6">
+							<?php FormHelper::showOptionField($key, $value, $widget->defaults); ?>
+						</div>
+					
+						<?php if($count%2 == 0) { ?>
+							</div>
+							<div class="form-inline">
+						<?php } ?>
+					<?php } ?>
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
