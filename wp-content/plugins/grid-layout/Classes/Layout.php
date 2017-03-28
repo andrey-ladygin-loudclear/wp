@@ -24,6 +24,10 @@ Class Layout extends LayoutRepository {
         $widget_name = $_GET['widget-name'];
         $widget_id = $_GET['widget-id'];
         $widget = WidgetFactory::get($widget_name, $widget_id);
+		Assets::addDefaults();
+		Assets::addWidgetStyles();
+		Assets::enqueue();
+		
 		View::load('Templates/Backend/style', array(
 			'widget' => $widget
 		));

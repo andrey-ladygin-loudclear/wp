@@ -84,6 +84,10 @@ Class Assets {
 		self::$_js[] = array('name' => 'gl-main-script', 'src' => self::getFileUrl('/assets/js/main.js'));
 	}
     
+    public static function addWidgetStyles() {
+		self::$_css[] = array('name' => 'gl-widget-styles', 'src' => self::getFileUrl('/assets/css/widgets.css'));
+	}
+    
     public static function addDefaults() {
 		self::addBootstrap();
     	self::addJqueryUI();

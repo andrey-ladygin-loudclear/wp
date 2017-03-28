@@ -65,7 +65,7 @@ class GL_Grid_Layout {
 	
     public function __construct() {
 		self::$PLUG_URL = plugins_url('/', __FILE__);
-		//self::$PLUG_DIR = dir(__FILE__);
+		self::$PLUG_DIR = plugin_dir_path(__FILE__);
 	
 		// if __autoload is active, put it on the spl_autoload stack
 		if (is_array(spl_autoload_functions()) && in_array('__autoload', spl_autoload_functions())) {

@@ -167,7 +167,7 @@ var Widget = function(name, id) {
 		this.baseHtml = function() {
 			HtmlBuilder.addTitle();
 			HtmlBuilder.addContent();
-			//HtmlBuilder.addViewButton();
+			HtmlBuilder.addViewButton();
 
 			//if(id) {
 			    if(name == 'glyph' && parent.frames.length > 1) {
