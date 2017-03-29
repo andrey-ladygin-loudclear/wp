@@ -14,11 +14,11 @@ Class Structure {
 		if(empty($widgets)) {
 			return array();
 		}
-
+		
         foreach($widgets as &$widget) {
             $widget = WidgetFactory::factory($widget);
         }
-
+        
         return $widgets;
     }
 

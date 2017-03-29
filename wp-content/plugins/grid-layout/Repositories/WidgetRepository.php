@@ -15,7 +15,7 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 	public $alias;
 	public $options;
 	public $classes;
-	public $full_widget;
+	//public $full_widget;
 	
 	public function add($options = array()) {
 		$data = array_merge(array('id' => NULL), (array) $options);
@@ -128,8 +128,8 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 	
 	public function jsonSerialize() {
 		return array(
-			'widget_id' => $this->getId(),
-			'widget_name' => $this->getName(),
+			'id' => $this->getId(),
+			'name' => $this->getName(),
 			'row' => $this->getRow(),
 			'col' => $this->getCol(),
 			'size_x' => $this->getWidth(),

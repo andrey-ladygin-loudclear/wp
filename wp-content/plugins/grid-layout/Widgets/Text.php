@@ -15,7 +15,7 @@ class Text extends Widget {
 	}
 	
 	public function save($widget_id, $data) {
-		$data['data'] = json_encode($data['text']);
+		$data['data'] = $data['text'];
 		parent::save($widget_id, $data);
 	}
 

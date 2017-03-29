@@ -71,8 +71,8 @@ Class EmptyWidgetRepository extends DB implements WidgetRepositoryInterface, Jso
 	
 	public function jsonSerialize() {
 		return array(
-			'widget_id' => $this->getId(),
-			'widget_name' => $this->getName(),
+			'id' => $this->getId(),
+			'name' => $this->getName(),
 			'row' => $this->getRow(),
 			'col' => $this->getCol(),
 			'size_x' => $this->getWidth(),

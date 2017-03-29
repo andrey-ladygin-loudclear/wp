@@ -18,12 +18,14 @@ use GL\Classes\Styles;
 use GL\Facades\WidgetCompositionFacade;
 
 class GL_Grid_Layout {
+	CONST DEBUG = FALSE;
+	
 	public static $PLUG_DIR;
 	public static $PLUG_URL;
 	
 	public static $widgets = array(
 		'news' => 'News',
-		'glyph' => 'Block',
+		'block' => 'Block',
 		'gallery' => 'gallery',
 		'text' => 'Text',
 		'post_iteration' => 'Post iteration',
@@ -33,7 +35,6 @@ class GL_Grid_Layout {
 	
 	public static $widget_components = array(
 		'post_author' => 'Post Author',
-		'post_author_link' => 'Post Author Link',
 		'post_content' => 'Post Content',
 		'post_date' => 'Post Date',
 		'post_permalink' => 'Post Permalink',

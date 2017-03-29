@@ -3,6 +3,7 @@
 namespace GL\Classes;
 
 use GL\Compositor\GapCompositor;
+use GL\Compositor\RowGapCompositor;
 use GL\Widgets\System\Glyph;
 
 class Composition extends Glyph {
@@ -12,7 +13,7 @@ class Composition extends Glyph {
 	
 	public function __construct() {
 	    parent::__construct();
-		$this->_compositor = new GapCompositor();
+		$this->_compositor = new RowGapCompositor();
 	}
 	
 	public function getCol() {}
@@ -46,7 +47,9 @@ class Composition extends Glyph {
 	public function draw() {
 		$this->childrens = $this->_compositor->compose($this->childrens);
 		Assets::add('assets/js/scripts.js');
+		Assets::add('assets/css/front.css');
 		Assets::enqueue();
+		the_post();
 		View::load('Templates/Frontend/composition', array('widgets' => $this->getChildren()));
 	}
 }

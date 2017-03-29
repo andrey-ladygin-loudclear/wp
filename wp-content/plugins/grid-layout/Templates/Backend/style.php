@@ -14,7 +14,7 @@
 	<input type="hidden" id="styles-dir" value="<?= $widget->getStylesDir(); ?>">
 	<input type="hidden" id="widget-id-attribute" value="<?= $widget->getIdAttribute(); ?>">
 	<input type="hidden" id="widget-id" value="<?= $widget->getId(); ?>">
-	<button class="btn -btn-success" id="save-styles">Save</button>
+	<button class="btn btn-success" id="save-styles">Save</button>
 </div>
 
 <style id="widget_styles"></style>

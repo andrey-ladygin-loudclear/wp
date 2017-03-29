@@ -11,6 +11,17 @@ class WP extends Widget {
 	public $args;
 	public $name;
 	
+//	public function setOptions() {
+//		$class = $this->name;
+//		$dummy = new $class();
+//		$settings = $dummy->widget_options;
+//		$options = get_option($dummy->option_name);
+//
+//		if(!empty($options[2])) {
+//			$this->options = $options[2];
+//		}
+//	}
+	
 	public function fill(array $attributes) {
 		$this->name = $attributes['name'];
 		$this->instance = (array) json_decode($attributes['options']);

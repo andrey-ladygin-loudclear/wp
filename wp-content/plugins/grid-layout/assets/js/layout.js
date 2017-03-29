@@ -22,7 +22,7 @@ jQuery(function($){ //DOM Ready
         new function () {
             if(typeof structure != 'undefined' && structure) {
                 $.each(structure, function(a) {
-                    var widget = Widget(this.widget_name, this.widget_id);
+                    var widget = Widget(this.name, this.id);
 					widget.setTitle(this.title);
 					widget.setContent(this.preview);
 					gridster.addWidget(widget.baseHtml(), this.col, this.row, ~~this.size_x, ~~this.size_y);

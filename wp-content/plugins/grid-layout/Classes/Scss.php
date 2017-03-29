@@ -21,12 +21,14 @@ Class Scss {
 	
 	public function loadDir($cssWidgetDirectory)
 	{
-		if(empty($cssWidgetDirectory))
+		$path = \GL_Grid_Layout::$PLUG_DIR . "assets/css/widgets/{$cssWidgetDirectory}/";
+		
+		if(empty($cssWidgetDirectory) || !file_exists($path))
 		{
 			return;
 		}
 			
-		$this->styles_dir = \GL_Grid_Layout::$PLUG_DIR . "assets/css/widgets/{$cssWidgetDirectory}/";
+		$this->styles_dir = $path;
 		
 		foreach(scandir($this->styles_dir) as $style)
 		{

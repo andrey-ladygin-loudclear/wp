@@ -1,5 +1,7 @@
-<div class='container-fluid widget col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> well' style='border: 1px solid red;min-height: <?= $widget->getHeight()*60; ?>px;'>
+<div class='container-fluid widget col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= GL_Grid_Layout::DEBUG ? 'well' : ''; ?>'>
+<?php if(GL_Grid_Layout::DEBUG) { ?>
 	<span class="label label-default"><?= $widget->getName(); ?></span>
+<?php } ?>
 <?php
     foreach($widget->getChildren() as $child) {
         $child->draw();

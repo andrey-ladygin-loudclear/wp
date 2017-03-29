@@ -4,12 +4,12 @@ namespace GL\Classes;
 
 Class DB {
 
-    private $wpdb;
+    private static $wpdb;
 	protected static $table;
     
 	public function __construct() {
         global $wpdb;
-		$this->wpdb = $wpdb;
+		self::$wpdb = $wpdb;
     }
     
     public static function getTable() {
@@ -22,32 +22,32 @@ Class DB {
 //		return $wpdb->prefix;
 	}
     
-    protected function delete(array $where) {
-		return $this->wpdb->delete(self::getTable(), $where);
+    protected static function delete(array $where) {
+		return self::$wpdb->delete(self::getTable(), $where);
 	}
 	
 	protected function insert(array $data) {
-		$this->wpdb->insert(self::getTable(), $data);
-		return $this->wpdb->insert_id;
+		self::$wpdb->insert(self::getTable(), $data);
+		return self::$wpdb->insert_id;
 	}
 	
-	protected function get(array $where) {
-		return $this->wpdb->get_row("SELECT * FROM ".self::getTable()." WHERE ".$this->implode($where).";", ARRAY_A);
+	protected static function get(array $where) {
+		return self::$wpdb->get_row("SELECT * FROM ".self::getTable()." WHERE ".self::implode($where).";", ARRAY_A);
 	}
 	
-	protected function update(array $data, array $where) {
-		return $this->wpdb->update(self::getTable(), $data, $where);
+	protected static function update(array $data, array $where) {
+		return self::$wpdb->update(self::getTable(), $data, $where);
 	}
 	
-	protected function query($sql) {
-		return $this->wpdb->get_results($sql, ARRAY_A);
+	protected static function query($sql) {
+		return self::$wpdb->get_results($sql, ARRAY_A);
 	}
 
-	protected function getLastQuery() {
-	    return $this->wpdb->last_query;
+	protected static function getLastQuery() {
+	    return self::$wpdb->last_query;
     }
 	
-	private function implode($arr) {
+	private static function implode($arr) {
 		$queryStr = '';
 		$terms = count($arr);
 		foreach ($arr as $field => $value)

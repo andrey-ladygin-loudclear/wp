@@ -54,9 +54,9 @@ Class WidgetFactory {
 		$widget = self::getObject($name);
 		return $widget->find($id);
 	}
-	
+
     public static function factory($data = array()) {
-        $widget = self::getObject($data['widget_name']);
+        $widget = self::getObject($data['name']);
         $widget->fill($data);
 		return $widget;
     }

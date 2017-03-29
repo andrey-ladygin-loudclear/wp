@@ -4,7 +4,9 @@
  */
 ?>
 
-<div class='widget col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> well' style='border: 1px solid;min-height: <?= $widget->getHeight()*60; ?>px;'>
-	<span class="label label-default"><?= $widget->getName(); ?></span>
-	<?php the_title(); ?>
+<div class='widget col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= GL_Grid_Layout::DEBUG ? 'well' : ''; ?>'>
+	<?php if(GL_Grid_Layout::DEBUG) { ?>
+		<span class="label label-default"><?= $widget->getName(); ?></span>
+	<?php } ?>
+	<h1><?php the_title(); ?></h1>
 </div>

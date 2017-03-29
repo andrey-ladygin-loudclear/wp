@@ -24,10 +24,6 @@ Class Layout extends LayoutRepository {
         $data = $_POST;
         $widget_name = $data['widget-name'];
         $widget_id = $data['widget-id'];
-        
-        unset($data['action']);
-        unset($data['widget-name']);
-        unset($data['widget-id']);
 	
         $widget = WidgetFactory::get($widget_name, $widget_id);
 		$widget->save($widget_id, $data);
@@ -85,6 +81,7 @@ Class Layout extends LayoutRepository {
     	Assets::addDefaults();
 		Assets::enqueue();
 		$widgets = $this->getGrid($post->ID, 'page');
+		
         View::load('Templates/Backend/layout', array('widgets' => $widgets));
     }
 

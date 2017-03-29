@@ -56,16 +56,17 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	}
 	
 	public function getHierarchy($parent_id, $parent_type = 'page') {
-		$sql = "SELECT *
+		$sql = "SELECT *, widget_name as name
             FROM {$this->getTable()} wgg
-            LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id AND wgg.widget_name = 'glyph'
-            LEFT JOIN wp_gl_widget_gallery ON wp_gl_widget_gallery.id = wgg.widget_id AND wgg.widget_name = 'gallery'
-            LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
-			LEFT JOIN wp_gl_wp_widgets ON wp_gl_wp_widgets.id = wgg.widget_id AND wgg.widget_name = 'wp'
+            LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id 
             WHERE wgg.parent_id = {$parent_id} AND wgg.parent_type = '{$parent_type}'
             ORDER BY row, col
         ;";
 		
+		//AND wgg.widget_name = 'glyph'
+//		LEFT JOIN wp_gl_widget_gallery ON wp_gl_widget_gallery.id = wgg.widget_id AND wgg.widget_name = 'gallery'
+//            LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
+//			LEFT JOIN wp_gl_wp_widgets ON wp_gl_wp_widgets.id = wgg.widget_id AND wgg.widget_name = 'wp'
 		
 		return $this->query($sql);
 	}
@@ -74,19 +75,20 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		//$layoutTable = LayoutRepository::getTable();
 		$layoutTable = $this->getTable();
 
-		$sql = "SELECT * FROM {$layoutTable} wgg
-			LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id AND wgg.widget_name = 'glyph'
-			LEFT JOIN wp_gl_widget_gallery ON wp_gl_widget_gallery.id = wgg.widget_id AND wgg.widget_name = 'gallery'
-			LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
-			LEFT JOIN wp_gl_wp_widgets ON wp_gl_wp_widgets.id = wgg.widget_id AND wgg.widget_name = 'wp'
+		$sql = "SELECT *, widget_name as name FROM {$layoutTable} wgg
+			LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id 
 			WHERE parent_id = {$post_id} AND parent_type = '{$parent_type}';";
-		
-		$widgets = array();
 
+		//AND wgg.widget_name = 'glyph'
+//			LEFT JOIN wp_gl_widget_gallery ON wp_gl_widget_gallery.id = wgg.widget_id AND wgg.widget_name = 'gallery'
+//			LEFT JOIN wp_gl_widget_text ON wp_gl_widget_text.id = wgg.widget_id AND wgg.widget_name = 'text'
+//			LEFT JOIN wp_gl_wp_widgets ON wp_gl_wp_widgets.id = wgg.widget_id AND wgg.widget_name = 'wp'
+		$widgets = array();
+		
 		foreach($this->query($sql) as $row) {
 		    $widgets[] = WidgetFactory::factory($row);
         }
-
+        
 		return $widgets;
 	}
 }
