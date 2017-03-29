@@ -14,6 +14,7 @@ use GL\Classes\Actions;
 use GL\Classes\Assets;
 use GL\Classes\Layout;
 use GL\Classes\Settings;
+use GL\Classes\Styles;
 use GL\Facades\WidgetCompositionFacade;
 
 class GL_Grid_Layout {
@@ -76,6 +77,7 @@ class GL_Grid_Layout {
 		spl_autoload_register(array($this, 'autoloader'));
 		
         $this->layout = new Layout();
+        $this->styles = new Styles();
         $this->assets = new Assets();
         $this->settings = new Settings();
         $this->actions = new Actions();
@@ -87,6 +89,8 @@ class GL_Grid_Layout {
         add_action('wp_ajax_gl_ajax_get_widget_preview', array($this->layout, 'get_widget_preview'));
         add_action('wp_ajax_gl_ajax_delete_widget', array($this->layout, 'delete_widget'));
 		add_action('wp_ajax_gl_ajax_save_layout', array($this->layout, 'save_layout'));
+		add_action('wp_ajax_gl_ajax_change_styles', array($this->styles, 'change'));
+		add_action('wp_ajax_gl_ajax_save_styles', array($this->styles, 'save'));
         add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
 		
 		add_action('gl_edit_widget_action', array($this->layout, 'edit'));
@@ -113,7 +117,7 @@ class GL_Grid_Layout {
 			wp_enqueue_style('hide-admin-bar', self::$PLUG_URL . '/assets/css/hide-admin-bar.css');
 			wp_enqueue_media();
 			wp_enqueue_script('tiny_mce');
-			$this->layout->view();
+			$this->styles->view();
 			do_action("admin_footer");
 			do_action("admin_print_scripts");
 			do_action("admin_print_footer_scripts");

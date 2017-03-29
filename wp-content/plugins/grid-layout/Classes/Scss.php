@@ -27,7 +27,7 @@ Class Scss {
 		{
 			if($style != '.' && $style != '..')
 			{
-				$this->styles_list[] = $style;
+				$this->styles_list[] = str_replace('.scss', '', $style);
 			}
 		}
 	}
@@ -42,9 +42,14 @@ Class Scss {
 		$this->styles = file_get_contents($this->styles_dir . $this->current_styles . '.scss');
 	}
 	
-	public function replaceWidgetId($id)
+	public function replaceWidgetIdWith($id)
 	{
 		$this->styles = str_replace(self::WIDGET_PATTERN, $id, $this->styles);
+	}
+	
+	public function getStylesList()
+	{
+		return $this->styles_list;
 	}
 	
 	public function compile()
@@ -53,7 +58,7 @@ Class Scss {
 //		  $color: #abc;
 //		  div { color: lighten($color, 20%); }
 //		');
-		echo $this->compiler->compile($this->styles);
+		return $this->compiler->compile($this->styles);
 	}
 	
 }

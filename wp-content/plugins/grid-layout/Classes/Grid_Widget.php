@@ -20,4 +20,8 @@ class Grid_Widget extends WidgetRepository {
 	public function getCss() {
 		return $this->css;
 	}
+	
+	public function getIdAttribute() {
+		return "widget-" . $this->getId();
+	}
 }

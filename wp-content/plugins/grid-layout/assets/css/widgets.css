@@ -1,34 +1,11 @@
-#wp-calendar {
-  width: 95%;
-  text-align: center;
-  margin: auto;
-  border-radius: none;
-  background: #f9f9f9;
-  border-left: 1px solid #eaeaea;
-  border-radius: 4px;
-  margin: 0 0 25px 0;
-  width: 100%; }
-
-.widget_calendar #wp-calendar caption {
-  font-size: 11px;
-  font-weight: 500;
-  padding: 5px 0 3px 0;
-  text-transform: uppercase; }
-.widget_calendar #wp-calendar th {
-  background: #f4f4f4;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  font-weight: bold;
-  text-align: center; }
-.widget_calendar #wp-calendar td, .widget_calendar #wp-calendar tbody th {
-  background: #f9f9f9;
-  border-top: 1px solid #eaeaea;
-  border-bottom: 1px solid #eaeaea;
-  border-right: 1px solid #eaeaea;
-  color: #666;
-  font-size: 14px;
-  padding: 4px 2%; }
-.widget_calendar #wp-calendar tfoot td {
-  background: #f4f4f4;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc; }
+.styles {
+  margin-top: 20px;
+}
+.styles .well {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.styles .well.active,
+.styles .well:hover {
+  background-image: none;
+}
