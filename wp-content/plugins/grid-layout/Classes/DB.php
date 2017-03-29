@@ -31,7 +31,7 @@ Class DB {
 		return $this->wpdb->insert_id;
 	}
 	
-	protected function get_row(array $where) {
+	protected function get(array $where) {
 		return $this->wpdb->get_row("SELECT * FROM ".self::getTable()." WHERE ".$this->implode($where).";", ARRAY_A);
 	}
 	
