@@ -37,15 +37,13 @@ Class Styles {
 	}
     
     public function save() {
-		$widget_name = $_POST['styles_dir'];
 		$style = $_POST['style'];
-		$widgetID = $_POST['widget_id_attribute'];
-		$scss = new Scss();
-		$scss->loadDir($widget_name);
-		$scss->selectCurrentStyles($style);
-		$scss->loadStyles();
-		$scss->replaceWidgetIdWith($widgetID);
-		echo $scss->compile();
+		$widget_name = $_POST['widget_name'];
+		$widget_id = $_POST['widget_id'];
+		$widget = WidgetFactory::get($widget_name, $widget_id);
+		$widget->save($widget_id, array(
+			'style' => !empty($style) ? $style : NULL
+		));
 		wp_die();
 	}
 }

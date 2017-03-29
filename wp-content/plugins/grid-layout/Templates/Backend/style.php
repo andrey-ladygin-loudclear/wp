@@ -3,24 +3,18 @@
 </div>
 
 <div class="styles container-fluid">
+	<div class="well pull-left <?= empty($widget->style) ? 'active' : ''; ?>" data-name="">Null</div>
 	<?php foreach($scss->getStylesList() as $style) { ?>
-		<div class="well pull-left" data-name="<?= $style; ?>"><?= $style; ?></div>
+		<div class="well pull-left <?= $widget->style == $style ? 'active' : ''; ?>" data-name="<?= $style; ?>" ><?= $style; ?></div>
 	<?php } ?>
 </div>
 
 <div class="styles container-fluid">
-	<input type="hidden" id="styles-dir" value="<?= $widget->name; ?>">
+	<input type="hidden" id="styles-name" value="<?= $widget->getName(); ?>">
+	<input type="hidden" id="styles-dir" value="<?= $widget->getStylesDir(); ?>">
 	<input type="hidden" id="widget-id-attribute" value="<?= $widget->getIdAttribute(); ?>">
 	<input type="hidden" id="widget-id" value="<?= $widget->getId(); ?>">
 	<button class="btn -btn-success" id="save-styles">Save</button>
 </div>
 
 <style id="widget_styles"></style>
-<?php
-//$scss = new \GL\Classes\Scss();
-//$scss->loadDir('calendar');
-//$scss->selectCurrentStyles('v1');
-//$scss->loadStyles();
-//$scss->replaceWidgetId('calendar-13');
-//$scss->compile();
-?>

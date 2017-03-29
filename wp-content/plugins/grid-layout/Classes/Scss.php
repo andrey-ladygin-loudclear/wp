@@ -21,6 +21,11 @@ Class Scss {
 	
 	public function loadDir($cssWidgetDirectory)
 	{
+		if(empty($cssWidgetDirectory))
+		{
+			return;
+		}
+			
 		$this->styles_dir = \GL_Grid_Layout::$PLUG_DIR . "assets/css/widgets/{$cssWidgetDirectory}/";
 		
 		foreach(scandir($this->styles_dir) as $style)

@@ -9,6 +9,8 @@ use GL\Interfaces\WidgetRepositoryInterface;
 Class WidgetFactory {
 
     public static function getObject($name) {
+		$name = strtolower($name);
+		
         try {
             $widget = self::getWidget($name);
         } catch (\Exception $e) {

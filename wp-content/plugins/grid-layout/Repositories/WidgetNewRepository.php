@@ -6,33 +6,21 @@ use GL\Classes\DB;
 use GL\Interfaces\WidgetRepositoryInterface;
 use JsonSerializable;
 
-Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSerializable {
+Class WidgetNewRepository extends DB {
 	
 	protected static $table = 'gl_widget';
-	protected $fillable = array('alias', 'options', 'name', 'data', 'args', 'style', 'classes', 'full_widget');
+	protected $fillable = array();
 	protected $id;
 	
-	public $alias;
-	public $options;
-	public $classes;
-	public $full_widget;
-	
-	public function add($options = array()) {
-		$data = array_merge(array('id' => NULL), (array) $options);
-		$id = parent::insert($data);
-		$this->id = $id;
-		return $this;
-	}
-	
-	public function remove($id = NULL) {
-		if(empty($id)) {
-			$id = $this->id;
-		}
+	public static function add($options = array()) {
 		
-		return $this->delete(array('id' => $id));
 	}
 	
-	public function find($widget_id) {
+	public function remove() {
+		
+	}
+	
+	public static function find($widget_id) {
 		$widget_table = self::getTable();
 		$layout_table = LayoutRepository::getTable();
 		
@@ -40,18 +28,12 @@ Class WidgetRepository extends DB implements WidgetRepositoryInterface, JsonSeri
 			LEFT JOIN $widget_table wt ON wt.id = wgg.widget_id AND wgg.widget_name = '{$this->getName()}'
 			WHERE wt.id = {$widget_id};";
 		
-		$res = $this->query($sql);
-		return $this->fill($res[0]);
+//		$res = $this->query($sql);
+//		return $this->fill($res[0]);
 	}
 	
-	public function save($widget_id, $data) {
-		if(is_array($data['options'])) {
-			$data['options'] = json_encode($data['options']);
-		}
+	public function save() {
 		
-		if(is_array($data['args'])) {
-			$data['args'] = json_encode($data['args']);
-		}
 		
 		$fill = array();
 		foreach($this->fillable as $field) {

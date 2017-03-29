@@ -5,9 +5,10 @@ namespace GL\Widgets\System;
 use GL\Classes\Grid_Widget;
 use GL\Classes\Structure;
 use GL\Interfaces\GlyphInterface;
+use GL\Interfaces\GridInterface;
 use GL\Repositories\WidgetRepository;
 
-class Glyph extends Grid_Widget implements GlyphInterface {
+class Glyph extends Grid_Widget implements GlyphInterface, GridInterface {
 	
 	public $childrens = array();
     

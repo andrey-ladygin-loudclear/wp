@@ -6,9 +6,6 @@ use GL\Classes\View;
 use GL\Widgets\System\Widget;
 
 class Gallery extends Widget {
-	protected static $table = 'gl_widget_gallery';
-	protected $fillable = ['images', 'options'];
-	
 	public $images;
 
 //https://colorlib.com/wp/free-wordpress-themes//
@@ -44,12 +41,12 @@ class Gallery extends Widget {
 	);
 	
 	public function fill(array $attributes) {
-		$this->images = json_decode($attributes['images']);
+		$this->images = json_decode($attributes['data']);
 		return parent::fill($attributes);
 	}
 	
 	public function save($widget_id, $data) {
-		$data['images'] = json_encode($data['images']);
+		$data['data'] = json_encode($data['images']);
 		parent::save($widget_id, $data);
 	}
 	
