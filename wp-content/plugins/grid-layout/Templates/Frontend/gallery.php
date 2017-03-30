@@ -8,10 +8,14 @@
 $id = $widget->getName() . $widget->getId();
 //<span class="label label-default"><?= $widget->getName(); </span>
 ?>
-
+<pre>
+	<?php
+	print_r($widget);die;
+	?>
+</pre>
 <div class='widget <?= $widget->getName(); ?> col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= $widget->options['classes']; ?>' id="<?= $id; ?>">
 	<div class="owl-carousel owl-theme">
-		<?php foreach($widget->images as $image) { ?>
+		<?php foreach($widget->getImages() as $image) { ?>
 			<div class="item"><img src="<?= $image; ?>" /></div>
 		<?php } ?>
 	</div>

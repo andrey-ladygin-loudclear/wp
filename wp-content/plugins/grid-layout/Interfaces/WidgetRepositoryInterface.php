@@ -6,7 +6,7 @@ interface WidgetRepositoryInterface
 {
 	public function find($widget_id);
 	public function add();
-	public function save($widget_id, $data);
-	public function remove($id = NULL);
+	public function save();
+	public function remove();
 	public function fill(array $attributes);
 }

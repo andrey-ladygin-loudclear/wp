@@ -43,5 +43,5 @@ use GL\Helpers\FormHelper;
     </div>
 </form>
 <script>
-	var images = <?= json_encode($widget->images); ?>;
+	var images = <?= json_encode($widget->getImages()); ?>;
 </script>

@@ -1,6 +1,6 @@
 <form action="/wp-admin/admin.php" method="post">
 	<input type="hidden" name="action" value="gl_save_widget_action">
-	<input type="hidden" name="widget-name" value="<?= $widget->getName(); ?>">
+	<input type="hidden" name="widget-name" value="<?= $widget->name; ?>">
 	<input type="hidden" name="widget-id" value="<?= $widget->getId(); ?>">
 
 	<?php
@@ -17,7 +17,7 @@
 		foreach($options as $name => $value) { ?>
 			<div class="form-group">
 				<label for="<?= $name; ?>"><?= ucfirst(str_replace('_', ' ', $name)); ?></label>
-				<input type="text" class="form-control" name="instance[<?= $name; ?>]" id="<?= $name; ?>" value='<?= !empty($widget->instance[$name]) ? $widget->instance[$name] : $value; ?>'>
+				<input type="text" class="form-control" name="options[<?= $name; ?>]" id="<?= $name; ?>" value='<?= !empty($widget->options[$name]) ? $widget->options[$name] : $value; ?>'>
 			</div>
 		<?php } ?>
 	<?php } ?>

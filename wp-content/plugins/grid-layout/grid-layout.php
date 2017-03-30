@@ -30,7 +30,9 @@ class GL_Grid_Layout {
 		'text' => 'Text',
 		'post_iteration' => 'Post iteration',
 	);
+	
 	public static $custom = array(
+	
 	);
 	
 	public static $widget_components = array(

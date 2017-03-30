@@ -40,21 +40,15 @@ class Gallery extends Widget {
 		'assets/plugins/owlcarousel/css/owl.theme.default.css',
 	);
 	
-	public function fill(array $attributes) {
-		$this->images = json_decode($attributes['data']);
-		return parent::fill($attributes);
-	}
-	
-	public function save($widget_id, $data) {
-		$data['data'] = json_encode($data['images']);
-		parent::save($widget_id, $data);
+	public function getImages() {
+		return $this->data;
 	}
 	
 	public function getPreview() {
-		if(!empty($this->images)) {
+		if(!empty($this->getImages())) {
 			$output = '';
 			
-			foreach($this->images as $image) {
+			foreach($this->getImages() as $image) {
 				$output .= "<img src='{$image}' width='100px' height='100px'>";
 			}
 			

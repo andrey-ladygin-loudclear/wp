@@ -15,7 +15,13 @@ Class Layout extends LayoutRepository {
     	Assets::addDefaults();
 		Assets::enqueue();
 		
-		View::load("Templates/Backend/{$widget_name}", array(
+		$file = $widget_name;
+		
+		if(method_exists($widget, 'getBackendTemplate')) {
+			$file = $widget->getBackendTemplate();
+		}
+		
+		View::load("Templates/Backend/{$file}", array(
             'widget' => $widget,
         ));
     }
@@ -26,8 +32,9 @@ Class Layout extends LayoutRepository {
         $widget_id = $data['widget-id'];
 	
         $widget = WidgetFactory::get($widget_name, $widget_id);
-		$widget->save($widget_id, $data);
-        
+		$widget->fill($data);
+		$widget->save();
+		
 		$view = View::make('Templates/Components/SaveSuccess', array('name' => $widget_name));
         $assets = new Assets();
         $assets->addJquery();
@@ -50,11 +57,11 @@ Class Layout extends LayoutRepository {
     public function add_widget() {
         $name = $_POST['name'];
         $options = $_POST['options'];
-        $widget = WidgetFactory::add($name, $options);
+        $id = WidgetFactory::add($name, $options);
 
         echo json_encode(array(
             'name' => $name,
-            'id' => $widget->getId()
+            'id' => $id
         ));
         wp_die();
     }

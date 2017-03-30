@@ -7,7 +7,7 @@
 	<ul class="dropdown-menu">
 		<?php
 		foreach($wp_widget_factory->widgets as $name => $widget) { ?>
-			<li><a href="javascript:void(0);" onclick="Layout.add('WP', {name:'<?=$name;?>'});"><?=$widget->name;?></a></li>
+			<li><a href="javascript:void(0);" onclick="Layout.add('<?=$name;?>');"><?=$widget->name;?></a></li>
 		<?php } ?>
 	</ul>
 </div>

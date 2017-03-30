@@ -49,7 +49,7 @@ jQuery(document).ready(function($){
 	function getImageHtmlBlock(url) {
 		var html = '<div class="form-group">';
 		html += '<img src="'+url+'" class="img-thumbnail">';
-		html += '<input type="hidden" name="images[]" value="'+url+'">';
+		html += '<input type="hidden" name="data[]" value="'+url+'">';
 		html += '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
 		html += '</div>';
 		return html;

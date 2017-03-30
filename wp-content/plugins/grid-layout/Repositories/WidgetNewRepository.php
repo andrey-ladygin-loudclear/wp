@@ -9,18 +9,15 @@ use JsonSerializable;
 Class WidgetNewRepository extends DB {
 	
 	protected static $table = 'gl_widget';
+	protected $id;
 	protected $fillable = array(
 		'id',
-		'parent_id',
-		'full_widget',
 		'alias',
 		'options',
 		'data',
 		'args',
-		'style',
-		'classes'
+		'style'
 	);
-	protected $id;
 	
 	public static function add($data = array()) {
 		$data = array_merge(array('id' => NULL), (array) $data);
@@ -36,7 +33,7 @@ Class WidgetNewRepository extends DB {
 		$widget_table = self::getTable();
 		$layout_table = LayoutRepository::getTable();
 		
-		$sql = "SELECT * FROM {$layout_table} wgg
+		$sql = "SELECT *, widget_name as name FROM {$layout_table} wgg
 			LEFT JOIN $widget_table wt ON wt.id = wgg.widget_id
 			WHERE wt.id = {$widget_id};";
 		
@@ -48,8 +45,10 @@ Class WidgetNewRepository extends DB {
 		$data = array();
 		
 		foreach($this->fillable as $field) {
-			$data[$field] = $this->{$field};
+			$data[$field] = is_array($this->{$field}) ? json_encode($this->{$field}) : $this->{$field};
 		}
+		
+		unset($data['id']);
 		
 		$this->update($data, array('id' => $this->id));
 	}
@@ -57,8 +56,8 @@ Class WidgetNewRepository extends DB {
 	public function fill(array $attributes) {
 		foreach($this->fillable as $field) {
 			if(!empty($attributes[$field])) {
-				if($json_decode = json_decode($attributes[$field])) {
-					$this->{$field} = $json_decode;
+				if(is_string($attributes[$field]) && $json_decode = json_decode($attributes[$field])) {
+					$this->{$field} = is_object($json_decode) ? (array) $json_decode : $json_decode;
 				} else {
 					$this->{$field} = $attributes[$field];
 				}
