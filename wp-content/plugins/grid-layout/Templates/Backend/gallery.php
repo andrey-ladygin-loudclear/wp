@@ -1,6 +1,8 @@
 <?php
 use GL\Classes\View;
 use GL\Helpers\FormHelper;
+use GL\Helpers\SchemaHelper;
+
 ?>
 <form action="/wp-admin/admin.php" method="post">
     <input type="hidden" name="action" value="gl_save_widget_action">
@@ -14,21 +16,17 @@ use GL\Helpers\FormHelper;
 		<div class="collapse" id="collapseInputs">
 			<div class="well clearfix">
 				
-				<div class="form-inline">
-					<?php $count = 0; ?>
-					<?php foreach($widget->options as $key => $value) { ?>
-						<?php $count++; ?>
-					
-						<div class="form-group col-md-6">
-							<?php FormHelper::showOptionField($key, $value, $widget->defaults); ?>
+					<?php foreach($widget->schema as $key => $field) { ?>
+						<?php
+							$value = !empty($widget->options[$key]) ? $widget->options[$key] : '';
+							$schema = new SchemaHelper($key, $field, $value);
+						?>
+						
+						<div class="form-group <?= $schema->size; ?>">
+							<?php FormHelper::showSchemaInput($schema); ?>
 						</div>
 					
-						<?php if($count%2 == 0) { ?>
-							</div>
-							<div class="form-inline">
-						<?php } ?>
 					<?php } ?>
-				</div>
 				
 				
 			</div>

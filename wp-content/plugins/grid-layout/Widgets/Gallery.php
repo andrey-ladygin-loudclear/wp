@@ -17,7 +17,13 @@ class Gallery extends Widget {
 		'dots' => 'bool',
 		'nav' => 'bool',
 		'animateOut' => 'slideOutDown',
-		'animateIn' => 'slideOutUp',
+		'animateIn' => array(
+		    'label' => 'Animate In',
+            'values' => array(
+                'slideOutUp'
+            ),
+            'default' => 'slideOutUp',
+        ),
 	];
 	
 	public $options = [
