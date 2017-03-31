@@ -7,24 +7,12 @@ use GL\Classes\View;
 use GL\Widgets\System\Widget;
 
 class Text extends Widget {
-	public $text;
-	
-	public function fill(array $attributes) {
-		$this->text = $attributes['data'];
-		return parent::fill($attributes);
-	}
-	
-	public function save($widget_id, $data) {
-		$data['data'] = $data['text'];
-		parent::save($widget_id, $data);
-	}
-
-    public function getPreview() {
-        return $this->text;
+	public function getPreview() {
+        return $this->data;
     }
 	
 	public function getText() {
-	    return $this->text;
+	    return $this->data;
     }
 	
 	public function draw() {
