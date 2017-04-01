@@ -44,6 +44,7 @@ class GL_Grid_Layout {
 		'post_thumbnail' => 'Post Thumbnail',
 		'post_time' => 'Post Time',
 		'post_title' => 'Post Title',
+		'Post_Pagination' => 'Post Pagination',
 		'sidebar' => 'Sidebar',
 	);
 	

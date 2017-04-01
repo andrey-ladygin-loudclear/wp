@@ -9,18 +9,5 @@
 		<span class="label label-default"><?= $widget->getName(); ?></span>
 	<?php } ?>
 	
-	
-	<?php
-	if(!empty($widget->options['before'])) {
-		echo $widget->options['before'];
-	}
-	?>
-
-	<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-	
-	<?php
-	if(!empty($widget->options['after'])) {
-		echo $widget->options['after'];
-	}
-	?>
+	<?php the_tags($widget->options['before'], $widget->options['sep'], $widget->options['after']); ?>
 </div>

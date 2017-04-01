@@ -70,6 +70,7 @@ class Post_iteration extends Glyph {
 		//'suppress_filters' => true,
 	);
 	
+	//http://stackoverflow.com/questions/24838864/how-do-i-get-pagination-to-work-for-get-posts-in-wordpress
 	public function __construct()
 	{
 		parent::__construct();
