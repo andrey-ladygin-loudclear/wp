@@ -14,7 +14,6 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 		'parent_type' => 'page',
 		'widget_id' => 0,
 		'widget_name' => '',
-		'full_widget' => 0,
 		'size_x' => 0,
 		'size_y' => 0,
 		'row' => 0,

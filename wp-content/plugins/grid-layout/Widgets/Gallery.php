@@ -13,28 +13,39 @@ class Gallery extends Widget {
 		'loop' => 'bool',
 		'margin' => 'int',
 		'items' => 'int',
-		'autoPlay' => 'int',
+		'autoplay' => 'bool',
 		'dots' => 'bool',
 		'nav' => 'bool',
-		'animateOut' => 'slideOutDown',
+		'autoplayTimeout' => array(
+			'label' => 'Autoplay Timeout',
+			'type' => 'int',
+			'default' => '3000',
+		),
+		'autoplayHoverPause' => array(
+			'label' => 'Autoplay Hover Pause',
+			'type' => 'bool',
+			'default' => '1',
+		),
+		'animateOut' => array(
+			'label' => 'Animate Out',
+			'type' => 'select',
+			'values' => array(
+				'slideOutUp' => 'slideOutUp',
+				'fadeOut' => 'fadeOut',
+				'flipOutX' => 'flipOutX'
+			),
+            'default' => 'slideOutUp',
+		),
 		'animateIn' => array(
 		    'label' => 'Animate In',
-            'values' => array(
-                'slideOutUp'
-            ),
-            'default' => 'slideOutUp',
+			'type' => 'select',
+			'values' => array(
+				'slideInDown' => 'slideInDown',
+				'fadeIn' => 'fadeIn',
+				'flipInX' => 'flipInX'
+			),
+            'default' => 'slideInDown',
         ),
-	];
-	
-	public $options = [
-		'loop' => true,
-		'margin' => '20',
-		'items' => '3',
-		'autoPlay' => '3000',
-		'dots' => true,
-		'nav' => true,
-		'animateOut' => 'slideOutDown',
-		'animateIn' => 'slideOutUp',
 	];
 	
 	protected $js = array(

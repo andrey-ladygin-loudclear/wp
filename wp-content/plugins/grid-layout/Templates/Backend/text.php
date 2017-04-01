@@ -9,7 +9,7 @@
     <input type="hidden" name="widget-name" value="<?= $widget->getName(); ?>">
     <input type="hidden" name="widget-id" value="<?= $widget->getId(); ?>">
     <div class="form-group">
-    	<?php wp_editor($widget->getText(), 'text'); ?>
+    	<?php wp_editor($widget->getText(), 'data'); ?>
     </div>
     <input type="submit" class="btn btn-success" value="Save">
 </form>

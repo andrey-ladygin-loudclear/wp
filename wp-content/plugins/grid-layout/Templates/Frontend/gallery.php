@@ -17,16 +17,18 @@ $id = $widget->getName() . $widget->getId();
 </div>
 <script>
 	jQuery(document).ready(function($) {
-		$('.widget.gallery .owl-carousel.owl-theme').owlCarousel({
+		$('#<?= $id; ?> .owl-carousel.owl-theme').owlCarousel({
 			loop:<?= $widget->options['loop']; ?>,
 			margin:<?= $widget->options['margin']; ?>,
 			items:<?= $widget->options['items']; ?>,
-			autoPlay:<?= $widget->options['autoPlay']; ?>, //Set AutoPlay to 3 seconds
+			autoplay:<?= $widget->options['autoplay'] ? 'true' : 'false'; ?>,
 			dots:<?= $widget->options['dots'] ? 'true' : 'false'; ?>,
 			nav:<?= $widget->options['nav'] ? 'true' : 'false'; ?>,
-			animateOut: '<?= $widget->options['animateOut']; ?>',
-			animateIn: '<?= $widget->options['animateIn']; ?>',
-			dotData:true
+			animateout: '<?= $widget->options['animateOut']; ?>',
+			animatein: '<?= $widget->options['animateIn']; ?>',
+			autoplayTimeout:<?= $widget->options['autoplayTimeout']; ?>,
+			autoplayHoverPause:<?= $widget->options['autoplayHoverPause'] ? 'true' : 'false'; ?>,
+			dotdata: true
 		});
 	});
 </script>

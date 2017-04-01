@@ -18,7 +18,6 @@ class Glyph extends Grid_Widget implements GlyphInterface, GridInterface {
     protected $height = 1;
     protected $row = 0;
     protected $col = 0;
-    public $full_widget = 0;
 	
 	protected $js = [];
 	protected $css = [];
