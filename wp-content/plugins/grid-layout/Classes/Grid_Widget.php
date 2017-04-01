@@ -17,9 +17,18 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
 	
 	protected $id;
 	protected $name;
+	protected $parent;
 	
 	public function getIdAttribute() {
 		return "widget-" . $this->getId();
+	}
+	
+	public function setParent($widget) {
+		$this->parent = $widget;
+	}
+	
+	public function getParent() {
+		return $this->parent;
 	}
 	
 	public function getStylesDir() {

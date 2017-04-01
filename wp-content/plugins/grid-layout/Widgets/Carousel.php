@@ -3,12 +3,12 @@
 namespace GL\Widgets;
 
 use GL\Classes\View;
+use GL\Widgets\System\Glyph;
 use GL\Widgets\System\Widget;
 
-class Gallery extends Widget {
+class Carousel extends Glyph {
 	public $images;
 
-//https://colorlib.com/wp/free-wordpress-themes//
 	public $schema = [
 		'loop' => 'bool',
 		'margin' => array(
@@ -42,18 +42,18 @@ class Gallery extends Widget {
 				'fadeOut' => 'fadeOut',
 				'flipOutX' => 'flipOutX'
 			),
-            'default' => 'slideOutUp',
+			'default' => 'slideOutUp',
 		),
 		'animateIn' => array(
-		    'label' => 'Animate In',
+			'label' => 'Animate In',
 			'type' => 'select',
 			'values' => array(
 				'slideInDown' => 'slideInDown',
 				'fadeIn' => 'fadeIn',
 				'flipInX' => 'flipInX'
 			),
-            'default' => 'slideInDown',
-        ),
+			'default' => 'slideInDown',
+		),
 	];
 	
 	protected $js = array(
@@ -81,9 +81,9 @@ class Gallery extends Widget {
 		}
 		
 		return '';
-    }
-    
+	}
+	
 	public function draw() {
-        View::load("Templates/Frontend/gallery", array('widget' => $this));
+		View::load("Templates/Frontend/carousel", array('widget' => $this));
 	}
 }

@@ -23,6 +23,7 @@ class Glyph extends Grid_Widget implements GlyphInterface, GridInterface {
 	protected $css = [];
 	
 	public function insert(GlyphInterface $widget) {
+		$widget->setParent($widget);
 		$this->childrens[] = $widget;
 	}
 	

@@ -29,6 +29,7 @@ class GL_Grid_Layout {
 		'gallery' => 'gallery',
 		'text' => 'Text',
 		'post_iteration' => 'Post iteration',
+		'carousel' => 'Carousel',
 	);
 	
 	public static $custom = array(
