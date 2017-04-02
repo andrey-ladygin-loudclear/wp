@@ -81,11 +81,14 @@ class Post_iteration extends Glyph {
 		$this->schema['post_type']['values'] = get_post_types('', 'names');
 	}
 	
-	public function draw() {
+	public function draw($before = '', $after = '', $showMainContainer = TRUE) {
 		$posts = get_posts($this->options);
 		View::load('Templates/Frontend/post_iteration', array(
 			'widget' => $this,
-			'posts' => $posts
+			'posts' => $posts,
+			'before' => $before,
+			'after' => $after,
+			'showMainContainer' => $showMainContainer,
 		));
 		wp_reset_postdata();
 	}

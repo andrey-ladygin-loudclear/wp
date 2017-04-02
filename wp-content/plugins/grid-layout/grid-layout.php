@@ -30,10 +30,15 @@ class GL_Grid_Layout {
 		'text' => 'Text',
 		'post_iteration' => 'Post iteration',
 		'carousel' => 'Carousel',
+		'background_image' => 'Background Image',
 	);
 	
 	public static $custom = array(
 	
+	);
+	
+	public static $specified = array(
+		
 	);
 	
 	public static $widget_components = array(
@@ -59,13 +64,13 @@ class GL_Grid_Layout {
 	);
 
 	/*
-	main content widget
-	link to custom/one widget
-	split bootstrap
-	widget that has the same html like another widget (some of link to another widget)
-	own template files
+	add images functionality to own View Component
+	widget id, name to own View Component
+	alias to each widget
+	LINK or BUTTON widget
+	paralax, baground, default options for this
+	part widget content (first 100 symbols)
 	posts (N, autoload = False) maybe pagination
-	add different composers
 	trt to create own widgegt https://codex.wordpress.org/Widgets_API
 	*/
 	

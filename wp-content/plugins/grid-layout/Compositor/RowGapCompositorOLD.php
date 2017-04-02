@@ -7,7 +7,7 @@ use GL\Factories\WidgetFactory;
 use GL\Widgets\Carousel;
 use GL\Widgets\System\Row;
 
-class RowGapCompositor {
+class RowGapCompositorOLD {
 	
 	public function compose($childrens) {
 		$currRow = 0;
@@ -18,7 +18,6 @@ class RowGapCompositor {
 //		echo '<pre>';
 //		print_r($childrens);
 //		die;
-		$newChildrens = array();
 		
 		foreach($childrens as $key => &$widget) {
 			
@@ -31,7 +30,6 @@ class RowGapCompositor {
 			
 			if($this->widgetInIteralbeCointainer($widget)) {
 				$this->modifyChildrens($widget);
-				$newChildrens[] = $widget;
 				continue;
 			}
 			
@@ -40,7 +38,7 @@ class RowGapCompositor {
 				$row->setRow($currRow);
 				$currRow = $nextRow;
 				$prevCol = 0;// Added
-				$newChildrens[] = $row;
+				$childrens[] = $row;
 			}
 			
 			if($widget->getRow() + $widget->getHeight() >= $nextRow) {
@@ -48,6 +46,7 @@ class RowGapCompositor {
 			}
 			
 			$row->insert($widget);
+			unset($childrens[$key]);
 			
 //			if($widget->getRow() != $currRow) {
 //				$prevCol = 0;
@@ -66,7 +65,7 @@ class RowGapCompositor {
 			}
 		}
 		
-		return $newChildrens;
+		return $childrens;
 	}
 
 	private function widgetInIteralbeCointainer($widget) {
@@ -80,7 +79,7 @@ class RowGapCompositor {
 			return;
 		}
 		$this->compose($widget_childrens);
-		return;
+		
 		if(count($widget_childrens) > 1) {
 			$widget->childrens = $this->compose($widget_childrens);
 		} else {

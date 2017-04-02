@@ -17,7 +17,33 @@ jQuery(document).ready(function($){
 
 	var mediaUploader;
 
-	$(document).on('click', '.upload-button', function(e) {
+	$(document).on('click', '.upload-one-image-btn', function(e) {
+		var $imagesLayout = $(this).closest('form').find('.image-layout');
+		e.preventDefault();
+		// If the uploader object has already been created, reopen the dialog
+		if (mediaUploader) {
+			mediaUploader.open();
+			return;
+		}
+		// Extend the wp.media object
+		mediaUploader = wp.media.frames.file_frame = wp.media({
+			title: 'Choose Image',
+			button: {
+				text: 'Choose Image'
+			}, multiple: false });
+
+		// When a file is selected, grab the URL and set it as the text field's value
+		mediaUploader.on('select', function() {
+			var attachment = mediaUploader.state().get('selection').first().toJSON();
+			$imagesLayout.html('');
+			$imagesLayout.append('<img src="'+attachment.url+'" class="img-thumbnail">');
+			$imagesLayout.append('<input type="hidden" name="data" value="'+attachment.url+'">');
+		});
+		// Open the uploader dialog
+		mediaUploader.open();
+	});
+
+	$(document).on('click', '.upload-images-btn', function(e) {
 		var $imagesLayout = $(this).closest('form').find('.images-layout');
 
 		e.preventDefault();

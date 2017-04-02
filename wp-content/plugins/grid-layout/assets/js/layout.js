@@ -170,7 +170,9 @@ var Widget = function(name, id) {
 			HtmlBuilder.addViewButton();
 
 			//if(id) {
-			    if(name == 'glyph' && parent.frames.length > 1) {
+			    //if(name == 'glyph' && parent.frames.length > 1) {
+			console.log(parent.frames.length);
+			    if(parent.frames.length) {
 					HtmlBuilder.addGlyphButtons();
                 } else {
 					HtmlBuilder.addConfigButton();

@@ -39,7 +39,7 @@ use GL\Helpers\SchemaHelper;
     <div class="form-inline images-layout well"></div>
     
     <div class="form-group">
-        <input class="upload-button button btn btn-info" type="button" value="Add Image" />
+        <input class="upload-images-btn button btn btn-info" type="button" value="Add Image" />
         <input type="submit" class="btn btn-success" value="Save">
     </div>
 </form>

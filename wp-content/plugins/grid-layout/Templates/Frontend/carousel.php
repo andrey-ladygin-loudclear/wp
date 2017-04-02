@@ -8,18 +8,17 @@
 
 $id = $widget->getName() . $widget->getId();
 //<span class="label label-default"><?= $widget->getName(); </span>
-
-echo '<pre>';
-print_r($widget->getChildren());
-echo '</pre>';
-die;
 ?>
 <div class='widget <?= $widget->getName(); ?> col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= $widget->options['classes']; ?>' id="<?= $id; ?>">
 	<div class="owl-carousel owl-theme">
 		<?php foreach($widget->getChildren() as $child) { ?>
-			<div class="item">
-				<?php $child->draw(); ?>
-			</div>
+			<?php if(count($widget->getChildren()) > 1) { ?>
+				<div class="item">
+					<?php $child->draw(); ?>
+				</div>
+			<?php } else { ?>
+				<?php $child->draw('<div class="item">', '</div>', FALSE); ?>
+			<?php } ?>
 		<?php } ?>
 	</div>
 </div>

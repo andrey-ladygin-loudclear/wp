@@ -1,0 +1,1 @@
+<div class="parallax-window" data-parallax="scroll" data-image-src="/path/to/image.jpg"></div>
