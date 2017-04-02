@@ -15,6 +15,9 @@ class RowGapCompositor {
 		
 		$currRow = 0;
 		$nextRow = 0;
+//		echo '<pre>';
+//		print_r($childrens);
+//		die;
 		
 		foreach($childrens as $key => &$widget) {
 			
@@ -25,8 +28,9 @@ class RowGapCompositor {
 			Assets::addPack($widget->getJs());
 			Assets::addPack($widget->getCss());
 			
-			if($widget->getParent() instanceof Carousel) {
-				//continue;
+			if($this->widgetInIteralbeCointainer($widget)) {
+				$this->modifyChildrens($widget);
+				continue;
 			}
 			
 			if($widget->getRow() >= $nextRow) {
@@ -64,4 +68,21 @@ class RowGapCompositor {
 		return $childrens;
 	}
 
+	private function widgetInIteralbeCointainer($widget) {
+		return $widget->getParent() instanceof Carousel;
+	}
+	
+	private function modifyChildrens($widget) {
+		$widget_childrens = $widget->getChildren();
+		
+		if(!$widget_childrens) {
+			return;
+		}
+		
+		if(count($widget_childrens) > 1) {
+			$widget->childrens = $this->compose($widget_childrens);
+		} else {
+			$widget->childrens = current($widget_childrens)->getChildren();
+		}
+	}
 }
