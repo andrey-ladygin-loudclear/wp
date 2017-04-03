@@ -1,84 +1,17 @@
 <?php
 /**
- * @var $widget GL\Widgets\System\Glyph
+ * @var $widget GL\Widgets\Post_iteration
  */
 ?>
 <?php
 use GL\Classes\View;
-use GL\Helpers\FormHelper;
-use GL\Helpers\ObjectHelper;
-use GL\Helpers\SchemaHelper;
-
 ?>
 
 <h1>Widget Builder</h1>
 
 <form action="/wp-admin/admin.php" method="post">
-
-	<input type="hidden" name="action" value="gl_save_widget_action">
-	<input type="hidden" name="post_ID" id="post_ID" value="<?= $widget->getId(); ?>">
-	<input type="hidden" name="parent_type" id="parent_type" value="glyph">
-	<?php View::input('alias', 'Widget Name', $widget->alias); ?>
-	<input type="hidden" name="widget-name" value="<?= $widget->getName(); ?>">
-	<input type="hidden" name="widget-id" value="<?= $widget->getId(); ?>">
-
-	<div class="form-group">
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInputs" aria-expanded="false" aria-controls="collapseInputs">
-			Options
-		</button>
-		<div class="collapse" id="collapseInputs">
-			<div class="well clearfix">
-				<?php if($widget->getWidth() == 12) { ?>
-					<?php View::select('full_width', 'Full Widget', array('0'=>'No', '1'=>'Yes'), $widget->full_width); ?>
-				<?php } else { ?>
-					<input type="hidden" name="full_width" value="0">
-				<?php } ?>
-				
-				<?php foreach($widget->schema as $key => $field) { ?>
-					<?php
-					$value = !empty($widget->options[$key]) ? $widget->options[$key] : '';
-					$schema = new SchemaHelper($key, $field, $value);
-					?>
-					<div class="form-group <?= $schema->size; ?>">
-						<?php FormHelper::showSchemaInput($schema); ?>
-					</div>
-				<?php } ?>
-
-			</div>
-		</div>
-	</div>
-	<?php /*
-	<div class="form-group">
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInputs" aria-expanded="false" aria-controls="collapseInputs">
-			Set Query Config
-		</button>
-		<div class="collapse" id="collapseInputs">
-			<div class="well clearfix">
-				<?php $categories = ObjectHelper::create(get_categories())->lists('term_id', 'name'); ?>
-				<?php View::multipleSelect('options[category__in][]', 'Categories', $categories, $widget->options['category__in']); ?>
-				
-				<?php $tags = ObjectHelper::create(get_tags())->lists('term_id', 'name'); ?>
-				<?php View::multipleSelect('options[tag__in][]', 'Tags', $tags, $widget->options['tag__in']); ?>
-				
-				<?php View::input('options[post_parent]', 'Post Parent', $widget->options['post_parent']); ?>
-				<?php View::input('options[author_name]', 'Author Name', $widget->options['author_name']); ?>
-				
-				<?php View::select('options[post_type]', 'Post type', get_post_types('', 'names'), $widget->options['post_type']); ?>
-				<?php View::select('options[post_status]', 'Post Status', get_post_statuses(), $widget->options['post_status']); ?>
-				<?php View::select('options[order]', 'Order', array('ASC' => 'ASC', 'DESC' => 'DESC'), $widget->options['order']); ?>
-				<?php View::select('options[orderby]', 'Order By', array(
-					'none' => 'No order (available with Version 2.8)',
-					'ID' => 'Order by post id. Note the captialization',
-					'author' => 'Order by author',
-					'title' => 'Order by title',
-					'date' => 'Order by date',
-					'modified' => 'Order by last modified date',
-					'parent' => 'Order by post/page parent id',
-				), $widget->options['orderby']); ?>
-			</div>
-		</div>
-	</div> */ ?>
-
+	<?php View::load('templates/Components/form/head', array('widget' => $widget)) ?>
+	<?php View::load('templates/Components/form/options', array('widget' => $widget)) ?>
 
 	<div class="form-group">
 		<input type="submit" class="btn btn-success" value="Save">

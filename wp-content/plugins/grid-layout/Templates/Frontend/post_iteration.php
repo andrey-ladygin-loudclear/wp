@@ -1,13 +1,16 @@
 <?php
 /**
- * @var $widget GL\Widgets\Text
- * @var $query WP_Query
+ * @var $widget GL\Widgets\Post_iteration
+ * @var $posts array
+ * @var $before string
+ * @var $after string
  */
-
+?>
+<?php
 global $post;
 ?>
 <?php if(!empty($showMainContainer)) { ?>
-	<div class='container-fluid widget col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= GL_Grid_Layout::DEBUG ? 'well' : ''; ?>'>
+	<div class='<?= $widget->getClass(); ?>'>
 <?php } ?>
 
 	<?php if(GL_Grid_Layout::DEBUG) { ?>
@@ -20,6 +23,7 @@ global $post;
 		
 			echo $before;
 			foreach($widget->getChildren() as $child) {
+				/** @var $child GL\Widgets\System\Glyph */
 				$child->draw();
 			}
 			echo $after;

@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class='widget col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?>'>
+<div class='<?= $widget->getClass(); ?>'>
 	<div id="<?= $widget->getIdAttribute(); ?>">
 		<?php the_widget($widget->name, $widget->options, $widget->args); ?>
 	</div>

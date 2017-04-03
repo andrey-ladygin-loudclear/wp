@@ -6,6 +6,7 @@ use GL\Classes\Grid_Widget;
 use GL\Interfaces\GlyphInterface;
 use GL\Interfaces\GridInterface;
 use GL\Repositories\WidgetRepository;
+use GL_Grid_Layout;
 
 class Widget extends Grid_Widget implements GlyphInterface, GridInterface {
 	
@@ -68,12 +69,20 @@ class Widget extends Grid_Widget implements GlyphInterface, GridInterface {
 		return $this->id;
 	}
 	
-	public function getJs() {
-		return $this->js;
-	}
-	
-	public function getCss() {
-		return $this->css;
+	public function getClass() {
+		$class = 'widget';
+		$class .= ' col-md-' . $this->getWidth();
+		$class .= ' col-md-offset-' . $this->getOffset();
+		
+		if(!empty($this->options['classes'])) {
+			$class .= ' ' . $this->options['classes'];
+		}
+		
+		if(GL_Grid_Layout::DEBUG) {
+			$class .= ' well';
+		}
+		
+		return $class;
 	}
 
 	public function insert(GlyphInterface $widget) {}

@@ -1,18 +1,16 @@
+<?php
+/**
+ * @var $widget GL\Widgets\Block
+ */
+?>
 <?php use GL\Classes\View; ?>
 
-
-	<input type="hidden" name="action" value="gl_save_widget_action">
-	<input type="hidden" name="post_ID" id="post_ID" value="<?= $widget->getId(); ?>">
-	<input type="hidden" name="parent_type" id="parent_type" value="glyph">
-	<div class="well">
-		<?php View::input('alias', 'Widget Name', $widget->alias); ?>
-	</div>
+<?php View::load('templates/Components/form/head', array('widget' => $widget)) ?>
 
 <?php
 $layout = new \GL\Classes\Layout();
 $widgets = $layout->getGrid($widget->getId(), 'glyph');
 ?>
-
 
 <?php if(!empty($_GET['showBackButton'])) { ?>
 	<div class="btn-group btn-group-widgets">

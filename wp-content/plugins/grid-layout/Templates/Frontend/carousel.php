@@ -1,17 +1,21 @@
 <?php
 /**
- * @var $widget GL\Widgets\Image
+ * @var $widget GL\Widgets\Carousel
  */
 ?>
 
 <?php
-
 $id = $widget->getName() . $widget->getId();
-//<span class="label label-default"><?= $widget->getName(); </span>
 ?>
-<div class='widget <?= $widget->getName(); ?> col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= $widget->options['classes']; ?>' id="<?= $id; ?>">
+<div class='<?= $widget->getClass(); ?>' id="<?= $id; ?>">
+	
+	<?php if(GL_Grid_Layout::DEBUG) { ?>
+		<span class="label label-default"><?= $widget->getName(); ?></span>
+	<?php } ?>
+	
 	<div class="owl-carousel owl-theme">
 		<?php foreach($widget->getChildren() as $child) { ?>
+			<?php /** @var $child GL\Widgets\System\Glyph */ ?>
 			<?php if(count($widget->getChildren()) > 1) { ?>
 				<div class="item">
 					<?php $child->draw(); ?>

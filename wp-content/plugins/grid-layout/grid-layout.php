@@ -69,10 +69,21 @@ class GL_Grid_Layout {
 	widget id, name to own View Component
 	alias to each widget
 	LINK or BUTTON widget
+	COMMENT widget
 	paralax, baground, default options for this
 	part widget content (first 100 symbols)
 	posts (N, autoload = False) maybe pagination
 	trt to create own widgegt https://codex.wordpress.org/Widgets_API
+	
+	
+	
+	
+	ORANGE bottom http://demo.webulous.in/flaton/
+	RED bottom http://blog.strikebowling.com.au/ (http://backgrounds.mysitemyway.com/free-wood-tileable-twitter-background/)
+	
+	http://themes.kadencethemes.com/virtue/
+	
+	WP STYLE THEME PAGE what options are there?
 	*/
 	
     public function __construct() {

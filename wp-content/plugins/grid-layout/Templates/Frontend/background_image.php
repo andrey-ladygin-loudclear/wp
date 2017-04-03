@@ -1,5 +1,10 @@
+<?php
+/**
+ * @var $widget GL\Widgets\Background_image
+ */
+?>
 <div
-	class='container-fluid widget col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= GL_Grid_Layout::DEBUG ? 'well' : ''; ?>'
+	class='<?= $widget->getClass(); ?>'
 	style="background-image: url(<?= $widget->data; ?>);background-size: <?= $widget->options['background']; ?>"
 >
 <?php if(GL_Grid_Layout::DEBUG) { ?>

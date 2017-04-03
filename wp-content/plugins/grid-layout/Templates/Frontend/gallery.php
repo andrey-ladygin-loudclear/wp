@@ -1,14 +1,18 @@
 <?php
 /**
- * @var $widget GL\Widgets\Image
+ * @var $widget GL\Widgets\Gallery
  */
 ?>
 
 <?php
 $id = $widget->getName() . $widget->getId();
-//<span class="label label-default"><?= $widget->getName(); </span>
 ?>
-<div class='widget <?= $widget->getName(); ?> col-md-<?= $widget->getWidth(); ?> col-md-offset-<?= $widget->getOffset(); ?> <?= $widget->options['classes']; ?>' id="<?= $id; ?>">
+<div class='<?= $widget->getClass(); ?>' id="<?= $id; ?>">
+	
+	<?php if(GL_Grid_Layout::DEBUG) { ?>
+		<span class="label label-default"><?= $widget->getName(); ?></span>
+	<?php } ?>
+	
 	<div class="owl-carousel owl-theme">
 		<?php foreach($widget->getImages() as $image) { ?>
 			<div class="item"><img src="<?= $image; ?>" /></div>
