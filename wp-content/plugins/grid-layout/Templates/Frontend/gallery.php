@@ -18,16 +18,16 @@ $id = $widget->getName() . $widget->getId();
 <script>
 	jQuery(document).ready(function($) {
 		$('#<?= $id; ?> .owl-carousel.owl-theme').owlCarousel({
-			loop:<?= $widget->options['loop']; ?>,
-			margin:<?= $widget->options['margin']; ?>,
-			items:<?= $widget->options['items']; ?>,
-			autoplay:<?= $widget->options['autoplay'] ? 'true' : 'false'; ?>,
-			dots:<?= $widget->options['dots'] ? 'true' : 'false'; ?>,
-			nav:<?= $widget->options['nav'] ? 'true' : 'false'; ?>,
-			animateout: '<?= $widget->options['animateOut']; ?>',
-			animatein: '<?= $widget->options['animateIn']; ?>',
-			autoplayTimeout:<?= $widget->options['autoplayTimeout']; ?>,
-			autoplayHoverPause:<?= $widget->options['autoplayHoverPause'] ? 'true' : 'false'; ?>,
+			loop:<?= $widget->getOption('loop'); ?>,
+			margin:<?= $widget->getOption('margin'); ?>,
+			items:<?= $widget->getOption('items'); ?>,
+			autoplay:<?= $widget->getOption('autoplay'); ?>,
+			dots:<?= $widget->getOption('dots'); ?>,
+			nav:<?= $widget->getOption('nav'); ?>,
+			animateout: '<?= $widget->getOption('animateOut'); ?>',
+			animatein: '<?= $widget->getOption('animateIn'); ?>',
+			autoplayTimeout:<?= $widget->getOption('autoplayTimeout'); ?>,
+			autoplayHoverPause:<?= $widget->getOption('autoplayHoverPause'); ?>,
 			dotdata: true
 		});
 	});

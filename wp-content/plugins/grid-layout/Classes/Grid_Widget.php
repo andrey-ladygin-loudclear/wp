@@ -76,6 +76,29 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
 		return parent::fill($attributes);
 	}
 	
+	public function getOption($name) {
+	    if(!empty($this->options[$name])) {
+	        
+	        if(!empty($this->schema[$name]['type'])) {
+	            $type = $this->schema[$name]['type'];
+            } else {
+                $type = $this->schema[$name];
+            }
+            
+            if($type == 'bool') {
+                return $this->options[$name] ? 'true' : 'false';
+            }
+	        
+	        return $this->options[$name];
+        }
+        
+        if(!empty($this->schema[$name]['default'])) {
+            return $this->schema[$name]['default'];
+        }
+        
+        return '0';
+    }
+	
 	public function jsonSerialize() {
 		return array(
 			'id' => $this->getId(),

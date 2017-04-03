@@ -31,6 +31,7 @@ class GL_Grid_Layout {
 		'post_iteration' => 'Post iteration',
 		'carousel' => 'Carousel',
 		'background_image' => 'Background Image',
+		'paralax' => 'Paralax',
 	);
 	
 	public static $custom = array(

@@ -7,9 +7,22 @@ use GL\Widgets\System\Widget;
 
 class Gallery extends Widget {
 	public $images;
-
+    
+    public $options = array(
+        'loop' => '1',
+        'margin' => '20',
+        'items' => '3',
+        'autoplay' => '0',
+        'dots' => '1',
+        'nav' => '1',
+        'autoplayTimeout' => '3000',
+        'autoplayHoverPause' => '1',
+        'animateOut' => 'slideOutUp',
+        'animateIn' => 'slideInDown',
+    );
+    
 //https://colorlib.com/wp/free-wordpress-themes//
-	public $schema = [
+	public $schema = array(
 		'loop' => 'bool',
 		'margin' => array(
 			'label' => 'Margin',
@@ -54,7 +67,7 @@ class Gallery extends Widget {
 			),
             'default' => 'slideInDown',
         ),
-	];
+    );
 	
 	protected $js = array(
 		'assets/plugins/owlcarousel/js/owl.carousel.js'

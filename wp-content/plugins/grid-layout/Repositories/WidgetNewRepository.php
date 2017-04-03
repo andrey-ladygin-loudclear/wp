@@ -53,7 +53,6 @@ Class WidgetNewRepository extends DB {
 		}
 		
 		unset($data['id']);
-		
 		$this->update($data, array('id' => $this->id));
 	}
 	

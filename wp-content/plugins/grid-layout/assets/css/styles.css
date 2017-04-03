@@ -92,6 +92,9 @@ ul.gridster-widgets .btn-group-widgets {
   position: relative;
   margin-right: 15px;
 }
+.images-layout .form-group:last-child {
+  margin-right: 0;
+}
 .images-layout .form-group:hover .glyphicon-remove {
   color: gray;
 }
@@ -102,5 +105,11 @@ ul.gridster-widgets .btn-group-widgets {
   cursor: pointer;
 }
 .images-layout img {
-  width: 200px;
+  width: 195px;
+}
+.image-layout {
+  margin-bottom: 20px;
+}
+.image-layout img {
+  width: 100%;
 }

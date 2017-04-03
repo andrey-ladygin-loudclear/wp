@@ -20,7 +20,11 @@ class Paralax extends Glyph {
 			'default' => 'cover',
 		),
 	);
-	
+    
+    protected $js = array(
+        'assets/plugins/paralax/parallax.min.js'
+    );
+    
     public function draw() {
 		View::load("Templates/Frontend/paralax", array('widget' => $this));
     }

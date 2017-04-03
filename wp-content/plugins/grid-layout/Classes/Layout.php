@@ -32,7 +32,7 @@ Class Layout extends LayoutRepository {
         $widget_id = $data['widget-id'];
         
         $widget = WidgetFactory::get($widget_name, $widget_id);
-		$widget->fill($data);
+        $widget->fill($data);
 		$widget->save();
 		
 		$view = View::make('Templates/Components/SaveSuccess', array('name' => $widget_name));

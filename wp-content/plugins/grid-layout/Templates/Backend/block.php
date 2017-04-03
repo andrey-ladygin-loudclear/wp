@@ -1,5 +1,10 @@
-<?php use GL\Classes\View; ?>
+<?php
+/**
+ * @var $widget GL\Widgets\Block
+ */
+?>
 
+<?php use GL\Classes\View; ?>
 
 	<input type="hidden" name="action" value="gl_save_widget_action">
 	<input type="hidden" name="post_ID" id="post_ID" value="<?= $widget->getId(); ?>">
