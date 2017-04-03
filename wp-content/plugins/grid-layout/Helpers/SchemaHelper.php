@@ -13,6 +13,7 @@ class SchemaHelper {
     public $availableValues = array();
     public $size = 'form-group-sm col-xs-3';
     public $rows = '30';
+    public $help;
     
     public function __construct($key, $field, $value = NULL) {
         if(is_array($field)) {
@@ -26,10 +27,14 @@ class SchemaHelper {
             $this->availableValues = array('0' => 'No', '1' => 'Yes');
         }
         
+        if(empty($field['name'])) {
+        	$key = "options[$key]";
+		}
+        
         $this->name = $key;
         
         if($value) {
-            $this->value = $value;
+            $this->value = esc_html($value);
         }
     }
     
@@ -56,6 +61,10 @@ class SchemaHelper {
         
         if(!empty($options['rows'])) {
             $this->rows = $options['rows'];
+        }
+        
+        if(!empty($options['help'])) {
+            $this->help = $options['help'];
         }
     }
 }

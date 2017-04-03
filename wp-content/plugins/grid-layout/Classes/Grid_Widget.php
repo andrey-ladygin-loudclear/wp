@@ -10,16 +10,25 @@ use GL\Traits\Griddable;
 use GL\Traits\WidgetAssets;
 use JsonSerializable;
 
-class Grid_Widget extends WidgetNewRepository implements JsonSerializable{
+class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
 	
 	use WidgetAssets;
 	use Griddable;
 	
 	protected $id;
 	protected $name;
+	protected $parent;
 	
 	public function getIdAttribute() {
 		return "widget-" . $this->getId();
+	}
+	
+	public function setParent($widget) {
+		$this->parent = $widget;
+	}
+	
+	public function getParent() {
+		return $this->parent;
 	}
 	
 	public function getStylesDir() {
@@ -28,6 +37,10 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable{
 	
 	public function getName() {
 		return strtolower(end(explode('\\', static::class)));
+	}
+	
+	public function isFullWidth() {
+		return $this->getWidth() == 12 && $this->full_width;
 	}
 	
 	public function getPreview() {

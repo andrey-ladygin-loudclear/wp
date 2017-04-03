@@ -30,7 +30,7 @@ Class Layout extends LayoutRepository {
         $data = $_POST;
         $widget_name = $data['widget-name'];
         $widget_id = $data['widget-id'];
-	
+        
         $widget = WidgetFactory::get($widget_name, $widget_id);
 		$widget->fill($data);
 		$widget->save();

@@ -59,6 +59,14 @@ class Row extends Glyph {
 		
 	}
 	
+	public function isFullWidth() {
+		if(!empty($this->childrens[0])) {
+			return $this->childrens[0]->getWidth() == 12 && $this->childrens[0]->full_width;
+		}
+		
+		return FALSE;
+	}
+	
 	public function draw() {
 		echo "<div class='row'>";
 		

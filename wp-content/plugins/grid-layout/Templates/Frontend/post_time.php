@@ -13,11 +13,9 @@
 	if(!empty($widget->options['before'])) {
 		echo $widget->options['before'];
 	}
-	?>
-
-	<a href="<?php the_author_link(); ?>"><?php the_author(); ?></a>
-
-	<?php
+	
+	the_time($widget->options['format']);
+	
 	if(!empty($widget->options['after'])) {
 		echo $widget->options['after'];
 	}

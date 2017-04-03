@@ -9,7 +9,6 @@ trait Griddable {
 	protected $height = 1;
 	protected $row = 0;
 	protected $col = 0;
-	protected $full_widget = 0;
 	
 	public function getId() {
 		return $this->id;

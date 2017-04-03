@@ -16,8 +16,12 @@ Class WidgetNewRepository extends DB {
 		'options',
 		'data',
 		'args',
-		'style'
+		'style',
+		'full_width',
 	);
+	
+	public $full_width;
+	public $options;
 	
 	public static function add($data = array()) {
 		$data = array_merge(array('id' => NULL), (array) $data);

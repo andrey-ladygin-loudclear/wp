@@ -8,5 +8,17 @@
 	<?php if(GL_Grid_Layout::DEBUG) { ?>
 		<span class="label label-default"><?= $widget->getName(); ?></span>
 	<?php } ?>
-	<h1><?php the_title(); ?></h1>
+	<?php
+	
+	if(!empty($widget->options['before'])) {
+		echo $widget->options['before'];
+	}
+	
+	the_title();
+	
+	if(!empty($widget->options['after'])) {
+		echo $widget->options['after'];
+	}
+	
+	?>
 </div>

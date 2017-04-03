@@ -10,3 +10,6 @@
 		<option value="<?= $option; ?>" <?= $schema->value == $option ? 'selected' : ''; ?>><?= $name; ?></option>
 	<?php } ?>
 </select>
+<?php if(!empty($schema->help)) { ?>
+	<p class="help-block"><?= $schema->help; ?></p>
+<?php } ?>
