@@ -19,6 +19,16 @@ class Paralax extends Glyph {
 			),
 			'default' => 'cover',
 		),
+		'ratio' => array(
+			'label' => 'Ratio',
+			'type' => 'input',
+			'default' => '0.5',
+		),
+		'background_position' => array(
+			'label' => 'Background Position',
+			'type' => 'input',
+			'default' => '50% 0%',
+		),
 	);
     
     protected $js = array(

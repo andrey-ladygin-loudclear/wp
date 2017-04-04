@@ -31,12 +31,14 @@ class RowGapCompositor {
 			
 			if($this->fullWidthWidget($widget)) {
 				$newChildrens[] = $widget;
+				$widget->childrens = $this->compose($widget->getChildren());
 				continue;
 			}
 			
 			if($this->widgetInIteralbeCointainer($widget)) {
 				$this->modifyChildrens($widget);
 				$newChildrens[] = $widget;
+				//$widget->childrens = $this->compose($widget->getChildren());
 				continue;
 			}
 			

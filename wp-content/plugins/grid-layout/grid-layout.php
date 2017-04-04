@@ -66,17 +66,17 @@ class GL_Grid_Layout {
 
 	/*
 	add images functionality to own View Component
-	widget id, name to own View Component
 	alias to each widget
 	LINK or BUTTON widget
 	COMMENT widget
+	PAGINATION widget
 	GOOGLE MAP widget
-	paralax, baground, default options for this
 	part widget content (first 100 symbols)
 	posts (N, autoload = False) maybe pagination
 	trt to create own widgegt https://codex.wordpress.org/Widgets_API
 	
-	
+	layout JS can add widget to another widget by drag&drop
+	https://github.com/troolee/gridstack.js/blob/master/doc/README.md
 	
 	
 	ORANGE bottom http://demo.webulous.in/flaton/

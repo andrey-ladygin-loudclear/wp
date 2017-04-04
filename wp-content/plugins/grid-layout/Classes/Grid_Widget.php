@@ -99,6 +99,16 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
         return '0';
     }
 	
+	protected $js = [];
+	protected $css = [];
+	
+	public function getJs() {
+		return $this->js;
+	}
+	
+	public function getCss() {
+		return $this->css;
+	}
 	public function jsonSerialize() {
 		return array(
 			'id' => $this->getId(),
