@@ -5,7 +5,7 @@
 ?>
 <?php use GL\Classes\View; ?>
 <form action="/wp-admin/admin.php" method="post">
-	<?php View::load('templates/Components/form/head', array('widget' => $widget)) ?>
+	<?php View::load('Templates/Components/form/head', array('widget' => $widget)) ?>
 	<?php
 	$class = $widget->name;
 	$dummy = new $class();

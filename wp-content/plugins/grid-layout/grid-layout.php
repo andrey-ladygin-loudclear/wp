@@ -70,6 +70,7 @@ class GL_Grid_Layout {
 	alias to each widget
 	LINK or BUTTON widget
 	COMMENT widget
+	GOOGLE MAP widget
 	paralax, baground, default options for this
 	part widget content (first 100 symbols)
 	posts (N, autoload = False) maybe pagination

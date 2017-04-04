@@ -17,7 +17,7 @@ use GL\Helpers\SchemaHelper;
 		<div class="well clearfix">
 			
 			<?php if(empty($hideFullWidget)) { ?>
-				<?php View::load('templates/Components/form/fullWidget', array('widget' => $widget)) ?>
+				<?php View::load('Templates/Components/form/fullWidget', array('widget' => $widget)) ?>
 			<?php } ?>
 			
 			<?php foreach($widget->schema as $key => $field) { ?>

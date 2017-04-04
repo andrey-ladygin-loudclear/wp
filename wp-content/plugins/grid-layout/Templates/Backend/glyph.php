@@ -5,7 +5,7 @@
 ?>
 <?php use GL\Classes\View; ?>
 
-<?php View::load('templates/Components/form/head', array('widget' => $widget)) ?>
+<?php View::load('Templates/Components/form/head', array('widget' => $widget)) ?>
 
 <?php
 $layout = new \GL\Classes\Layout();

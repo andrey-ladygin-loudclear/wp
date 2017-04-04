@@ -22,7 +22,11 @@ class Paralax extends Glyph {
 	);
     
     protected $js = array(
-        'assets/plugins/paralax/parallax.min.js'
+//        'assets/plugins/paralax/jquery.parallax.min.js',
+//        'assets/plugins/paralax/parallax.min.js',
+//        //'assets/plugins/paralax/parallax.js',
+//        //'assets/plugins/sequence/sequence.min.js'
+        'assets/plugins/stellar/jquery.stellar.min.js'
     );
     
     public function draw() {

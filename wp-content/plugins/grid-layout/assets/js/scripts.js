@@ -1,6 +1,23 @@
 jQuery(document).ready(function($) {
 
 
+	//$('#scene').parallax();
+
+	// $('#intro').parallax();
+	// $('#second').parallax();
+	// $('.bg').parallax();
+	// $('#third').parallax();
+	// // $('#intro').parallax("50%", 0.1);
+	// $('#second').parallax("10%", 0.1);
+	// $('.bg').parallax("90%", 0.4);
+	// $('#third').parallax("50%", 0.3);
+	console.log('scripts');
+
+
+	$.stellar({
+		horizontalScrolling: false,
+		verticalOffset: 40
+	});
 
 	// var slider = function (containerId) {
 	//

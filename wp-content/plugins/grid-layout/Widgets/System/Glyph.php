@@ -77,9 +77,13 @@ class Glyph extends Grid_Widget implements GlyphInterface, GridInterface {
     }
     
 	public function getClass() {
-		$class = 'container-fluid widget';
-		$class .= ' col-md-' . $this->getWidth();
-		$class .= ' col-md-offset-' . $this->getOffset();
+		$class = 'widget';
+        
+        if(!$this->isFullWidth()) {
+            $class .= ' container-fluid';
+            $class .= ' col-md-' . $this->getWidth();
+            $class .= ' col-md-offset-' . $this->getOffset();
+        }
 		
 		if(!empty($this->options['classes'])) {
 			$class .= ' ' . $this->options['classes'];

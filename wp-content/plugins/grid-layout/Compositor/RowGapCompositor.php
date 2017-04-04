@@ -29,6 +29,11 @@ class RowGapCompositor {
 			Assets::addPack($widget->getJs());
 			Assets::addPack($widget->getCss());
 			
+			if($this->fullWidthWidget($widget)) {
+				$newChildrens[] = $widget;
+				continue;
+			}
+			
 			if($this->widgetInIteralbeCointainer($widget)) {
 				$this->modifyChildrens($widget);
 				$newChildrens[] = $widget;
@@ -87,4 +92,8 @@ class RowGapCompositor {
 			$widget->childrens = current($widget_childrens)->getChildren();
 		}
 	}
+	
+	private function fullWidthWidget($widget) {
+	    return $widget->isFullWidth();
+    }
 }

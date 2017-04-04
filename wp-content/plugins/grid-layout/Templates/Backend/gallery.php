@@ -7,8 +7,8 @@
 use GL\Classes\View;
 ?>
 <form action="/wp-admin/admin.php" method="post">
-	<?php View::load('templates/Components/form/head', array('widget' => $widget)) ?>
-	<?php View::load('templates/Components/form/options', array('widget' => $widget)) ?>
+	<?php View::load('Templates/Components/form/head', array('widget' => $widget)) ?>
+	<?php View::load('Templates/Components/form/options', array('widget' => $widget)) ?>
 	
     <div class="form-inline images-layout well"></div>
     
