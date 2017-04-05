@@ -5,7 +5,7 @@ jQuery(function($){ //DOM Ready
 
     $(function () {
         var options = {
-            float: true,
+            //float: true,
             widget_margins: [5, 5],
             widget_base_dimensions: [100, 50],
             extra_cols: 0,

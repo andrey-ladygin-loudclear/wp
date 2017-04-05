@@ -6,7 +6,7 @@ namespace GL\Widgets\Components;
 use GL\Classes\View;
 use GL\Widgets\System\Widget;
 
-class Post_Pagination extends Widget {
+class Post_pagination extends Widget {
 	public $schema = array(
 		'before' => array(
 			'label' => "Before",
@@ -54,6 +54,12 @@ class Post_Pagination extends Widget {
 	
 	
 	public function draw() {
+        add_filter('redirect_canonical','pif_disable_redirect_canonical');
+        
+        function pif_disable_redirect_canonical($redirect_url) {
+            if (is_singular()) $redirect_url = false;
+            return $redirect_url;
+        }
 		View::load('Templates/Frontend/post_pagination', array(
 			'widget' => $this,
 		));

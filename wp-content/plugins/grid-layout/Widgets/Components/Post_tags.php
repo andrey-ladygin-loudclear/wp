@@ -6,7 +6,7 @@ namespace GL\Widgets\Components;
 use GL\Classes\View;
 use GL\Widgets\System\Widget;
 
-class Post_Tags extends Widget {
+class Post_tags extends Widget {
 	public $schema = array(
 		'before' => array(
 			'label' => "Before",

@@ -215,6 +215,17 @@ class GL_Grid_Layout {
 
     public function create_grid_post_type() {
         $post_type = 'grid';
+    
+        add_action( 'pre_get_posts', function ( $q ) {
+        
+            if( !is_admin() && $q->is_main_query() && $q->is_post_type_archive( 'grid' ) ) {
+            
+                $q->set( 'posts_per_page', 2 );
+            
+            }
+        
+        });
+        
         register_post_type( $post_type,
             array(
                 'labels' => array(
@@ -222,6 +233,12 @@ class GL_Grid_Layout {
                     'singular_name' => __( 'Grid' )
                 ),
                 'public' => true,
+                'publicly_queryable' => true,
+                'show_ui' => true,
+                'query_var' => true,
+                'capability_type' => 'post',
+                'hierarchical' => false,
+                'rewrite' => array('slug' => 'grid', 'with_front' => true ),
                 'has_archive' => true,
             )
         );
