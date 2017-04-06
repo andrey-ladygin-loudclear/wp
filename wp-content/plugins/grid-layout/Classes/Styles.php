@@ -15,10 +15,14 @@ Class Styles {
 		Assets::enqueue();
 	
 		$scss = new Scss();
-		$scss->loadDir($widget->name);
+		//$scss->loadDir($widget->name);
+	
+		$composition = new Composition();
+		$composition->insert($widget);
 		
 		View::load('Templates/Backend/style', array(
 			'widget' => $widget,
+			'composition' => $composition,
 			'scss' => $scss,
 		));
     }
