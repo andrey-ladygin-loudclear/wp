@@ -1,0 +1,11 @@
+.styles {
+  margin-top: 20px;
+}
+.styles .well {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.styles .well.active,
+.styles .well:hover {
+  background-image: none;
+}
