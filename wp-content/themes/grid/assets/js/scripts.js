@@ -11,13 +11,13 @@ jQuery(document).ready(function($) {
 	// $('#second').parallax("10%", 0.1);
 	// $('.bg').parallax("90%", 0.4);
 	// $('#third').parallax("50%", 0.3);
-	console.log('scripts');
 
-
-	$.stellar({
-		horizontalScrolling: false,
-		verticalOffset: 40
-	});
+	if(typeof $.stellar != 'undefined') {
+		$.stellar({
+			horizontalScrolling: false,
+			verticalOffset: 40
+		});
+	}
 
 	// var slider = function (containerId) {
 	//

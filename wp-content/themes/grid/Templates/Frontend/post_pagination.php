@@ -32,28 +32,28 @@
 		'after_page_number'  => ''
 	);
 	
-	global $wp_query;
+//	global $wp_query;
+//
+//	$big = 999999999; // need an unlikely integer
+//
+//	the_posts_pagination( array(
+//		'prev_text' => twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'twentyseventeen' ) . '</span>',
+//		'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'twentyseventeen' ) . '</span>' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ),
+//		'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyseventeen' ) . ' </span>',
+//	) );die;
 	
-	$big = 999999999; // need an unlikely integer
-	
-	the_posts_pagination( array(
-		'prev_text' => twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'twentyseventeen' ) . '</span>',
-		'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'twentyseventeen' ) . '</span>' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ),
-		'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyseventeen' ) . ' </span>',
-	) );die;
-	
-	echo paginate_links( array(
-		//'base' => str_replace( 'page/'.$big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-		'base' => esc_url(get_pagenum_link()).'/%#%',
-		'format' => '?paged=%#%',
-//		'format' => '?%#%',
-		'current' => max( 1, get_query_var('paged') ),
-		'total' => $wp_query->max_num_pages
-	) );
-	die();
+//	echo paginate_links( array(
+//		//'base' => str_replace( 'page/'.$big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+//		'base' => esc_url(get_pagenum_link()).'/%#%',
+//		'format' => '?paged=%#%',
+////		'format' => '?%#%',
+//		'current' => max( 1, get_query_var('paged') ),
+//		'total' => $wp_query->max_num_pages
+//	) );
+//	die();
 	the_posts_pagination();
-	$c = paginate_links( $args );
-	var_dump($c);
+//	$c = paginate_links( $args );
+//	var_dump($c);
 	//the_posts_pagination($widget->options);
 	
 	?>
