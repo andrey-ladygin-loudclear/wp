@@ -2,18 +2,18 @@
 
 namespace GL\Classes;
 
-use GL\Interfaces\GlyphInterface;
-use GL\Repositories\LayoutRepository;
 use GL\Repositories\WidgetNewRepository;
-use GL\Repositories\WidgetRepository;
 use GL\Traits\Griddable;
+use GL\Traits\GridStructure;
 use GL\Traits\WidgetAssets;
+use GL\Widgets\System\Glyph;
 use JsonSerializable;
 
 class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
 	
 	use WidgetAssets;
 	use Griddable;
+	use GridStructure;
 	
 	protected $id;
 	protected $name;
@@ -27,6 +27,7 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
 		$this->parent = $widget;
 	}
 	
+	/** @return Glyph **/
 	public function getParent() {
 		return $this->parent;
 	}

@@ -4,7 +4,15 @@
  */
 ?>
 
-<div class='<?= $widget->getClass(); ?>'>
+<?php
+$style = '';
+if(!empty($widget->getOption('background'))) {
+	$color = $widget->getOption('background');
+	$style = "style='background-color: {$color}'";
+}
+?>
+
+<div class='<?= $widget->getClass(); ?>' <?= $style; ?>>
 
 	<?php if(GL_Grid_Layout::DEBUG) { ?>
 		<span class="label label-default"><?= $widget->getName(); ?></span>

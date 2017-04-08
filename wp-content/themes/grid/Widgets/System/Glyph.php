@@ -24,7 +24,7 @@ class Glyph extends Grid_Widget implements GlyphInterface, GridInterface {
 	protected $css = [];
 	
 	public function insert(GlyphInterface $widget) {
-		$widget->setParent($widget);
+		$widget->setParent($this);
 		$this->childrens[] = $widget;
 	}
 	
@@ -108,14 +108,13 @@ class Glyph extends Grid_Widget implements GlyphInterface, GridInterface {
 		return $this->childrens;
 	}
 	
+	public function getChildrenCount() {
+		return count($this->getChildren());
+	}
+	
 	public function draw() {
-		var_dump('Glyph still output info in class');
-        echo "<div class='container-fluid widget col-md-{$this->width} col-md-offset-{$this->offset} well' style='border: 1px solid red;min-height: ".(60*$this->height)."px;'>";
-
 		foreach($this->getChildren() as $child) {
 			$child->draw();
 		}
-
-		echo "</div>";
 	}
 }

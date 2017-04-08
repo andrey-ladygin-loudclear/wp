@@ -90,8 +90,12 @@ class Widget extends Grid_Widget implements GlyphInterface, GridInterface {
 
 	public function insert(GlyphInterface $widget) {}
 
-	public function getChildren() { return []; }
+	public function getChildren() { return array(); }
 	
+	public function getChildrenCount() {
+		return count($this->getChildren());
+	}
+		
 	public function draw() {
 		echo "";
 	}

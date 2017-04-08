@@ -27,19 +27,21 @@ $id = $widget->getName() . $widget->getId();
 	</div>
 </div>
 <script>
-	jQuery(document).ready(function($) {
-		$('#<?= $id; ?> .owl-carousel.owl-theme').owlCarousel({
-			loop:<?= $widget->getOption('loop'); ?>,
-			margin:<?= $widget->getOption('margin'); ?>,
-			items:<?= $widget->getOption('items'); ?>,
-			autoplay:<?= $widget->getOption('autoplay'); ?>,
-			dots:<?= $widget->getOption('dots'); ?>,
-			nav:<?= $widget->getOption('nav'); ?>,
-			animateout: '<?= $widget->getOption('animateOut'); ?>',
-			animatein: '<?= $widget->getOption('animateIn'); ?>',
-			autoplayTimeout:<?= $widget->getOption('autoplayTimeout'); ?>,
-			autoplayHoverPause:<?= $widget->getOption('autoplayHoverPause'); ?>,
-			dotdata: true
+	window.onload = function() {
+		jQuery(document).ready(function($) {
+			$('#<?= $id; ?> .owl-carousel.owl-theme').owlCarousel({
+				loop:<?= $widget->getOption('loop'); ?>,
+				margin:<?= $widget->getOption('margin'); ?>,
+				items:<?= $widget->getOption('items'); ?>,
+				autoplay:<?= $widget->getOption('autoplay'); ?>,
+				dots:<?= $widget->getOption('dots'); ?>,
+				nav:<?= $widget->getOption('nav'); ?>,
+				animateout: '<?= $widget->getOption('animateOut'); ?>',
+				animatein: '<?= $widget->getOption('animateIn'); ?>',
+				autoplayTimeout:<?= $widget->getOption('autoplayTimeout'); ?>,
+				autoplayHoverPause:<?= $widget->getOption('autoplayHoverPause'); ?>,
+				dotdata: true
+			});
 		});
-	});
+	};
 </script>

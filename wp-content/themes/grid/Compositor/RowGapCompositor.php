@@ -5,6 +5,7 @@ namespace GL\Compositor;
 use GL\Classes\Assets;
 use GL\Factories\WidgetFactory;
 use GL\Widgets\Carousel;
+use GL\Widgets\System\Glyph;
 use GL\Widgets\System\Row;
 
 class RowGapCompositor {
@@ -22,6 +23,8 @@ class RowGapCompositor {
 		
 		foreach($childrens as $key => &$widget) {
 			
+			/** @var $widget Glyph **/
+			
 			if($widget instanceof Row) {
 				continue;
 			}
@@ -31,14 +34,27 @@ class RowGapCompositor {
 			
 			if($this->fullWidthWidget($widget)) {
 				$newChildrens[] = $widget;
-				$widget->childrens = $this->compose($widget->getChildren());
+				//$widget->childrens = $this->compose($widget->getChildren());
+				if($widget->getChildren()) {
+					$widget->childrens = $this->compose($widget->getChildren());
+				}
 				continue;
 			}
 			
-			if($this->widgetInIteralbeCointainer($widget)) {
+			//if($this->widgetInIteralbeCointainer($widget)) {
+			if($this->parentIsIterable($widget)) {
 				$this->modifyChildrens($widget);
 				$newChildrens[] = $widget;
 				//$widget->childrens = $this->compose($widget->getChildren());
+				continue;
+			}
+			
+			if($this->oneWidgetInCointainer($widget)) {
+				$newChildrens[] = $widget;
+				//$widget->childrens = $this->compose($widget->getChildren());
+				if($widget->getChildren()) {
+					$widget->childrens = $this->compose($widget->getChildren());
+				}
 				continue;
 			}
 			
@@ -76,8 +92,22 @@ class RowGapCompositor {
 		return $newChildrens;
 	}
 
-	private function widgetInIteralbeCointainer($widget) {
+	private function parentIsIterable($widget) {
+		/** @var $widget Glyph **/
 		return $widget->getParent() instanceof Carousel;
+	}
+	
+	private function widgetInIteralbeCointainer($widget) {
+		/** @var $widget Glyph **/
+		$parent = $widget->getParent();
+		
+		while($parent = $parent->getParent()) {
+			if($parent instanceof Carousel) {
+				return TRUE;
+			}
+		}
+		
+		return FALSE;
 	}
 	
 	private function modifyChildrens($widget) {
@@ -88,6 +118,7 @@ class RowGapCompositor {
 		}
 		$this->compose($widget_childrens);
 		return;
+		
 		if(count($widget_childrens) > 1) {
 			$widget->childrens = $this->compose($widget_childrens);
 		} else {
@@ -95,7 +126,13 @@ class RowGapCompositor {
 		}
 	}
 	
+	private function oneWidgetInCointainer($widget) {
+		/** @var $widget Glyph **/
+	    return $widget->getParent()->getChildrenCount() == 1;
+    }
+    
 	private function fullWidthWidget($widget) {
+		/** @var $widget Glyph **/
 	    return $widget->isFullWidth();
     }
 }
