@@ -53,6 +53,10 @@ class GL_Grid_Layout {
 	);
 	
 	/*
+	добавить тип темплейта в таблицу
+	сделать возможность доабвлять темплейт не для каждой страницы а для группы (посты, страницы, архив)
+	 
+	 
 	add templates to settings
 	add padding and margin to carousel
 	 
