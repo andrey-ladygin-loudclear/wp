@@ -15,6 +15,11 @@ class GL_Grid_Layout {
 	public static $URL;
 	
 	public static $widgets = array(
+		'blackquote' => 'Blackquote',
+		'comments' => 'Comments',
+	);
+	
+	public static $builder = array(
 		'news' => 'News',
 		'block' => 'Block',
 		'gallery' => 'gallery',
@@ -23,15 +28,6 @@ class GL_Grid_Layout {
 		'carousel' => 'Carousel',
 		'background_image' => 'Background Image',
 		'paralax' => 'Paralax',
-	);
-	
-	public static $custom = array(
-	
-	);
-	
-	public static $specified = array(
-		'blackquote' => 'Blackquote',
-		'comments' => 'Comments',
 	);
 	
 	public static $widget_components = array(
@@ -57,6 +53,10 @@ class GL_Grid_Layout {
 	);
 	
 	/*
+	add templates to settings
+	add padding and margin to carousel
+	 
+	 
 	add images functionality to own View Component
 	alias to each widget
 	LINK or BUTTON widget
@@ -123,7 +123,6 @@ class GL_Grid_Layout {
 		add_action('gl_create_template_action', array($this->actions, 'create_template'));
 		
 		add_action('admin_menu', array($this, 'add_settings_menu_page'));
-		add_action('admin_menu', array($this, 'add_layout_default_page'));
 		add_action('admin_menu', array($this, 'empty_wp_page'));
 		
 		if($this->settings->get('use_the_content_filter')) {
@@ -254,10 +253,6 @@ class GL_Grid_Layout {
 				add_meta_box("grid-{$post_type}-meta-box-id", "Grid {$post_type} Layout", array($this->layout, 'grid'), $post_type, 'normal', 'high');
 			}
 		}
-	}
-	
-	public function add_layout_default_page() {
-		add_submenu_page('edit.php?post_type=page', 'Grid Template', 'Grid Template', 'administrator', 'grid-layout-template', array($this->templates, 'page'));
 	}
 	
 	public function add_settings_menu_page() {
