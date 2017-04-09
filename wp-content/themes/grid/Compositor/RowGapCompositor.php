@@ -52,6 +52,11 @@ class RowGapCompositor {
 			if($this->oneWidgetInCointainer($widget)) {
 				$newChildrens[] = $widget;
 				//$widget->childrens = $this->compose($widget->getChildren());
+				
+				if($widget->getCol()) {
+					$widget->setOffset($widget->getCol());
+				}
+				
 				if($widget->getChildren()) {
 					$widget->childrens = $this->compose($widget->getChildren());
 				}

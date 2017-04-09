@@ -1,6 +1,10 @@
-<?php wp_head(); ?>
+<?php use GL\Classes\View;
+
+wp_head(); ?>
 
 <?php $composition->draw(); ?>
+
+<?php View::load('Templates/Components/form/options', array('widget' => $widget)) ?>
 
 	<div class="styles container-fluid">
 		<div class="well pull-left <?= empty($widget->style) ? 'active' : ''; ?>" data-name="">Null</div>

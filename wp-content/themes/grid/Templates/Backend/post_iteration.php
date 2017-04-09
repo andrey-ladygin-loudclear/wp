@@ -3,11 +3,10 @@
  * @var $widget GL\Widgets\Post_iteration
  */
 ?>
-<?php
-use GL\Classes\View;
-?>
+<?php use GL\Classes\View; ?>
 
-<h1>Widget Builder</h1>
+<?php View::load('Templates/Components/flashMessage', array('widget' => $widget)) ?>
+
 <form action="/wp-admin/admin.php" method="post">
 	<?php View::load('Templates/Components/form/head', array('widget' => $widget)) ?>
 	<?php View::load('Templates/Components/form/options', array('widget' => $widget)) ?>

@@ -5,6 +5,7 @@
 ?>
 <?php use GL\Classes\View; ?>
 
+<?php View::load('Templates/Components/flashMessage', array('widget' => $widget)) ?>
 <?php View::load('Templates/Components/form/head', array('widget' => $widget)) ?>
 
 <?php

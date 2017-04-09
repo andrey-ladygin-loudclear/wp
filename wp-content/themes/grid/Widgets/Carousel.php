@@ -65,21 +65,7 @@ class Carousel extends Glyph {
 		'assets/plugins/owlcarousel/css/owl.theme.default.css',
 	);
 	
-	public function getImages() {
-		return $this->data;
-	}
-	
 	public function getPreview() {
-		if(!empty($this->getImages())) {
-			$output = '';
-			
-			foreach($this->getImages() as $image) {
-				$output .= "<img src='{$image}' width='100px' height='100px'>";
-			}
-			
-			return $output;
-		}
-		
 		return '';
 	}
 	

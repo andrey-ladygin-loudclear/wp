@@ -75,6 +75,11 @@ class GL_Grid_Layout {
 	http://themes.kadencethemes.com/virtue/
 	
 	WP STYLE THEME PAGE what options are there?
+	
+	
+	single-page
+	
+	
 	*/
 	
 	public function __construct() {
@@ -124,6 +129,8 @@ class GL_Grid_Layout {
 		if($this->settings->get('use_shortcode')) {
 			add_shortcode('gl-grid-tag', array($this, 'shortcode'));
 		}
+		
+		$hook_view = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-view-widget', function() {});
 	}
 	
 	public function empty_wp_page() {

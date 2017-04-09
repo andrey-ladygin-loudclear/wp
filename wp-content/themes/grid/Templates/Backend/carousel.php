@@ -3,11 +3,9 @@
  * @var $widget GL\Widgets\Carousel
  */
 ?>
-<?php
-use GL\Classes\View;
-use GL\Helpers\FormHelper;
-use GL\Helpers\SchemaHelper;
-?>
+<?php use GL\Classes\View; ?>
+
+<?php View::load('Templates/Components/flashMessage', array('widget' => $widget)) ?>
 
 <form action="/wp-admin/admin.php" method="post">
 	<?php View::load('Templates/Components/form/head', array('widget' => $widget)) ?>

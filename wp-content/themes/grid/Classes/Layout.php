@@ -34,6 +34,8 @@ Class Layout extends LayoutRepository {
         $widget = WidgetFactory::get($widget_name, $widget_id);
         $widget->fill($data);
 		$widget->save();
+	
+		die(wp_redirect(wp_get_referer() . "&saved=1"));
 		
 		$view = View::make('Templates/Components/SaveSuccess', array('name' => $widget_name));
         $assets = new Assets();

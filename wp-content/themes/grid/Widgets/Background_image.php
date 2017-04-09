@@ -21,6 +21,14 @@ class Background_image extends Glyph {
 		),
 	);
 	
+	public function getPreview() {
+		if($this->data) {
+			return "<img src='{$this->data}' width='100px' height='100px'>";
+		}
+		
+		return '';
+	}
+	
     public function draw() {
 		View::load("Templates/Frontend/background_image", array('widget' => $this));
     }
