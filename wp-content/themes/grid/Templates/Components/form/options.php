@@ -10,7 +10,7 @@ use GL\Helpers\SchemaHelper;
 ?>
 
 <div class="form-group">
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInputs" aria-expanded="false" aria-controls="collapseInputs">
+	<button class="btn btn-primary options" type="button" data-toggle="collapse" data-target="#collapseInputs" aria-expanded="false" aria-controls="collapseInputs">
 		Options
 	</button>
 	<div class="collapse" id="collapseInputs">

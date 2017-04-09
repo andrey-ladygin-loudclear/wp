@@ -112,6 +112,10 @@ var Widget = function(name, id) {
 			return '/wp-admin/edit.php?post_type=grid&page=gl-edit-widget&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
 			//return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
 		};
+		this.getEditPageUrl = function(showBackButton) {
+			return '/wp-admin/edit.php?post_type=grid&page=gl-edit-widget-page&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
+			//return '/wp-admin/admin.php?action=gl_edit_widget_action&widget-name='+name+'&widget-id='+id+(showBackButton ? '&showBackButton=1' : '');
+		};
 		this.addTitle = function() {
 			html += '<span class="title">'+title+'</span>';
 		};
@@ -123,7 +127,7 @@ var Widget = function(name, id) {
 		};
 		this.addGlyphButtons = function() {
 			html += '<a href="'+this.getEditUrl(true)+'"><span class="glyphicon glyphicon-cog disable-popup"></span></a>';
-			html += '<a href="'+this.getEditUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
+			html += '<a href="'+this.getEditPageUrl(true)+'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>';
 		};
 		this.addConfigButton = function() {
 			html += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';

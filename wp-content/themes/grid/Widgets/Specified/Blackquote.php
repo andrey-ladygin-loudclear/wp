@@ -1,7 +1,7 @@
 <?php
 
 
-namespace GL\Widgets;
+namespace GL\Widgets\Specified;
 
 use GL\Classes\View;
 use GL\Widgets\System\Widget;

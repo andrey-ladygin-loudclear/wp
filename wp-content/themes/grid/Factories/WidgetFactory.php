@@ -19,7 +19,11 @@ Class WidgetFactory {
 				try {
 					$widget = self::getStaticWidget($name);
 				} catch (\Exception $e) {
-					$widget = self::getWpWidget($name);
+					try {
+						$widget = self::getSpecifiedWidget($name);
+					} catch (\Exception $e) {
+						$widget = self::getWpWidget($name);
+					}
 				}
 			}
         }
@@ -34,6 +38,11 @@ Class WidgetFactory {
 	
     public static function getSystemWidget($name) {
 		$class = "\\GL\\Widgets\\System\\".ucfirst(strtolower($name));
+		return new $class;
+	}
+	
+    public static function getSpecifiedWidget($name) {
+		$class = "\\GL\\Widgets\\Specified\\".ucfirst(strtolower($name));
 		return new $class;
 	}
 	

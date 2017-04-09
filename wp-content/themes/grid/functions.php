@@ -5,6 +5,7 @@ use GL\Classes\Assets;
 use GL\Classes\Layout;
 use GL\Classes\Settings;
 use GL\Classes\Styles;
+use GL\Classes\Templates;
 use GL\Facades\WidgetCompositionFacade;
 
 class GL_Grid_Layout {
@@ -29,7 +30,8 @@ class GL_Grid_Layout {
 	);
 	
 	public static $specified = array(
-	
+		'blackquote' => 'Blackquote',
+		'comments' => 'Comments',
 	);
 	
 	public static $widget_components = array(
@@ -99,6 +101,7 @@ class GL_Grid_Layout {
 		$this->assets = new Assets();
 		$this->settings = new Settings();
 		$this->actions = new Actions();
+		$this->templates = new Templates();
 		
 		$this->assets->addJquery();
 		
@@ -120,6 +123,7 @@ class GL_Grid_Layout {
 		add_action('gl_create_template_action', array($this->actions, 'create_template'));
 		
 		add_action('admin_menu', array($this, 'add_settings_menu_page'));
+		add_action('admin_menu', array($this, 'add_layout_default_page'));
 		add_action('admin_menu', array($this, 'empty_wp_page'));
 		
 		if($this->settings->get('use_the_content_filter')) {
@@ -130,23 +134,21 @@ class GL_Grid_Layout {
 			add_shortcode('gl-grid-tag', array($this, 'shortcode'));
 		}
 		
-		$hook_view = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-view-widget', function() {});
 	}
 	
 	public function empty_wp_page() {
-		$hook_view = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-view-widget', function() {});
-		add_action('load-' . $hook_view, function() {
-			wp_enqueue_style('hide-admin-bar', self::$URL . '/assets/css/hide-admin-bar.css');
+		add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget-page', function() {
 			wp_enqueue_media();
-			wp_enqueue_script('tiny_mce');
-			$this->styles->view();
-			do_action("admin_footer");
-			do_action("admin_print_scripts");
-			do_action("admin_print_footer_scripts");
-			do_action("admin_print_styles");
-			exit;
+			$this->layout->edit();
 		});
+		
+		add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-view-widget', function() {
+			wp_enqueue_media();
+			$this->styles->view();
+		});
+		
 		$hook_edit = add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget', function() {});
+		
 		add_action('load-' . $hook_edit, function() {
 			wp_enqueue_style('hide-admin-bar', self::$URL . '/assets/css/hide-admin-bar.css');
 			wp_enqueue_media();
@@ -252,6 +254,10 @@ class GL_Grid_Layout {
 				add_meta_box("grid-{$post_type}-meta-box-id", "Grid {$post_type} Layout", array($this->layout, 'grid'), $post_type, 'normal', 'high');
 			}
 		}
+	}
+	
+	public function add_layout_default_page() {
+		add_submenu_page('edit.php?post_type=page', 'Grid Template', 'Grid Template', 'administrator', 'grid-layout-template', array($this->templates, 'page'));
 	}
 	
 	public function add_settings_menu_page() {

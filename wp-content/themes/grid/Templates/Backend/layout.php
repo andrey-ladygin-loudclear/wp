@@ -8,10 +8,10 @@
 	</div>
 <?php } ?>
 
-<?php $currPostInfo = get_post(); ?>
-<?php if($currPostInfo->post_type != 'grid' && $currPostInfo->post_status == 'publish') { ?>
-	<?php View::load('Templates/Components/layout/template-options', array('post_id' => $currPostInfo->ID)); ?>
-<?php } ?>
+<?php //$currPostInfo = get_post(); ?>
+<?php //if($currPostInfo->post_type != 'grid' && $currPostInfo->post_status == 'publish') { ?>
+<!--	--><?php //View::load('Templates/Components/layout/template-options', array('post_id' => $currPostInfo->ID)); ?>
+<?php //} ?>
 
 <?php if(get_post_type() == 'grid') { ?>
 <div class="pull-right">
