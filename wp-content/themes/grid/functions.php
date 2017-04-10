@@ -2,6 +2,7 @@
 
 use GL\Classes\Actions;
 use GL\Classes\Assets;
+use GL\Classes\Customize;
 use GL\Classes\Layout;
 use GL\Classes\Settings;
 use GL\Classes\Styles;
@@ -107,11 +108,14 @@ class GL_Grid_Layout {
 		$this->settings = new Settings();
 		$this->actions = new Actions();
 		$this->templates = new Templates();
+		$this->customize = new Customize();
 		
 		$this->assets->addJquery();
 		
 		add_action('init', array($this, 'create_grid_post_type'));
 		add_action('add_meta_boxes', array($this, 'add_meta_box'));
+		
+		add_action('customize_register', array($this->customize, 'add_options'));
 		
 		add_action('wp_ajax_gl_ajax_add_widget', array($this->layout, 'add_widget'));
 		add_action('wp_ajax_gl_ajax_get_widget_preview', array($this->layout, 'get_widget_preview'));
