@@ -205,75 +205,75 @@ var Widget = function(name, id) {
         };
 	};
 };
-
-//each widget should contain own html code
-
-Widgets = new function() {
-    this.get = function(widget) {
-        return this[widget];
-    };
-
-
-    this.text = new function() {
-        this.name = 'text';
-
-        this.html = function(id, data) {
-            var content = 'Text Widget';
-
-            if(data && data.text) {
-                content += '<div>'+data.text+'</div>';
-            }
-
-            return Widgets.baseHtml(this.name, id, content);
-        };
-
-        this.edit = function(id) {
-            jQuery('.modal .modal-title').html('Edit Text');
-            jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl(this.name, id)+'" width="100%" height="100%"></iframe>');
-            jQuery('.modal').modal('show')
-        };
-    };
-
-    this.image = new function() {
-        this.name = 'image';
-
-        this.html = function(id, data) {
-            var content = 'Image Widget';
-
-            if(data && data.text) {
-                content += '<div><img src="'+data.src+'" width="100%" /></div>';
-            }
-
-            return Widgets.baseHtml(this.name, id, content);
-        };
-
-        this.edit = function(id) {
-            jQuery('.modal .modal-title').html('Edit Image');
-            jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl(this.name, id)+'" width="100%" height="100%"></iframe>');
-            jQuery('.modal').modal('show')
-        };
-    };
-
-    this.glyph = new function() {
-        this.name = 'glyph';
-
-        this.html = function(id, data) {
-            var content = 'Block Widget';
-
-            if(data && data.text) {
-                content += '<div style="border: 1px solid"></div>';
-            }
-
-            return Widgets.baseHtml(this.name, id, content);
-        };
-
-        this.edit = function(id) {
-            jQuery('.modal .modal-title').html('Edit Block');
-            jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl(this.name, id)+'" width="100%" height="100%"></iframe>');
-            jQuery('.modal').modal('show')
-        };
-    };
-};
+//
+// //each widget should contain own html code
+//
+// Widgets = new function() {
+//     this.get = function(widget) {
+//         return this[widget];
+//     };
+//
+//
+//     this.text = new function() {
+//         this.name = 'text';
+//
+//         this.html = function(id, data) {
+//             var content = 'Text Widget';
+//
+//             if(data && data.text) {
+//                 content += '<div>'+data.text+'</div>';
+//             }
+//
+//             return Widgets.baseHtml(this.name, id, content);
+//         };
+//
+//         this.edit = function(id) {
+//             jQuery('.modal .modal-title').html('Edit Text');
+//             jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl(this.name, id)+'" width="100%" height="100%"></iframe>');
+//             jQuery('.modal').modal('show')
+//         };
+//     };
+//
+//     this.image = new function() {
+//         this.name = 'image';
+//
+//         this.html = function(id, data) {
+//             var content = 'Image Widget';
+//
+//             if(data && data.text) {
+//                 content += '<div><img src="'+data.src+'" width="100%" /></div>';
+//             }
+//
+//             return Widgets.baseHtml(this.name, id, content);
+//         };
+//
+//         this.edit = function(id) {
+//             jQuery('.modal .modal-title').html('Edit Image');
+//             jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl(this.name, id)+'" width="100%" height="100%"></iframe>');
+//             jQuery('.modal').modal('show')
+//         };
+//     };
+//
+//     this.glyph = new function() {
+//         this.name = 'glyph';
+//
+//         this.html = function(id, data) {
+//             var content = 'Block Widget';
+//
+//             if(data && data.text) {
+//                 content += '<div style="border: 1px solid"></div>';
+//             }
+//
+//             return Widgets.baseHtml(this.name, id, content);
+//         };
+//
+//         this.edit = function(id) {
+//             jQuery('.modal .modal-title').html('Edit Block');
+//             jQuery('.modal .modal-body').html('<iframe src="'+Widgets.getEditUrl(this.name, id)+'" width="100%" height="100%"></iframe>');
+//             jQuery('.modal').modal('show')
+//         };
+//     };
+// };
 
 jQuery(document).on('click', '.glyphicon', function($) {
     var widgetNode = jQuery(this).closest('.grid-stack-item');
