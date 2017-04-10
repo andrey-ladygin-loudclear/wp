@@ -13,7 +13,8 @@ use GL\Facades\WidgetCompositionFacade;
 <?php View::load('Templates/Components/front/menu'); ?>
 
 <?php
-$composition = WidgetCompositionFacade::buildStructure(NULL, 'page');
+die('page');
+$composition = WidgetCompositionFacade::buildStructure(get_the_ID(), 'page');
 $composition->draw();
 ?>
 

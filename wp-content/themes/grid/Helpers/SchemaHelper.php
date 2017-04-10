@@ -34,7 +34,7 @@ class SchemaHelper {
         $this->name = $key;
         
         if($value) {
-            $this->value = esc_html($value);
+            $this->value = stripcslashes(esc_html($value));
         }
     }
     

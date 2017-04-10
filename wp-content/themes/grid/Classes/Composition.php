@@ -53,7 +53,6 @@ class Composition extends Glyph {
 		Assets::add('assets/css/front.css');
 		Assets::add('assets/plugins/bootstrap/css/bootstrap.min.css');
 		Assets::enqueue();
-		the_post();
 		View::load('Templates/Frontend/composition', array('widgets' => $this->getChildren()));
 	}
 }

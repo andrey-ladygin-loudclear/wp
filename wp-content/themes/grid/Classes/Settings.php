@@ -28,10 +28,11 @@ Class Settings
 			$this->save($_POST);
 		}
         
-        Assets::add('assets/plugins/bootstrap/css/bootstrap.min.css');
-        Assets::add('assets/plugins/bootstrap/css/bootstrap-theme.min.css');
-        Assets::add('assets/plugins/bootstrap/js/bootstrap.min.js');
-        Assets::enqueue();
+//        Assets::add('assets/plugins/bootstrap/css/bootstrap.min.css');
+//        Assets::add('assets/plugins/bootstrap/css/bootstrap-theme.min.css');
+//        Assets::add('assets/plugins/bootstrap/js/bootstrap.min.js');
+		Assets::addDefaults();
+		Assets::enqueue();
         
 		View::load('Templates/Backend/settings', array(
 			'options' => $this->getOptions()

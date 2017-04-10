@@ -57,25 +57,17 @@ Layout = new function() {
         var parent_type = jQuery('#parent_type').val();
         var widgets = this.getAllWidgets();
 
-        if(page_id) {
-            if(_this.ajaxRef) {
-                _this.ajaxRef.abort();
-            }
+		if(_this.ajaxRef) {
+			_this.ajaxRef.abort();
+		}
 
-            _this.ajaxRef = jQuery.post(ajaxurl, {
-                action: 'gl_ajax_save_layout',
-                page_id: page_id,
-                parent_type: parent_type || 'page',
-                gl_json: widgets,
-                success: function() { _this.ajaxRef = null; }
-            });
-        } else {
-            if(!jQuery('#gl_json').length) {
-                jQuery('#grid-meta-box-id').append('<input type="hidden" name="gl_json" id="gl_json" value="" />');
-            }
-
-            jQuery('#gl_json').val(JSON.stringify(widgets));
-        }
+		_this.ajaxRef = jQuery.post(ajaxurl, {
+			action: 'gl_ajax_save_layout',
+			page_id: page_id,
+			parent_type: parent_type || 'page',
+			gl_json: widgets,
+			success: function() { _this.ajaxRef = null; }
+		});
     };
 
 	this.getAllWidgets = function() {

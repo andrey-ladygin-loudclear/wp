@@ -21,4 +21,16 @@ class ObjectHelper {
 		
 		return $result;
 	}
+	
+	public static function clear($item) {
+		if(is_array($item)) {
+			foreach ($item as &$v) {
+				$v = self::clear($v);
+			}
+		} else {
+			$item = stripcslashes($item);
+		}
+		
+		return $item;
+	}
 }

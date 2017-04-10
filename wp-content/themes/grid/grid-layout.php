@@ -114,7 +114,6 @@ class GL_Grid_Layout {
 		add_action('wp_ajax_gl_ajax_save_layout', array($this->layout, 'save_layout'));
 		add_action('wp_ajax_gl_ajax_change_styles', array($this->styles, 'change'));
 		add_action('wp_ajax_gl_ajax_save_styles', array($this->styles, 'save'));
-        add_action('save_post', array($this->layout, 'save_grid'), 10, 3);
 		
 		add_action('gl_edit_widget_action', array($this->layout, 'edit'));
 		add_action('gl_save_widget_action', array($this->layout, 'save_widget'));

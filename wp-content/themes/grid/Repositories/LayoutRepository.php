@@ -25,7 +25,7 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	}
 	
 	public function save($json, $post_id, $parent_type = 'page') {
-		$post_id = (int) $post_id;
+		$post_id = $post_id ? (int) $post_id : NULL;
 		
 		$this->removeAll($post_id, $parent_type);
 		
@@ -55,10 +55,16 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	}
 	
 	public function getHierarchy($parent_id, $parent_type = 'page') {
+		if($parent_id === NULL) {
+			$post_id_where = 'IS NULL';
+		} else {
+			$post_id_where = "= $parent_id";
+		}
+		
 		$sql = "SELECT *, widget_name as name
             FROM {$this->getTable()} wgg
             LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id 
-            WHERE wgg.parent_id = {$parent_id} AND wgg.parent_type = '{$parent_type}'
+            WHERE wgg.parent_id {$post_id_where} AND wgg.parent_type = '{$parent_type}'
             ORDER BY row, col
         ;";
 		
@@ -68,9 +74,15 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	public function getGrid($post_id, $parent_type = 'page') {
 		$layoutTable = $this->getTable();
 
+		if($post_id === NULL) {
+			$post_id_where = 'IS NULL';
+		} else {
+			$post_id_where = "= $post_id";
+		}
+		
 		$sql = "SELECT *, widget_name as name FROM {$layoutTable} wgg
 			LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id 
-			WHERE parent_id = {$post_id} AND parent_type = '{$parent_type}';";
+			WHERE parent_id {$post_id_where} AND parent_type = '{$parent_type}';";
         
 		$widgets = array();
 		

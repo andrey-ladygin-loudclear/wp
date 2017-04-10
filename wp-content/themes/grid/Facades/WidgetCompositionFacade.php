@@ -10,10 +10,10 @@ class WidgetCompositionFacade {
     /**
      * @return Composition
      */
-    public static function buildStructure($page_id) {
-        $widgets = Structure::getWidgets($page_id);
+    public static function buildStructure($page_id, $parent_type = 'page') {
+        $widgets = Structure::getWidgets($page_id, $parent_type);
         $composition = new Composition();
-
+        
         foreach($widgets as $widget) {
             $composition->insert($widget);
         }

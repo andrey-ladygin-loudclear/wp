@@ -3,6 +3,7 @@
 namespace GL\Classes;
 
 use GL\Factories\WidgetFactory;
+use GL\Helpers\ObjectHelper;
 use GL\Repositories\LayoutRepository;
 use GL\Widgets\System\Glyph;
 
@@ -27,7 +28,7 @@ Class Layout extends LayoutRepository {
     }
 
     public function save_widget() {
-        $data = $_POST;
+        $data = ObjectHelper::clear($_POST);
         $widget_name = $data['widget-name'];
         $widget_id = $data['widget-id'];
         
@@ -58,8 +59,7 @@ Class Layout extends LayoutRepository {
 
     public function add_widget() {
         $name = $_POST['name'];
-        $options = $_POST['options'];
-        $id = WidgetFactory::add($name, $options);
+        $id = WidgetFactory::add($name);
 
         echo json_encode(array(
             'name' => $name,
@@ -92,17 +92,5 @@ Class Layout extends LayoutRepository {
 		$widgets = $this->getGrid($post->ID, 'page');
 		
         View::load('Templates/Backend/layout', array('widgets' => $widgets));
-    }
-
-    public function save_grid($post_id, $post, $update) {
-
-        $post_type = get_post_type($post_id);
-        if("grid" != $post_type) return;
-
-        $json = json_decode(stripcslashes($_POST['gl_json']));
-
-		if(!empty($json)) {
-			$this->save($json, $post_id);
-		}
     }
 }
