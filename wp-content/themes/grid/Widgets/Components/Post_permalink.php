@@ -18,6 +18,14 @@ class Post_permalink extends Widget {
 			'size' => 'form-group',
 			'type' => 'text',
 		),
+		'text' => array(
+			'label' => "Text",
+			'size' => 'form-group',
+			'type' => 'select',
+			'values' => array('Read More', 'Title'),
+			'default' => 'Read More',
+			
+		),
 	);
 	
 	public function getBackendTemplate() {

@@ -9,5 +9,5 @@
 	
 	<?php wp_head(); ?>
 	
-	<title>Grid</title>
+	<title><?= get_bloginfo('name'); ?></title>
 </head>

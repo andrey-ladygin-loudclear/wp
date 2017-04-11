@@ -16,7 +16,15 @@
 	}
 	?>
 
-	<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+	<a href="<?php the_permalink(); ?>">
+		<?php
+		if($widget->getOption('text') == 'Title') {
+			the_title();
+		} else {
+			echo $widget->getOption('text');
+		}
+		?>
+	</a>
 	
 	<?php
 	if(!empty($widget->options['after'])) {

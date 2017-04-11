@@ -15,6 +15,8 @@
 		echo $widget->options['before'];
 	}
 	
+	//https://developer.wordpress.org/reference/functions/the_content/
+	//the_content('Read more ...');
 	the_content();
 	
 	if(!empty($widget->options['after'])) {

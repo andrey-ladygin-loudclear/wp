@@ -1,48 +1,37 @@
-https://colorlib.com/sparkling/
-<header id="masthead" class="site-header" role="banner" style="margin-bottom: 76px;">
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<header id="header" class="header ">
+	<div class="header-wrapper">
 		<div class="container">
-			<div class="row">
-				<div class="site-navigation-inner col-sm-12">
-					<div class="navbar-header">
-						<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						
-						
-						
-						<div id="logo">
-							<h1 class="site-name">									<a class="navbar-brand" href="https://colorlib.com/sparkling/" title="Sparkling" rel="home">Sparkling</a>
-							</h1>							</div><!-- end of #logo -->
-					
-					
-					</div>
-					<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-top" class="nav navbar-nav"><li id="menu-item-1773" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1773 active"><a title="Home" href="https://colorlib.com/sparkling/">Home</a></li>
-							<li id="menu-item-1800" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1800"><a title="Download" href="https://colorlib.com/wp/themes/sparkling/">Download</a></li>
-							<li id="menu-item-2024" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2024"><a title="Gallery" href="https://colorlib.com/sparkling/gallery/">Gallery</a></li>
-							<li id="menu-item-1911" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1911"><a title="Shortcodes" href="https://colorlib.com/sparkling/sparkling-shortcodes/">Shortcodes</a></li>
-							<li id="menu-item-1774" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1774 dropdown"><a title="About" href="https://colorlib.com/sparkling/about/" data-toggle="dropdown" class="dropdown-toggle">About <span class="caret"></span></a>
-								<ul role="menu" class=" dropdown-menu">
-									<li id="menu-item-1782" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1782"><a title="Contact us" href="https://colorlib.com/sparkling/contact-us/"><span class="glyphicon glyphicon-envelope"></span>&nbsp;Contact us</a></li>
-									<li id="menu-item-1788" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1788"><a title="Languages" href="https://colorlib.com/sparkling/languages/">Languages</a></li>
-									<li id="menu-item-1789" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1789"><a title="Full Width Page" href="https://colorlib.com/sparkling/full-width/"><span class="glyphicon glyphicon-align-justify"></span>&nbsp;Full Width Page</a></li>
-									<li id="menu-item-1775" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1775"><a title="Page Image Alignment" href="https://colorlib.com/sparkling/about/page-image-alignment/"><span class="glyphicon glyphicon-picture"></span>&nbsp;Page Image Alignment</a></li>
-									<li id="menu-item-1776" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1776"><a title="Page Markup And Formatting" href="https://colorlib.com/sparkling/about/page-markup-and-formatting/"><span class="glyphicon glyphicon-leaf"></span>&nbsp;Page Markup And Formatting</a></li>
-									<li role="presentation" class="dropdown-header">Comment options</li>
-									<li role="presentation" class="divider"></li>
-									<li id="menu-item-1778" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1778"><a title="Page with comments" href="https://colorlib.com/sparkling/about/page-with-comments/"><span class="glyphicon glyphicon-comment"></span>&nbsp;Page with comments</a></li>
-									<li id="menu-item-1779" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1779"><a title="Page with comments disabled" href="https://colorlib.com/sparkling/about/page-with-comments-disabled/"><span class="glyphicon glyphicon-remove"></span>&nbsp;Page with comments disabled</a></li>
-									<li role="presentation" class="dropdown-header">More options</li>
-									<li role="presentation" class="divider"></li>
-									<li role="presentation" class="disabled"><a href="#">This item is disabled</a></li>
-								</ul>
-							</li>
-							<li id="menu-item-2049" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2049"><a title="Shop" href="https://colorlib.com/sparkling/shop/"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Shop</a></li>
-						</ul></div>					</div>
-			</div>
+			<div id="logo" class="logo"><a class="site-logo" href="http://demos.cpothemes.com/brilliance"><img src="http://brilliance-3a0d.kxcdn.com/wp-content/themes/brilliance_pro/images/logo.png" alt="Brilliance" width="170" height="0"></a><h1 class="title site-title  hidden"><a href="http://demos.cpothemes.com/brilliance">Brilliance</a></h1></div><div id="menu-mobile-open" class=" menu-mobile-open menu-mobile-toggle"></div><ul id="menu-main" class="menu-main"><li id="menu-item-1930" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_children has-children menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/"><span class="menu-link"><span class="menu-title">Features</span><span class="menu-description">Stylized pages</span></span></a>
+					<ul class="sub-menu">
+						<li id="menu-item-1936" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/custom-shortcodes/"><span class="menu-link"><span class="menu-title">Custom Shortcodes</span><span class="menu-description">Add your own description.</span></span></a></li>
+						<li id="menu-item-1939" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/customizable-typography/"><span class="menu-link"><span class="menu-title">Customizable Typography</span><span class="menu-description">Over 100 different fonts.</span></span></a></li>
+						<li id="menu-item-1937" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/demo-content/"><span class="menu-link"><span class="menu-title">Included Demo Content</span><span class="menu-description">Recreate this demo site.</span></span></a></li>
+						<li id="menu-item-1933" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/multi-language-integration/"><span class="menu-link"><span class="menu-title">Multilingual Ready</span><span class="menu-description">Integrates With WPML.</span></span></a></li>
+						<li id="menu-item-2082" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/woocommerce-support/"><span class="menu-link"><span class="menu-title">WooCommerce Support</span><span class="menu-description">Integrates with WooCommerce</span></span></a></li>
+						<li id="menu-item-1940" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/powerful-theme-options/"><span class="menu-link"><span class="menu-title">Powerful Theme Options</span><span class="menu-description">Highly versatile settings.</span></span></a></li>
+						<li id="menu-item-1935" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/premium-support/"><span class="menu-link"><span class="menu-title">Premium Support</span><span class="menu-description">Extensive help &amp; docs.</span></span></a></li>
+						<li id="menu-item-1938" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/responsive-design/"><span class="menu-link"><span class="menu-title">Responsive Design</span><span class="menu-description">Adapts to any screen size.</span></span></a></li>
+						<li id="menu-item-1934" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/unlimited-color-palette/"><span class="menu-link"><span class="menu-title">Unlimited Color Palette</span><span class="menu-description">Choose your preferred colors.</span></span></a></li>
+					</ul>
+				</li>
+				<li id="menu-item-1920" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_children has-children menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/"><span class="menu-link"><span class="menu-title">Pages</span><span class="menu-description">Layouts</span></span></a>
+					<ul class="sub-menu">
+						<li id="menu-item-1932" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/wide-page/"><span class="menu-link"><span class="menu-title">Wide Page</span></span></a></li>
+						<li id="menu-item-2004" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/left-sidebar/"><span class="menu-link"><span class="menu-title">Left Sidebar</span></span></a></li>
+						<li id="menu-item-1987" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/two-sidebars/"><span class="menu-link"><span class="menu-title">Double Sidebar</span></span></a></li>
+						<li id="menu-item-1988" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/minimal-page/"><span class="menu-link"><span class="menu-title">Minimal Page</span></span></a></li>
+						<li id="menu-item-1931" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/blank-page/"><span class="menu-link"><span class="menu-title">Blank Page</span></span></a></li>
+						<li id="menu-item-2005" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/page-with-comments/"><span class="menu-link"><span class="menu-title">Page With Comments</span></span></a></li>
+						<li id="menu-item-1929" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/submenu-pages/"><span class="menu-link"><span class="menu-title">Submenu Navigation</span></span></a></li>
+						<li id="menu-item-1921" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/sitemap/"><span class="menu-link"><span class="menu-title">Sitemap</span></span></a></li>
+					</ul>
+				</li>
+				<li id="menu-item-1928" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/shortcodes/"><span class="menu-link"><span class="menu-title">Shortcodes</span><span class="menu-description">Content Design</span></span></a></li>
+				<li id="menu-item-1927" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/portfolio/"><span class="menu-link"><span class="menu-title">Portfolio</span><span class="menu-description">Our work</span></span></a></li>
+				<li id="menu-item-2103" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/services/"><span class="menu-link"><span class="menu-title">Services</span><span class="menu-description">We Can Help</span></span></a></li>
+				<li id="menu-item-1926" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/blog/"><span class="menu-link"><span class="menu-title">Blog</span><span class="menu-description">News</span></span></a></li>
+				<li id="menu-item-1993" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-highlight"><a href="http://demos.cpothemes.com/brilliance/contact/"><span class="menu-link"><span class="menu-title">Contact Us</span><span class="menu-description">Get In Touch</span></span></a></li>
+			</ul>						<div class="clear"></div>
 		</div>
-	</nav><!-- .site-navigation -->
+	</div>
 </header>

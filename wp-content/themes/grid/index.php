@@ -9,15 +9,16 @@ use GL\Facades\WidgetCompositionFacade;
 <?php get_header(); ?>
 
 <body <?php body_class(); ?>>
-
-<?php View::load('Templates/Components/front/menu'); ?>
-
-<?php
-$composition = WidgetCompositionFacade::buildStructure(NULL, 'page');
-$composition->draw();
-?>
-
-<?php get_footer(); ?>
+	<div class="main-container <?= get_theme_mod('grid_header_navbar', 'light'); ?>">
+		<?php View::load('Templates/Components/front/menu'); ?>
+		
+		<?php
+		$composition = WidgetCompositionFacade::buildStructure(NULL, 'page');
+		$composition->draw();
+		?>
+		
+		<?php get_footer(); ?>
+	</div>
 </body>
 </html>
 

@@ -10,6 +10,6 @@ class Comments extends Widget {
 	//https://www.competethemes.com/tracks-live-demo/this-is-a-standard-post/
 	
 	public function draw() {
-		View::load("Templates/Frontend/text", array('widget' => $this));
+		View::load("Templates/Frontend/Specified/comments", array('widget' => $this));
 	}
 }

@@ -20,6 +20,7 @@ class Post_content extends Widget {
 		),
 	);
 	
+	//https://developer.wordpress.org/reference/functions/the_content/
 	public function getBackendTemplate() {
 		return 'callable';
 	}

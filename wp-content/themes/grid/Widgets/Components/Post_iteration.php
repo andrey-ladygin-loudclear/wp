@@ -13,7 +13,7 @@ class Post_iteration extends Glyph {
 			'label' => "Before",
 			'size' => 'form-group',
 			'type' => 'text',
-			'default' => "<div class='row'>",
+			'default' => "<div class='item'>",
 		),
 		'after' => array(
 			'label' => "After",
@@ -23,15 +23,22 @@ class Post_iteration extends Glyph {
 		),
 	);
 	
-	public function draw($before = '', $after = '', $showMainContainer = TRUE) {
-		while (have_posts()) {
+	public function draw($before = '', $after = '', $showMainContainer = FALSE) {
+		if(!$showMainContainer) {
+			echo "<div class='{$this->getClass()}'>";
+		}
+		
+		while(have_posts()) {
 			the_post();
 			View::load('Templates/Frontend/post_iteration', array(
 				'widget' => $this,
 				'before' => $before,
 				'after' => $after,
-				'showMainContainer' => $showMainContainer,
 			));
+		}
+		
+		if(!$showMainContainer) {
+			echo "</div>";
 		}
 	}
 }

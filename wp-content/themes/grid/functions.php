@@ -16,6 +16,7 @@ class GL_Grid_Layout {
 	public static $URL;
 	
 	public static $widgets = array(
+		'latest_posts' => 'Latest posts',
 		'blackquote' => 'Blackquote',
 		'comments' => 'Comments',
 	);
@@ -57,6 +58,8 @@ class GL_Grid_Layout {
 	/*
 	добавить тип темплейта в таблицу
 	сделать возможность доабвлять темплейт не для каждой страницы а для группы (посты, страницы, архив)
+	
+	https://themeisle.com/demo/?theme=Zerif+Lite&ref=5257
 	 
 	 
 	add templates to settings
@@ -131,6 +134,7 @@ class GL_Grid_Layout {
 		add_action('gl_create_template_action', array($this->actions, 'create_template'));
 		
 		add_action('admin_menu', array($this, 'add_settings_menu_page'));
+		add_action('admin_menu', array($this, 'add_templates_menu_page'));
 		add_action('admin_menu', array($this, 'empty_wp_page'));
 		
 		if($this->settings->get('use_the_content_filter')) {
@@ -263,6 +267,9 @@ class GL_Grid_Layout {
 		}
 	}
 	
+	public function add_templates_menu_page() {
+		add_menu_page('Grid Templates', 'Grid Templates', 'administrator', 'grid-templates', array($this->templates, 'page'));
+	}
 	public function add_settings_menu_page() {
 		add_options_page('Grid Layout', 'Grid Layout', 'administrator', 'grid-layout', array($this->settings, 'page'));
 		add_submenu_page('edit.php?post_type=grid', 'Grid Layout', 'Settings', 'administrator', 'grid-layout-options', array($this->settings, 'page'));

@@ -34,7 +34,7 @@ Class Settings
 		Assets::addDefaults();
 		Assets::enqueue();
         
-		View::load('Templates/Backend/settings', array(
+		View::load('Templates/Settings/options', array(
 			'options' => $this->getOptions()
 		));
 	}

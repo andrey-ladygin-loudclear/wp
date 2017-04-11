@@ -8,19 +8,20 @@
 
 <?php
 $types = array(
-    'page' => 'For all pages',
-    'single' => 'For single page',
-    'category' => 'For category page',
-    'tag' => 'For tag page',
-    'taxonomy' => 'For taxonomy page',
-    'archive' => 'For archive page',
+    'page' => 'For all pages (page)',
+    'single' => 'For single page (single)',
+    'category' => 'For category page (category)',
+    'tag' => 'For tag page (tag)',
+    'taxonomy' => 'For taxonomy page (taxonomy)',
+    'archive' => 'For archive page (archive)',
+    'footer' => 'For footer',
 );
 ?>
 
 <?php $selectedType = !empty($_GET['type']) ? $_GET['type'] : NULL; ?>
 
 <form>
-	<input type="hidden" name="page" value="grid-layout">
+	<input type="hidden" name="page" value="grid-templates">
 	<h6>You can check this <a href="https://developer.wordpress.org/themes/basics/template-hierarchy/" target="_blank">page</a> for more details.</h6>
     <div class="form-group">
         <label for="type">Select Type</label>

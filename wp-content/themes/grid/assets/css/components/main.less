@@ -31,3 +31,75 @@ video {
 	display: inline-block;
 	vertical-align: baseline;
 }
+
+
+/* BODY */
+body {
+	font-family: 'Open Sans', sans-serif, arial;
+	//background:#fff;
+	//color:#777;
+	font-size:0.875em;
+	line-height:1.6;
+
+	.main-container {
+		&.dark {
+			background-color: #000;
+			background-image: url(http://blog.strikebowling.com.au/wp-content/uploads/background.jpeg);
+			background-repeat: repeat-x;
+			background-position: top left;
+			background-attachment: fixed;
+			color: #d3d3d3 !important;
+		}
+	}
+}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+	color:#444;
+	line-height:1.2;
+	margin:0 0 20px;
+	font-family: 'Open Sans', sans-serif, arial;
+}
+h1 { font-size:2.5em; }
+h2 { font-size:2em; }
+h3 { font-size:1.5em; }
+h4 { font-size:1.3em; }
+h5 { font-size:1.2em; }
+h6 { font-size:1.1em; }
+
+.widget-title:after {
+	background: none repeat scroll 0 0 #ccc;
+	content: "";
+	display: block;
+	height: 2px;
+	margin: 20px auto;
+	width: 100px;
+}
+
+/* HYPERLINKS */
+a:link, a:visited { color:#d7586c; text-decoration:none; }
+a:hover { color:#f78; text-decoration:underline; }
+
+/* CITATIONS */
+blockquote { display:block; font-style:italic; padding:0 5%; margin:25px 0; }
+blockquote cite, blockquote em, blockquote i { font-style:normal; }
+
+/* FORMS */
+input[type=text], input[type=password], input[type=input],
+input[type=tel], input[type=url], input[type=email],
+input[type=number], input[type=range], input[type=search], input[type=color],
+input[type=time], input[type=week], input[type=month], input[type=date], input[type=datetime],
+textarea, select { border:1px solid #ddd; padding:8px 6px; background:#f9f9f9; }
+input[type=submit] { width:auto; -webkit-appearance:none; }
+
+
+ul {
+	list-style: none;
+}
+
+label {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
