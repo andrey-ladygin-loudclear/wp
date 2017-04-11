@@ -24,30 +24,52 @@ Class Customize {
 		
 		
 		
-		$wp_customize->add_setting( 'setting_id', array(
-			'type' => 'theme_mod', // or 'option'
-			'capability' => 'edit_theme_options',
-			'theme_supports' => '', // Rarely needed.
-			'default' => '',
-			'transport' => 'refresh', // or postMessage
-			'sanitize_callback' => '',
-			'sanitize_js_callback' => '', // Basically to_json.
+		$wp_customize->add_section( 'starter_new_section_name' , array(
+			'title'    => __( 'Visible Section Name', 'starter' ),
+			'priority' => 30
 		) );
-		//https://codex.wordpress.org/Theme_Customization_API
-		/** @var $wp_customize \WP_Customize_Setting **/
-		$wp_customize->add_setting( 'header_textcolor' , array(
+		
+		$wp_customize->add_setting( 'starter_new_setting_name' , array(
 			'default'   => '#000000',
 			'transport' => 'refresh',
 		) );
-		$wp_customize->add_section( 'mytheme_new_section_name' , array(
-			'title'      => __( 'Visible Section Name', 'mytheme' ),
-			'priority'   => 30,
-		) );
-		$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'link_color', array(
-			'label'      => __( 'Header Color', 'mytheme' ),
-			'section'    => 'your_section_id',
-			'settings'   => 'your_setting_id',
+		
+		$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'starter_new_setting_name', array(
+			'label'    => __( 'Header Color', 'starter' ),
+			'section'  => 'starter_new_section_name',
+			'settings' => 'starter_new_setting_name',
 		) ) );
+		
+		
+		
+		
+		
+		
+		
+//		$wp_customize->add_setting( 'setting_id', array(
+//			'type' => 'theme_mod', // or 'option'
+//			'capability' => 'edit_theme_options',
+//			'theme_supports' => '', // Rarely needed.
+//			'default' => '',
+//			'transport' => 'refresh', // or postMessage
+//			'sanitize_callback' => '',
+//			'sanitize_js_callback' => '', // Basically to_json.
+//		) );
+//		//https://codex.wordpress.org/Theme_Customization_API
+//		/** @var $wp_customize \WP_Customize_Setting **/
+//		$wp_customize->add_setting( 'header_textcolor' , array(
+//			'default'   => '#000000',
+//			'transport' => 'refresh',
+//		) );
+//		$wp_customize->add_section( 'mytheme_new_section_name' , array(
+//			'title'      => __( 'Visible Section Name', 'mytheme' ),
+//			'priority'   => 30,
+//		) );
+//		$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'link_color', array(
+//			'label'      => __( 'Header Color', 'mytheme' ),
+//			'section'    => 'your_section_id',
+//			'settings'   => 'your_setting_id',
+//		) ) );
 		
 		
 		$wp_customize->add_setting('your_theme_logo');
