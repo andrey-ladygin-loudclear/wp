@@ -56,8 +56,13 @@ class GL_Grid_Layout {
 	);
 	
 	/*
+	 * https://wordpress.org/themes/flat/
+	 *
+	 *
 	добавить тип темплейта в таблицу
 	сделать возможность доабвлять темплейт не для каждой страницы а для группы (посты, страницы, архив)
+	
+	add bredcrumbs - http://www.andersnoren.se/themes/hemingway/
 	
 	https://themeisle.com/demo/?theme=Zerif+Lite&ref=5257
 	 

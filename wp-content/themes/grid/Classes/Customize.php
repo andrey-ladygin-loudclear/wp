@@ -8,6 +8,9 @@ Class Customize {
 		//https://code.tutsplus.com/tutorials/digging-into-the-theme-customizer-components--wp-27162
 		
 		
+		$this->addTheme($wp_customize);
+		
+		
 		$wp_customize->add_setting('grid_header_navbar');
 		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'grid_header_navbar',
 			array(
@@ -25,7 +28,7 @@ Class Customize {
 		
 		
 		$wp_customize->add_section( 'starter_new_section_name' , array(
-			'title'    => __( 'Visible Section Name', 'starter' ),
+			'title'    => 'Visible Section Name',
 			'priority' => 30
 		) );
 		
@@ -35,7 +38,7 @@ Class Customize {
 		) );
 		
 		$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'starter_new_setting_name', array(
-			'label'    => __( 'Header Color', 'starter' ),
+			'label'    => 'Header Color',
 			'section'  => 'starter_new_section_name',
 			'settings' => 'starter_new_setting_name',
 		) ) );
@@ -80,6 +83,50 @@ Class Customize {
 				'section' => 'title_tagline',
 				'settings' => 'your_theme_logo',
 			) ) );
+	}
+	
+	private function addTheme($wp_customize) {
+		$wp_customize->add_section('grid_theme', array(
+			'title'    => 'Theme',
+			'priority' => 30
+		));
+		
+		$wp_customize->add_setting('grid_theme', array('default' => 'dark', 'transport' => 'refresh'));
+		$wp_customize->add_setting('grid_theme_color', array('default' => '#000000', 'transport' => 'refresh'));
+		$wp_customize->add_setting('grid_theme_fonts', array('default' => 'Open Sans', 'transport' => 'refresh'));
+		
+		$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'grid_theme',
+			array(
+				'label' => 'Theme Style',
+				'section' => 'grid_theme',
+				'settings' => 'grid_theme',
+				'type' => 'radio',
+				'choices' => array(
+					'wood'   => 'Wood',
+					'dark'   => 'Dark',
+					'light'  => 'Light'
+				)
+			)
+		));
+		
+		$wp_customize->add_control(new \WP_Customize_Color_Control($wp_customize, 'grid_theme_color', array(
+			'label'    => 'Header Color',
+			'section'  => 'grid_theme',
+			'settings' => 'grid_theme_color',
+		)));
+		
+		$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'grid_theme_fonts',
+			array(
+				'label' => 'Fonts',
+				'section' => 'grid_theme',
+				'settings' => 'grid_theme_fonts',
+				'type' => 'radio',
+				'choices' => array(
+					'Open Sans' => 'Open Sans',
+					'Arial' => 'Arial',
+				)
+			)
+		));
 	}
 	
 }
