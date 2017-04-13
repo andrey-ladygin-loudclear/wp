@@ -122,8 +122,19 @@ Class Customize {
 				'settings' => 'grid_theme_fonts',
 				'type' => 'radio',
 				'choices' => array(
-					'Open Sans' => 'Open Sans',
+					'sans-serif' => 'Open Sans',
 					'Arial' => 'Arial',
+					'Conv_MontserratAlternates-Black' => 'Montserrat Alternates',
+					'Conv_MontserratAlternates-Bold' => 'Montserrat Alternates Bold',
+					'Conv_MontserratAlternates-Light' => 'Montserrat Alternates Light',
+					'Conv_MontserratAlternates-Medium' => 'Montserrat Alternates Medium',
+					'Conv_Montserrat-Bold' => 'Montserrat Bold',
+					'Conv_Montserrat-Medium' => 'Montserrat Medium',
+					'Conv_Montserrat-Regular' => 'Montserrat Regular',
+					'Conv_Roboto-Bold' => 'Roboto Regular',
+					'Conv_Roboto-Light' => 'Roboto Light',
+					'Conv_Roboto-Regular' => 'Roboto Regular',
+//					'Conv_Roboto-Regular' => 'Helvetica Neue',
 				)
 			)
 		));

@@ -56,6 +56,7 @@ class GL_Grid_Layout {
 	);
 	
 	/*
+	 * https://www.competethemes.com/tracks-live-demo/
 	 * https://wordpress.org/themes/flat/
 	 * https://colorlib.com/activello/
 	 *

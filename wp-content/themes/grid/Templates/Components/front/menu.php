@@ -1,4 +1,4 @@
-<header id="header" class="header ">
+<header id="header" class="header">
 	<div class="header-wrapper">
 		<div class="container">
 			<div id="logo" class="logo"><a class="site-logo" href="http://demos.cpothemes.com/brilliance"><img src="http://brilliance-3a0d.kxcdn.com/wp-content/themes/brilliance_pro/images/logo.png" alt="Brilliance" width="170" height="0"></a><h1 class="title site-title  hidden"><a href="http://demos.cpothemes.com/brilliance">Brilliance</a></h1></div><div id="menu-mobile-open" class=" menu-mobile-open menu-mobile-toggle"></div><ul id="menu-main" class="menu-main"><li id="menu-item-1930" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_children has-children menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/"><span class="menu-link"><span class="menu-title">Features</span><span class="menu-description">Stylized pages</span></span></a>
