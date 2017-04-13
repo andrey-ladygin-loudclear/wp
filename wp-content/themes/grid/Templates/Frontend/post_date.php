@@ -15,7 +15,7 @@
 		echo $widget->options['before'];
 	}
 	
-	the_time($widget->options['format']);
+	echo get_the_date($widget->options['format']);
 	
 	if(!empty($widget->options['after'])) {
 		echo $widget->options['after'];

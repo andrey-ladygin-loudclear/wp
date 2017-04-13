@@ -50,6 +50,7 @@ class Composition extends Glyph {
 //		print_r($this->getCurrentStructure());
 //		die;
 		Assets::add('assets/js/scripts.js');
+		Assets::add('https://cdn.colorlib.com/illdy/wp-content/themes/illdy/layout/css/font-awesome.min.css?ver=4.5.0');
 		Assets::add('assets/css/front.css');
 		Assets::add('assets/plugins/bootstrap/css/bootstrap.min.css');
 		Assets::enqueue();

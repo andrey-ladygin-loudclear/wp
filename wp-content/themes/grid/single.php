@@ -1,6 +1,7 @@
 <?php
 use GL\Classes\View;
 use GL\Facades\WidgetCompositionFacade;
+the_post();
 ?>
 
 <!DOCTYPE html>

@@ -57,6 +57,7 @@ class GL_Grid_Layout {
 	
 	/*
 	 * https://wordpress.org/themes/flat/
+	 * https://colorlib.com/activello/
 	 *
 	 *
 	добавить тип темплейта в таблицу

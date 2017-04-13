@@ -77,10 +77,10 @@ class RowGapCompositor {
 			
 			$row->insert($widget);
 			
-//			if($widget->getRow() != $currRow) {
-//				$prevCol = 0;
-//				$currRow = $widget->getRow();
-//			}
+			if($widget->getRow() != $currRow) {
+				$prevCol = 0;
+				$currRow = $widget->getRow();
+			}
 			
 			if($widget->getCol() != $prevCol) {
                 $offset = $widget->getCol() - $prevCol;
