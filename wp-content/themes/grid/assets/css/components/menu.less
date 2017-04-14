@@ -1,6 +1,5 @@
 .main-navigation {
 	position: relative;
-	margin: 0 -35px;
 	background: #343538;
 	font-size: 0;
 	z-index: 9999;
@@ -18,11 +17,16 @@
 		right: 0;
 		height: 100%;
 		z-index: 110;
+		width: 60px;
 
 		-webkit-transition: all 0.4s ease;
 		-moz-transition: all 0.4s ease;
 		-o-transition: all 0.4s ease;
 		transition: all 0.4s ease;
+
+		.searchform {
+			display: none;
+		}
 
 		#search-icon-icon {
 			-ms-box-sizing: border-box;
@@ -44,12 +48,13 @@
 				font-size: 17px;
 				top: 50%;
 				left: 50%;
-				margin-top: -8px;
+				margin-top: -10px;
 				margin-left: -8.5px;
 				color: #d1d1d1;
 
 				&:before {
-					content: "\e604";
+					content: "\f002";
+					font-family: "FontAwesome";
 				}
 			}
 		}
@@ -100,6 +105,7 @@
 		text-decoration: none;
 		color: #e2e2e2;
 		font-weight: bold;
+		text-transform: uppercase;
 
 		&:focus,
 		&:hover {

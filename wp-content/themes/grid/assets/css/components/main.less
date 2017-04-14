@@ -1,5 +1,4 @@
 html {
-	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 }
@@ -35,13 +34,15 @@ video {
 
 /* BODY */
 body {
-	font-family: 'Open Sans', sans-serif, arial;
 	//background:#fff;
 	//color:#777;
 	font-size:0.875em;
 	line-height:1.6;
 
 	.main-container {
+		&.light {
+
+		}
 		&.dark {
 			background-color: #222;
 			//background-color: #000;
@@ -49,7 +50,15 @@ body {
 			background-repeat: repeat-x;
 			background-position: top left;
 			background-attachment: fixed;
-			color: #d3d3d3 !important;
+			color: #d3d3d3;
+		}
+		&.wood {
+			background-color: #000;
+			background-image: url(http://blog.strikebowling.com.au/wp-content/uploads/background.jpeg);
+			background-repeat: repeat-x;
+			background-position: top left;
+			background-attachment: fixed;
+			color: #d3d3d3;
 		}
 	}
 }
@@ -59,7 +68,6 @@ h1, h2, h3, h4, h5, h6 {
 	color:#444;
 	line-height:1.2;
 	margin:0 0 20px;
-	font-family: 'Open Sans', sans-serif, arial;
 }
 h1 { font-size:2.5em; }
 h2 { font-size:2em; }

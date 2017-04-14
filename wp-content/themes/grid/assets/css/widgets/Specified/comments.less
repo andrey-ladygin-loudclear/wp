@@ -1,10 +1,118 @@
 .comments {
+	.comments-number {
+		padding: 1.5em 0;
+
+		h2 {
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			font-weight: 700;
+		}
+	}
+
 	.comment-list {
-		li.comment:first-child, li.pingback:first-child {
+		list-style: none;
+
+		li.comment:first-child,
+		li.pingback:first-child {
 			margin-top: 1.5em;
 		}
-		li.comment, li.pingback {
+
+		li.comment,
+		li.pingback {
 			margin: 3em 0;
+		}
+
+		.comment-author {
+			display: inline-block;
+			min-height: 4.5em;
+			margin-bottom: 1em;
+
+			img {
+				width: 4.5em;
+				height: 4.5em;
+				border-radius: 50%;
+				float: left;
+				margin: 0 0.75em 0 0;
+			}
+
+			div {
+				display: inline-block;
+				vertical-align: top;
+
+				a {
+					color: #4d4d4d;
+				}
+
+				.comment-date {
+					display: block;
+				}
+			}
+		}
+		.comment-content {
+			float: right;
+			margin: 0;
+			line-height: 1.5;
+
+			p {
+				line-height: 1.5;
+
+				&:first-child {
+					margin-top: 0;
+				}
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	.comment-respond {
+		clear: both;
+
+		h3 {
+			font-size: 1.625em;
+			line-height: 1.85;
+		}
+		p {
+			margin: 1.5em 0;
+		}
+
+		label {
+			display: none;
+		}
+
+		input,
+		textarea {
+			padding: 0.8em;
+			width: 100%;
+			max-width: 27.75em;
+			min-height: 45px;
+			outline: solid 1px #000;
+			border: none;
+			font-family: "raleway", sans-serif;
+			font-size: 0.813em;
+			line-height: 1.85;
+			border-radius: 0;
+			-webkit-appearance: none;
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+		}
+		input[type="submit"] {
+			background: #222;
+			color: white;
+			max-width: 22.2em !important;
+			min-width: 11.1em;
+			padding: 0.8em;
+			min-height: 45px;
+			outline: none;
+			border: none;
+			font-family: "raleway", sans-serif;
+			font-size: 0.813em;
+			line-height: 1.85;
+			border-radius: 0;
+			-webkit-appearance: none;
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
 		}
 	}
 }

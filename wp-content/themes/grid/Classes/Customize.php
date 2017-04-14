@@ -5,25 +5,28 @@ namespace GL\Classes;
 Class Customize {
 	
 	public function add_options($wp_customize) {
+        
+	    
 		//https://code.tutsplus.com/tutorials/digging-into-the-theme-customizer-components--wp-27162
 		
 		
 		$this->addTheme($wp_customize);
+		$this->addWidgets($wp_customize);
 		
 		
-		$wp_customize->add_setting('grid_header_navbar');
-		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'grid_header_navbar',
-			array(
-				'label' => 'Navbar',
-				'section' => 'title_tagline',
-				'settings' => 'grid_header_navbar',
-				'type' => 'radio',
-				'choices' => array(
-					'dark'   => 'Dark',
-					'light'  => 'Light'
-				)
-			)
-		));
+//		$wp_customize->add_setting('grid_header_navbar');
+//		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'grid_header_navbar',
+//			array(
+//				'label' => 'Navbar',
+//				'section' => 'title_tagline',
+//				'settings' => 'grid_header_navbar',
+//				'type' => 'radio',
+//				'choices' => array(
+//					'dark'   => 'Dark',
+//					'light'  => 'Light'
+//				)
+//			)
+//		));
 		
 		
 		
@@ -91,7 +94,7 @@ Class Customize {
 			'priority' => 30
 		));
 		
-		$wp_customize->add_setting('grid_theme', array('default' => 'dark', 'transport' => 'refresh'));
+		$wp_customize->add_setting('grid_theme', array('default' => 'light', 'transport' => 'refresh'));
 		$wp_customize->add_setting('grid_theme_color', array('default' => '#000000', 'transport' => 'refresh'));
 		$wp_customize->add_setting('grid_theme_fonts', array('default' => 'Open Sans', 'transport' => 'refresh'));
 		
@@ -102,9 +105,9 @@ Class Customize {
 				'settings' => 'grid_theme',
 				'type' => 'radio',
 				'choices' => array(
-					'wood'   => 'Wood',
-					'dark'   => 'Dark',
-					'light'  => 'Light'
+					'light'  => 'Light',
+                    'wood'   => 'Wood',
+                    'dark'   => 'Dark',
 				)
 			)
 		));
@@ -139,5 +142,35 @@ Class Customize {
 			)
 		));
 	}
+	
+	private function addWidgets($wp_customize)
+    {
+        $wp_customize->add_panel('grid_widgets', array(
+            'priority'       => 10,
+            'capability'     => 'edit_theme_options',
+            'title'          => 'Widgets',
+            'description'    => 'Widget settings',
+        ));
+        
+        foreach(\GL_Grid_Layout::$builder as $slug => $widget)
+        {
+            $section_name = 'grid_widgets' . $slug;
+            $control_name = 'grid_widgets_control' . $slug;
+            
+            $wp_customize->add_section($section_name, array(
+                'title'    => $widget,
+                //'priority' => 31,
+                'panel' => 'grid_widgets'
+            ));
+    
+            $wp_customize->add_setting($control_name, array('default' => '#000000', 'transport' => 'refresh'));
+    
+            $wp_customize->add_control(new \WP_Customize_Color_Control($wp_customize, $control_name, array(
+                'label'    => 'Header Color',
+                'section'  => $section_name,
+                'settings' => $control_name,
+            )));
+        }
+    }
 	
 }

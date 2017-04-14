@@ -151,8 +151,11 @@ class GL_Grid_Layout {
 		if($this->settings->get('use_shortcode')) {
 			add_shortcode('gl-grid-tag', array($this, 'shortcode'));
 		}
-		
-	}
+        
+        add_theme_support( 'post-thumbnails' );
+        
+        //add_image_size('posts-thumbnail-size', 230, 230, TRUE);
+    }
 	
 	public function empty_wp_page() {
 		add_submenu_page(null, 'Page Title', 'Page Title', 'administrator', 'gl-edit-widget-page', function() {
@@ -276,6 +279,11 @@ class GL_Grid_Layout {
 	
 	public function add_templates_menu_page() {
 		add_menu_page('Grid Templates', 'Grid Templates', 'administrator', 'grid-templates', array($this->templates, 'page'));
+        
+        foreach(Templates::$templates as $template => $name) {
+            $slug = "grid-layout-template-{$template}";
+            add_submenu_page('grid-templates', $name, ucfirst($template), 'administrator', $slug, array($this->templates, $template));
+        }
 	}
 	public function add_settings_menu_page() {
 		add_options_page('Grid Layout', 'Grid Layout', 'administrator', 'grid-layout', array($this->settings, 'page'));

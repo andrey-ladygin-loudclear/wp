@@ -18,21 +18,34 @@
 	
 	<div class="widget-posts clearfix">
 		
-		<div class="single-post tg-one-half">
-			<div class="image">
-				<figure><a href="https://demo.themegrill.com/ample/2015/02/09/suspendisse/" title="Suspendisse"><img width="230" height="230" src="https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/notebook-230x230.jpg" class="attachment-ample-featured-blog-small size-ample-featured-blog-small wp-post-image" alt="Suspendisse" title="Suspendisse" srcset="https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/notebook-230x230.jpg 230w, https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/notebook-150x150.jpg 150w, https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/notebook-330x330.jpg 330w" sizes="(max-width: 230px) 100vw, 230px"></a></figure>
-			</div>
-			<div class="single-post-content">
-				<h3 class="entry-title"><a href="https://demo.themegrill.com/ample/2015/02/09/suspendisse/" title="Suspendisse">Suspendisse</a></h3>
-				<div class="entry-summary">
-					<p>Suspendisse potenti. Interdum malesuada et fames ac ante ipsum primis in faucibus. Nam rhoncus luctus ex. Vestibulum condimentum lectus lorem. Quisque ornare libero vel accumsan bibendum. Aenean gravida tristique nulla at vulputate. Donec non eros sodales, pellentesque justo eu, rhoncus</p>
+		<?php $k=0; ?>
+		<?php while(have_posts()) { ?>
+			<?php $k++; ?>
+			<?php the_post(); ?>
+			<div class="single-post tg-one-half <?= $k%2==0 ? 'tg-one-half-last' : ' tg-featured-posts-clearfix'; ?>">
+				<div class="image">
+					<figure>
+						<a href="<?php the_permalink(); ?>" title="Suspendisse">
+							<?php set_post_thumbnail_size(230, 230, TRUE); ?>
+							<?php the_post_thumbnail(); ?>
+						</a>
+					</figure>
 				</div>
-				<div class="read-btn">
-					<a href="https://demo.themegrill.com/ample/2015/02/09/suspendisse/" title="Suspendisse">Read more</a>
+				<div class="single-post-content">
+					<h3 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+					<div class="entry-summary">
+						<?php the_content(); ?>
+					</div>
+					<div class="read-btn">
+						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read more</a>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="single-post tg-one-half tg-one-half-last">
+			
+		<?php } ?>
+		
+		
+		<!--div class="single-post tg-one-half tg-one-half-last">
 			<div class="image">
 				<figure><a href="https://demo.themegrill.com/ample/2015/02/09/mauris-eu-mollis/" title="Mauris eu mollis"><img width="230" height="230" src="https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/light-230x230.jpg" class="attachment-ample-featured-blog-small size-ample-featured-blog-small wp-post-image" alt="Mauris eu mollis" title="Mauris eu mollis" srcset="https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/light-230x230.jpg 230w, https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/light-150x150.jpg 150w, https://demo.themegrill.com/ample/wp-content/uploads/sites/16/2015/02/light-330x330.jpg 330w" sizes="(max-width: 230px) 100vw, 230px"></a></figure>
 			</div>
@@ -73,7 +86,7 @@
 					<a href="https://demo.themegrill.com/ample/2015/02/09/quisque-iaculis/" title="Quisque iaculis">Read more</a>
 				</div>
 			</div>
-		</div>
+		</div-->
 	</div>
 
 </div>
