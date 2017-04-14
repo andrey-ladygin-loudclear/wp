@@ -62,6 +62,6 @@ class WP extends Widget {
 	}
 	
 	public function draw() {
-		View::load("Templates/Frontend/WP", array('widget' => $this));
+		View::load("Templates/Frontend/Widgets/WP", array('widget' => $this));
 	}
 }

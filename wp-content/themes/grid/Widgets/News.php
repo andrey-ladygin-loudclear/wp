@@ -14,6 +14,6 @@ class News extends Widget {
 // add composition of views for admin layouts
 // add ability add list of views for admin layout
 	public function draw() {
-	    View::load("Templates/Frontend/news", array('widget' => $this));
+	    View::load("Templates/Frontend/Widgets/news", array('widget' => $this));
 	}
 }

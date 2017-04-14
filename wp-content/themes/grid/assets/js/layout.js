@@ -124,6 +124,10 @@ var Widget = function(name, id) {
 		this.addConfigButton = function() {
 			html += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
 		};
+		this.addImportAndExportButton = function() {
+			html += '<span class="glyphicon glyphicon-import" aria-hidden="true"></span>';
+			html += '<span class="glyphicon glyphicon-export" aria-hidden="true"></span>';
+		};
 		this.addTrashButton = function() {
 			html += '<span class="glyphicon glyphicon-trash"></span>';
 		};
@@ -163,7 +167,7 @@ var Widget = function(name, id) {
 		this.baseHtml = function() {
 			HtmlBuilder.addTitle();
 			HtmlBuilder.addContent();
-			HtmlBuilder.addViewButton();
+			HtmlBuilder.addImportAndExportButton();
 
 			//if(id) {
 			    //if(name == 'glyph' && parent.frames.length > 1) {

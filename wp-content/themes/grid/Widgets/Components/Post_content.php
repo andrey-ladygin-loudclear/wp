@@ -26,6 +26,6 @@ class Post_content extends Widget {
 	}
 	
 	public function draw() {
-		View::load('Templates/Frontend/post_content', array('widget' => $this));
+		View::load('Templates/Frontend/Widgets/WP/post_content', array('widget' => $this));
 	}
 }

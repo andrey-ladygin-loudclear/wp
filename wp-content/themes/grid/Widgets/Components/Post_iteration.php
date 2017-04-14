@@ -30,7 +30,7 @@ class Post_iteration extends Glyph {
 		
 		while(have_posts()) {
 			the_post();
-			View::load('Templates/Frontend/post_iteration', array(
+			View::load('Templates/Frontend/Widgets/WP/post_iteration', array(
 				'widget' => $this,
 				'before' => $before,
 				'after' => $after,

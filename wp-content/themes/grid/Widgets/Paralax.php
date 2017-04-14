@@ -40,7 +40,7 @@ class Paralax extends Glyph {
     );
     
     public function draw() {
-		View::load("Templates/Frontend/paralax", array('widget' => $this));
+		View::load("Templates/Frontend/Widgets/paralax", array('widget' => $this));
     }
     
 }

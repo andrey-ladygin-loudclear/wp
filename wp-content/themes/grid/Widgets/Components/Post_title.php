@@ -27,6 +27,6 @@ class Post_title extends Widget {
 	}
 	
 	public function draw() {
-		View::load('Templates/Frontend/post_title', array('widget' => $this));
+		View::load('Templates/Frontend/Widgets/WP/post_title', array('widget' => $this));
 	}
 }

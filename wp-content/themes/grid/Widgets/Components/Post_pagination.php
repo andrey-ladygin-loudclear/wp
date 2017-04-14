@@ -60,7 +60,7 @@ class Post_pagination extends Widget {
             if (is_singular()) $redirect_url = false;
             return $redirect_url;
         }
-		View::load('Templates/Frontend/post_pagination', array(
+		View::load('Templates/Frontend/Widgets/WP/post_pagination', array(
 			'widget' => $this,
 		));
 	}

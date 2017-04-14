@@ -97,6 +97,6 @@ class Gallery extends Widget {
     }
     
 	public function draw() {
-        View::load("Templates/Frontend/gallery", array('widget' => $this));
+        View::load("Templates/Frontend/Widgets/gallery", array('widget' => $this));
 	}
 }

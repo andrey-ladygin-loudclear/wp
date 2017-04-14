@@ -22,7 +22,7 @@ Class Layout extends LayoutRepository {
 			$file = $widget->getBackendTemplate();
 		}
 		
-		View::load("Templates/Backend/{$file}", array(
+		View::load("Templates/Backend/Widgets/{$file}", array(
             'widget' => $widget,
         ));
     }

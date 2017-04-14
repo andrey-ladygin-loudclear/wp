@@ -70,6 +70,6 @@ class Carousel extends Glyph {
 	}
 	
 	public function draw() {
-		View::load("Templates/Frontend/carousel", array('widget' => $this));
+		View::load("Templates/Frontend/Widgets/carousel", array('widget' => $this));
 	}
 }

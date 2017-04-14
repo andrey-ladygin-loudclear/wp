@@ -37,7 +37,7 @@ class Post_time extends Widget {
 		return 'callable';
 	}
 	public function draw() {
-		View::load('Templates/Frontend/post_time', array(
+		View::load('Templates/Frontend/Widgets/WP/post_time', array(
 			'widget' => $this,
 		));
 	}

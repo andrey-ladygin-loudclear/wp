@@ -56,10 +56,14 @@ class GL_Grid_Layout {
 	);
 	
 	/*
+	 * create facade to call other widgets
+	 *
 	 * https://www.competethemes.com/tracks-live-demo/
 	 * https://wordpress.org/themes/flat/
 	 * https://colorlib.com/activello/
 	 *
+	 *
+	 * WHAT IS .wp-pointer-content h3
 	 *
 	добавить тип темплейта в таблицу
 	сделать возможность доабвлять темплейт не для каждой страницы а для группы (посты, страницы, архив)

@@ -16,6 +16,6 @@ class Text extends Widget {
     }
 	
 	public function draw() {
-	    View::load("Templates/Frontend/text", array('widget' => $this));
+	    View::load("Templates/Frontend/Widgets/text", array('widget' => $this));
 	}
 }

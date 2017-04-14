@@ -7,6 +7,6 @@ use GL\Widgets\System\Widget;
 
 class Sidebar extends Widget {
 	public function draw() {
-		View::load('Templates/Frontend/sidebar', array('widget' => $this));
+		View::load('Templates/Frontend/Widgets/WP/sidebar', array('widget' => $this));
 	}
 }

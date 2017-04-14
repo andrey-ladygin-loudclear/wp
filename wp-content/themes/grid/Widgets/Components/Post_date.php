@@ -38,7 +38,7 @@ class Post_date extends Widget {
 	}
 	
 	public function draw() {
-		View::load('Templates/Frontend/post_date', array(
+		View::load('Templates/Frontend/Widgets/WP/post_date', array(
 			'widget' => $this
 		));
 	}

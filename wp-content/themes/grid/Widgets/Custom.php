@@ -8,7 +8,7 @@ use GL\Widgets\System\Glyph;
 class Custom extends Glyph {
 	
     public function draw() {
-		View::load("Templates/Frontend/glyph", array('widget' => $this));
+		View::load("Templates/Frontend/Widgets/glyph", array('widget' => $this));
     }
     
 }

@@ -25,6 +25,6 @@ class Post_author extends Widget {
 	}
 	
 	public function draw() {
-		View::load('Templates/Frontend/post_author', array('widget' => $this));
+		View::load('Templates/Frontend/Widgets/WP/post_author', array('widget' => $this));
 	}
 }

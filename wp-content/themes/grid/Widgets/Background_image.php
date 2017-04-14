@@ -30,7 +30,7 @@ class Background_image extends Glyph {
 	}
 	
     public function draw() {
-		View::load("Templates/Frontend/background_image", array('widget' => $this));
+		View::load("Templates/Frontend/Widgets/background_image", array('widget' => $this));
     }
     
 }

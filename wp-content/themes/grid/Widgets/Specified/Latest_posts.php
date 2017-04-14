@@ -28,6 +28,6 @@ class Latest_posts extends Glyph {
 	 * **/
 	
 	public function draw() {
-		View::load("Templates/Frontend/Specified/latest_posts", array('widget' => $this));
+		View::load("Templates/Frontend/Widgets/Specified/latest_posts", array('widget' => $this));
 	}
 }

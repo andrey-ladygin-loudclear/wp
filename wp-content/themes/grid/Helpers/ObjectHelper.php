@@ -13,10 +13,16 @@ class ObjectHelper {
 		$this->objects = $objects;
 	}
 	
-	public function lists($value, $name) {
+	public function lists($value, $name = NULL) {
 		$result = array();
-		foreach($this->objects as $object) {
-			$result[ $object->$value ] = $object->$name;
+		if($name) {
+			foreach($this->objects as $object) {
+				$result[ $object->$value ] = $object->$name;
+			}
+		} else {
+			foreach($this->objects as $object) {
+				$result[] = $object->$value;
+			}
 		}
 		
 		return $result;

@@ -55,6 +55,6 @@ class Post_thumbnail extends Widget {
 	}
 	
 	public function draw() {
-		View::load('Templates/Frontend/post_thumbnail', array('widget' => $this));
+		View::load('Templates/Frontend/Widgets/WP/post_thumbnail', array('widget' => $this));
 	}
 }

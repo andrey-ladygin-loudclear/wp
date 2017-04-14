@@ -36,7 +36,7 @@ class Post_tags extends Widget {
 	
 	
 	public function draw() {
-		View::load('Templates/Frontend/post_tags', array(
+		View::load('Templates/Frontend/Widgets/WP/post_tags', array(
 			'widget' => $this,
 		));
 	}

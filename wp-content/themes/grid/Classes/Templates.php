@@ -21,37 +21,37 @@ class Templates {
     
 	public function page() {
 	    $this->before();
-		View::load('Templates/Settings/templates', array('post_type' => 'page'));
+		View::load('Templates/Backend/Settings/templates', array('post_type' => 'page'));
 	}
     
 	public function single() {
         $this->before();
-		View::load('Templates/Settings/templates', array('post_type' => 'single'));
+		View::load('Templates/Backend/Settings/templates', array('post_type' => 'single'));
 	}
     
 	public function category() {
         $this->before();
-		View::load('Templates/Settings/templates', array('post_type' => 'category'));
+		View::load('Templates/Backend/Settings/templates', array('post_type' => 'category'));
 	}
     
 	public function tag() {
         $this->before();
-		View::load('Templates/Settings/templates', array('post_type' => 'tag'));
+		View::load('Templates/Backend/Settings/templates', array('post_type' => 'tag'));
 	}
     
 	public function taxonomy() {
         $this->before();
-		View::load('Templates/Settings/templates', array('post_type' => 'taxonomy'));
+		View::load('Templates/Backend/Settings/templates', array('post_type' => 'taxonomy'));
 	}
     
 	public function archive() {
         $this->before();
-		View::load('Templates/Settings/templates', array('post_type' => 'archive'));
+		View::load('Templates/Backend/Settings/templates', array('post_type' => 'archive'));
 	}
     
 	public function footer() {
         $this->before();
-		View::load('Templates/Settings/templates', array('post_type' => 'footer'));
+		View::load('Templates/Backend/Settings/templates', array('post_type' => 'footer'));
 	}
 	
 }

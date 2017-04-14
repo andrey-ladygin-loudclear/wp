@@ -90,7 +90,7 @@ class Wp_query extends Glyph {
 		if (have_posts()) {
 			while (have_posts()) {
 				the_post();
-				View::load("Templates/Frontend/glyph", array('widget' => $this));
+				View::load("Templates/Frontend/Widgets/glyph", array('widget' => $this));
 			}
 		}
 		//https://wp-kama.ru/function/the_post

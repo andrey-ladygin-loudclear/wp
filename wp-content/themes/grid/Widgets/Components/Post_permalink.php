@@ -33,6 +33,6 @@ class Post_permalink extends Widget {
 	}
 	
 	public function draw() {
-		View::load('Templates/Frontend/post_permalink', array('widget' => $this));
+		View::load('Templates/Frontend/Widgets/WP/post_permalink', array('widget' => $this));
 	}
 }
