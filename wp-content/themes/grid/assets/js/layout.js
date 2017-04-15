@@ -38,7 +38,6 @@ jQuery(function($){ //DOM Ready
 });
 
 jQuery(document).click(function(e) {
-	console.log('check import: ' + Layout.importProcess);
 	if(Layout.importProcess) {
 		var target = jQuery(e.target);
 		var targetContent = target.closest('.grid-stack-item-content');
@@ -46,7 +45,7 @@ jQuery(document).click(function(e) {
 
 		if(targetContent.hasClass('disable-current')) return;
 
-		if(targetContent.length && targetContent.hasClass('glyph') && !targetContent.hasClass('disable-current')) {
+		if(targetContent.length && targetContent.hasClass('glyph')) {
 			var name = widgetNode.attr('data-gs-name');
 			var id 	 = widgetNode.attr('data-gs-id');
 			Layout.doImport(name, id);
@@ -95,13 +94,14 @@ Layout = new function() {
 			};
 
 			jQuery.post(ajaxurl, data, function() {
-				//gridster.remove_widget(Layout.widgetToImport.getNode());
+				gridster.remove_widget(Layout.widgetToImport.getNode());
 			});
 		}
+
+		this.disableImportProcess();
     };
 
     this.enableImportProcess = function() {
-		console.log('enable import');
 		this.importProcess = true;
 		jQuery('.gridster').addClass('import-process');
 	};

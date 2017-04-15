@@ -72,7 +72,12 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 	}
 	
 	public function import($current_id, $parent_id = NULL) {
-		
+		return $this->update(array(
+			'parent_id' => $parent_id,
+			'parent_type' => 'glyph',
+		), array(
+			'widget_id' => $current_id
+		));
 	}
 	
 	public function getGrid($post_id, $parent_type = 'page') {

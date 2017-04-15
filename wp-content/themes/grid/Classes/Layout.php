@@ -84,11 +84,7 @@ Class Layout extends LayoutRepository {
 		$destinationWidget = $_POST['destinationWidget'];
 //		$destinationWidget = WidgetFactory::get($destinationWidget['name'], $destinationWidget['id']);
 	
-		$this->import()
-		
-//		$widgetToImport->fill(array(
-//			'parent'
-//		));
+		$this->import($widgetToImport['id'], $destinationWidget['id']);
 		
         wp_die();
     }

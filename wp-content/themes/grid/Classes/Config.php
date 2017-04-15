@@ -47,6 +47,21 @@ Class Config {
 		'grid', // it necessarily for this post type
 	);
 	
+	public static $fonts = array(
+		'sans-serif' => 'Open Sans',
+		'Arial' => 'Arial',
+		'Conv_MontserratAlternates-Black' => 'Montserrat Alternates',
+		'Conv_MontserratAlternates-Bold' => 'Montserrat Alternates Bold',
+		'Conv_MontserratAlternates-Light' => 'Montserrat Alternates Light',
+		'Conv_MontserratAlternates-Medium' => 'Montserrat Alternates Medium',
+		'Conv_Montserrat-Bold' => 'Montserrat Bold',
+		'Conv_Montserrat-Medium' => 'Montserrat Medium',
+		'Conv_Montserrat-Regular' => 'Montserrat Regular',
+		'Conv_Roboto-Bold' => 'Roboto Bold',
+		'Conv_Roboto-Light' => 'Roboto Light',
+		'Conv_Roboto-Regular' => 'Roboto Regular',
+	);
+	
 	public static function get($name) {
 		return WidgetFactory::getObject($name);
 	}

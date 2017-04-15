@@ -13,6 +13,11 @@ class Block extends Glyph {
 			'type' => 'text',
 			'default' => '',
 		),
+		'border' => array(
+			'label' => 'Border',
+			'type' => 'text',
+			'default' => '',
+		),
 	);
 	
     public function draw() {

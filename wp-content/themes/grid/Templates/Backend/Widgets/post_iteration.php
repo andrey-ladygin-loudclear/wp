@@ -3,7 +3,8 @@
  * @var $widget GL\Widgets\Post_iteration
  */
 ?>
-<?php use GL\Classes\View; ?>
+<?php use GL\Classes\Config;
+use GL\Classes\View; ?>
 
 <?php View::load('Templates/Components/flashMessage', array('widget' => $widget)) ?>
 
@@ -16,14 +17,14 @@
 	</div>
 </form>
 
-<?php View::load('Templates/Components/layout/widgets', array('widgets' => GL_Grid_Layout::$widgets)); ?>
+<?php View::load('Templates/Components/layout/widget_components', array('widgets' => Config::$widget_components)); ?>
 
 <?php
 $layout = new \GL\Classes\Layout();
 $widgets = $layout->getGrid($widget->getId(), 'glyph');
 ?>
 
-<?php View::load('Templates/Components/layout/parts', array('widgets' => GL_Grid_Layout::$widget_components)); ?>
+<?php View::load('Templates/Components/layout/post_components', array('widgets' => Config::$post_components)); ?>
 
 <?php View::load('Templates/Components/grid', array('widgets' => $widgets)); ?>
 <?php View::load('Templates/Components/layout/popup'); ?>

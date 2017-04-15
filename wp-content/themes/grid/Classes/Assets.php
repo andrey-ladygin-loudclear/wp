@@ -89,6 +89,10 @@ Class Assets {
 		self::$_js[] = array('name' => 'gl-view-script', 'src' => self::getFileUrl('/assets/js/view.js'));
 	}
     
+    public static function addMCEEditorStyles() {
+		add_editor_style( self::getFileUrl('/assets/css/mce-editor-styles.css') );
+	}
+    
     public static function addDefaults() {
 		self::addBootstrap();
     	self::addJqueryUI();
