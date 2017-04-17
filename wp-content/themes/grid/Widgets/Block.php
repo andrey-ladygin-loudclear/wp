@@ -18,6 +18,16 @@ class Block extends Glyph {
 			'type' => 'text',
 			'default' => '',
 		),
+		'padding' => array(
+			'label' => 'Border',
+			'type' => 'text',
+			'default' => '',
+		),
+		'margin' => array(
+			'label' => 'Border',
+			'type' => 'text',
+			'default' => '',
+		),
 	);
 	
     public function draw() {

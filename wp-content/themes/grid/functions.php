@@ -4,6 +4,7 @@ use GL\Classes\Actions;
 use GL\Classes\Assets;
 use GL\Classes\Config;
 use GL\Classes\Customize;
+use GL\Classes\DB;
 use GL\Classes\Layout;
 use GL\Classes\Settings;
 use GL\Classes\Styles;
@@ -55,62 +56,6 @@ class GL_Grid_Layout {
 		'customize_changeset',
 		'grid', // it necessarily for this post type
 	);
-	
-	/*
-	 * Block widget add padding border etc
-	 * and create breadcrumbs widget
-	 * https://colorlib.com/shapely/about/page-image-alignment/
-	 *
-	 * try to draw on paper user actions scheme
-	 * create facade to call other widgets
-	 *
-	 * https://colorlib.com/shapely/
-	 *
-	 * https://www.competethemes.com/tracks-live-demo/
-	 * https://wordpress.org/themes/flat/
-	 * https://colorlib.com/activello/
-	 *
-	 *
-	 * WHAT IS .wp-pointer-content h3
-	 *
-	добавить тип темплейта в таблицу
-	сделать возможность доабвлять темплейт не для каждой страницы а для группы (посты, страницы, архив)
-	
-	add bredcrumbs - http://www.andersnoren.se/themes/hemingway/
-	
-	https://themeisle.com/demo/?theme=Zerif+Lite&ref=5257
-	 
-	 
-	add templates to settings
-	add padding and margin to carousel
-	 
-	 
-	add images functionality to own View Component
-	alias to each widget
-	LINK or BUTTON widget
-	COMMENT widget
-	PAGINATION widget
-	GOOGLE MAP widget
-	part widget content (first 100 symbols)
-	posts (N, autoload = False) maybe pagination
-	trt to create own widgegt https://codex.wordpress.org/Widgets_API
-	
-	layout JS can add widget to another widget by drag&drop
-	https://github.com/troolee/gridstack.js/blob/master/doc/README.md
-	
-	
-	ORANGE bottom http://demo.webulous.in/flaton/
-	RED bottom http://blog.strikebowling.com.au/ (http://backgrounds.mysitemyway.com/free-wood-tileable-twitter-background/)
-	
-	http://themes.kadencethemes.com/virtue/
-	
-	WP STYLE THEME PAGE what options are there?
-	
-	
-	single-page
-	
-	
-	*/
 	
 	public function __construct() {
 		self::$URL = get_template_directory_uri() . '/';
@@ -165,71 +110,15 @@ class GL_Grid_Layout {
 			add_shortcode('gl-grid-tag', array($this, 'shortcode'));
 		}
         
-        add_theme_support( 'post-thumbnails' );
+        add_theme_support('post-thumbnails');
+		add_action('after_setup_theme', array(new DB(), 'install'));
         
         //add_image_size('posts-thumbnail-size', 230, 230, TRUE);
 		
-		function my_mce_buttons( $buttons ) {
-			$buttons[] = 'superscript';
-			$buttons[] = 'subscript';
-			$buttons[] = 'fontselect';
-
-			return $buttons;
-		}
-		add_filter( 'mce_buttons', 'my_mce_buttons' );
+		add_filter('mce_buttons', array($this->customize, 'mce_buttons'));
+		add_filter('tiny_mce_before_init', array($this->customize, 'mce_fonts'));
 		
 		add_action( 'current_screen', array($this->assets, 'addMCEEditorStyles') );
-		
-		
-//		function plugin_mce_addfont($mce_css) {
-//			if (! empty($mce_css)) $mce_css .= ',';
-//			$mce_css .= '",theme_advanced_fonts:"Custom Font=CustomFont,arial,helvetica,sans-serif';
-//			return $mce_css;
-//		}
-//		add_filter('mce_css', 'plugin_mce_addfont');
-		add_filter( 'tiny_mce_before_init', 'wpex_mce_google_fonts_array' );
-		function wpex_mce_google_fonts_array( $initArray ) {
-			//$initArray['font_formats'] = 'Lato=Lato;Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats';
-			$theme_advanced_fonts = 'Aclonica=Aclonica;';
-			$theme_advanced_fonts .= 'Lato=Lato;';
-			$theme_advanced_fonts .= 'Michroma=Michroma;';
-			$theme_advanced_fonts .= 'Paytone One=Paytone One';
-			
-			$theme_advanced_fonts = '';
-			
-			foreach(Config::$fonts as $font => $name) {
-				$theme_advanced_fonts .= "$name=$font;";
-			}
-			
-			$initArray['font_formats'] = $theme_advanced_fonts;
-			return $initArray;
-		}
-		
-//		function my_format_TinyMCE( $in ) {
-//			$in['remove_linebreaks'] = true;
-//			$in['gecko_spellcheck'] = true;
-//			$in['keep_styles'] = true;
-//			$in['accessibility_focus'] = true;
-//			$in['tabfocus_elements'] = 'major-publishing-actions';
-//			$in['media_strict'] = true;
-//			$in['paste_remove_styles'] = true;
-//			$in['paste_remove_spans'] = true;
-//			$in['paste_strip_class_attributes'] = 'none';
-//			$in['paste_text_use_dialog'] = true;
-//			$in['wpeditimage_disable_captions'] = true;
-//			//$in['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen';
-//			$in['plugins'] = 'tabfocus,paste,media,wordpress,wpeditimage,wpgallery,wplink,wpdialogs';
-//			$in['content_css'] = get_template_directory_uri() . "/editor-style.css";
-//			$in['wpautop'] = true;
-//			$in['apply_source_formatting'] = true;
-//			$in['block_formats'] = "Paragraph=p; Heading 3=h3; Heading 4=h4";
-//			$in['toolbar1'] = 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,wp_fullscreen,wp_adv ';
-//			$in['toolbar2'] = 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help ';
-//			$in['toolbar3'] = '';
-//			$in['toolbar4'] = '';
-//			return $in;
-//		}
-//		add_filter( 'tiny_mce_before_init', 'my_format_TinyMCE' );
     }
 	
 	public function empty_wp_page() {

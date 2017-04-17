@@ -16,6 +16,7 @@ Class Config {
 	public static $widget_components = array(
 		'news' => 'News',
 		'block' => 'Block',
+		'head_block' => 'Head Block',
 		'gallery' => 'gallery',
 		'text' => 'Text',
 		'carousel' => 'Carousel',
@@ -61,6 +62,8 @@ Class Config {
 		'Conv_Roboto-Light' => 'Roboto Light',
 		'Conv_Roboto-Regular' => 'Roboto Regular',
 	);
+	
+	//add fonts from google docs
 	
 	public static function get($name) {
 		return WidgetFactory::getObject($name);

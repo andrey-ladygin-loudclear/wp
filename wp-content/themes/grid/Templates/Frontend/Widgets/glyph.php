@@ -5,11 +5,18 @@
 ?>
 
 <?php
-$style = '';
+$style = "style='";
+
 if(!empty($widget->getOption('background'))) {
 	$color = $widget->getOption('background');
-	$style = "style='background-color: {$color}'";
+	$style .= "background-color: {$color};";
 }
+if(!empty($widget->getOption('border'))) {
+	$border = $widget->getOption('border');
+	$style .= "border: {$border};";
+}
+
+$style .= "'";
 ?>
 
 <div class='<?= $widget->getClass(); ?>' <?= $style; ?>>

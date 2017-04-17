@@ -10,23 +10,24 @@ use GL\Widgets\WP;
 Class WidgetFactory {
 
     public static function getObject($name) {
-		try {
-            $widget = self::getWidget($name);
-        } catch (\Exception $e) {
-        	try {
-				$widget = self::getSystemWidget($name);
-			} catch (\Exception $e) {
-				try {
-					$widget = self::getStaticWidget($name);
-				} catch (\Exception $e) {
-					try {
-						$widget = self::getSpecifiedWidget($name);
-					} catch (\Exception $e) {
-						$widget = self::getWpWidget($name);
-					}
-				}
-			}
-        }
+    	$classes = array(
+			"\\GL\\Widgets\\".ucfirst(strtolower($name)),
+			"\\GL\\Widgets\\System\\".ucfirst(strtolower($name)),
+			"\\GL\\Widgets\\Specified\\".ucfirst(strtolower($name)),
+			"\\GL\\Widgets\\Components\\".ucfirst(strtolower($name)),
+			"\\GL\\Widgets\\Childs\\".ucfirst(strtolower($name)),
+		);
+	
+    	foreach($classes as $class) {
+			try {
+				$widget = new $class;
+				break;
+			} catch (\Exception $e) {}
+		}
+    			
+		if(empty($widget)) {
+			$widget = new WP();
+		}
         
         return $widget;
     }

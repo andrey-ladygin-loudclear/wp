@@ -2,6 +2,9 @@
 
 namespace GL\Classes;
 
+use GL\Repositories\LayoutRepository;
+use GL\Repositories\WidgetNewRepository;
+
 Class DB {
 
     private static $wpdb;
@@ -17,9 +20,9 @@ Class DB {
 	}
     
     public static function getPrefix() {
-		return 'wp_';
-//    	global $wpdb;
-//		return $wpdb->prefix;
+//		return 'wp_';
+    	global $wpdb;
+		return $wpdb->prefix;
 	}
     
     protected static function delete(array $where) {
@@ -60,5 +63,19 @@ Class DB {
 			}
 		}
 		return $queryStr;
+	}
+	
+	public function install() {
+		$sql1 = file_get_contents(\GL_Grid_Layout::$DIR.'/assets/sql/wp_gl_grid.sql');
+		$sql2 = file_get_contents(\GL_Grid_Layout::$DIR.'/assets/sql/wp_gl_widget.sql');
+		
+		$table1 = self::getPrefix().LayoutRepository::getTable();
+		$table2 = self::getPrefix().WidgetNewRepository::getTable();
+		
+		$sql1 = str_replace('{{TABLE}}', $table1, $sql1);
+		$sql2 = str_replace('{{TABLE}}', $table2, $sql2);
+		
+		self::$wpdb->query($sql1);
+		self::$wpdb->query($sql2);
 	}
 }

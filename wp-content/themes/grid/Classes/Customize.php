@@ -172,5 +172,23 @@ Class Customize {
             )));
         }
     }
+    
+    public function mce_buttons($buttons) {
+		$buttons[] = 'superscript';
+		$buttons[] = 'subscript';
+		$buttons[] = 'fontselect';
+	
+		return $buttons;
+	}
+    public function mce_fonts($initArray) {
+		$theme_advanced_fonts = '';
+	
+		foreach(Config::$fonts as $font => $name) {
+			$theme_advanced_fonts .= "$name=$font;";
+		}
+	
+		$initArray['font_formats'] = $theme_advanced_fonts;
+		return $initArray;
+	}
 	
 }
