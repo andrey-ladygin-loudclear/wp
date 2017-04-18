@@ -4,7 +4,7 @@ namespace GL\Classes;
 
 class Templates {
 	
-    public static $templates = array(
+    protected static $templates = array(
         'page' => 'For all pages (page)',
         'single' => 'For single page (single)',
         'category' => 'For category page (category)',
@@ -13,6 +13,28 @@ class Templates {
         'archive' => 'For archive page (archive)',
         'footer' => 'For footer',
     );
+    
+    public static function getTemplates() {
+        $templates = self::$templates;
+        
+        foreach(self::getPostTypes() as $post_type) {
+            $templates[$post_type] = "For {$post_type}";
+        }
+        
+        return $templates;
+    }
+    
+    public static function getPostTypes() {
+        $postTypes = array();
+        
+        foreach(get_post_types('', 'names') as $post_type) {
+            if(empty(self::$templates[$post_type]) && !in_array($post_type, Config::$excluded_post_types)) {
+                $postTypes[] = $post_type;
+            }
+        }
+        
+        return $postTypes;
+    }
     
     public function before() {
         Assets::addDefaults();

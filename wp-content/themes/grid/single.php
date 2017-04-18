@@ -11,14 +11,16 @@ the_post();
 
 <body <?php body_class(); ?>>
 
-<?php View::load('Templates/Frontend/Components/menu3'); ?>
-
-<?php
-$composition = WidgetCompositionFacade::buildStructure(NULL, 'single');
-$composition->draw();
-?>
-
-<?php get_footer(); ?>
+    <div class="main-container <?= get_theme_mod('grid_theme', 'light'); ?>">
+        <?php View::load('Templates/Frontend/Components/menu3'); ?>
+        
+        <?php
+        $composition = WidgetCompositionFacade::buildStructure(NULL, 'single');
+        $composition->draw();
+        ?>
+        
+        <?php get_footer(); ?>
+    </div>
 </body>
 </html>
 

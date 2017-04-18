@@ -242,9 +242,9 @@ class GL_Grid_Layout {
 	}
 	
 	public function add_templates_menu_page() {
-		add_menu_page('Grid Templates', 'Grid Templates', 'administrator', 'grid-templates', array($this->templates, 'page'));
+		add_menu_page('Grid Templates', 'Grid Templates', 'administrator', 'grid-templates', array($this->settings, 'page'));
         
-        foreach(Templates::$templates as $template => $name) {
+        foreach(Templates::getTemplates() as $template => $name) {
             $slug = "grid-layout-template-{$template}";
             add_submenu_page('grid-templates', $name, ucfirst($template), 'administrator', $slug, array($this->templates, $template));
         }

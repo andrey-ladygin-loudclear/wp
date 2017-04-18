@@ -39,7 +39,7 @@ Class Config {
 		'sidebar' => 'Sidebar',
 	);
 	
-	public static $exclude_post_types = array(
+	public static $excluded_post_types = array(
 		'attachment',
 		'revision',
 		'nav_menu_item',

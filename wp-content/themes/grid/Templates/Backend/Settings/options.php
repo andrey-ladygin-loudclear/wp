@@ -1,7 +1,11 @@
+<?php
+use GL\Classes\Templates;
+?>
 <form method="post">
 	
 	<pre>
 		<?php
+        
         print_r($options);
         ?>
 	</pre>
@@ -9,19 +13,12 @@
     <div class="form-group">
         <h4>Add grid layout to post types:</h4>
         
-        <?php foreach(get_post_types('', 'names') as $post_type) { ?>
-            <?php if(in_array($post_type, GL_Grid_Layout::$exclude_post_types)) continue; ?>
+        <?php foreach(Templates::getPostTypes() as $post_type) { ?>
             <label class="checkbox-inline">
-                <input type="checkbox" name="meta_box[<?= $post_type; ?>]" value="1" <?= !empty($options['meta_box'][$post_type]) ? 'checked' : ''; ?>> <?= $post_type; ?>
+                <input type="checkbox" name="templates[<?= $post_type; ?>]" value="1" <?= !empty($options['templates'][$post_type]) ? 'checked' : ''; ?>> <?= $post_type; ?>
             </label>
         <?php } ?>
-        <!--label class="checkbox-inline">
-			<input type="checkbox" name="pages_meta_box" value="1" <?= !empty($options['pages_meta_box']) ? 'checked' : ''; ?>> Pages
-		</label>
-		<label class="checkbox-inline">
-			<input type="checkbox" name="posts_meta_box" value="1" <?= !empty($options['posts_meta_box']) ? 'checked' : ''; ?>> Posts
-		</label-->
-        <span class="help-block">You should also enable <span class="label label-default">the_content</span> method for this post types</span>
+        <!--span class="help-block">You should also enable <span class="label label-default">the_content</span> method for this post types</span-->
     </div>
     
     <div class="form-group">

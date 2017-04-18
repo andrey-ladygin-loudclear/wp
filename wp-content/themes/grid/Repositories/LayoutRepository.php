@@ -61,9 +61,11 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 			$post_id_where = "= $parent_id";
 		}
 		
+        $wp_gl_widget = WidgetNewRepository::getTable();
+		
 		$sql = "SELECT *, widget_name as name
             FROM {$this->getTable()} wgg
-            LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id 
+            LEFT JOIN {$wp_gl_widget} ON {$wp_gl_widget}.id = wgg.widget_id 
             WHERE wgg.parent_id {$post_id_where} AND wgg.parent_type = '{$parent_type}'
             ORDER BY row, col
         ;";
@@ -89,8 +91,10 @@ Class LayoutRepository extends DB implements LayoutRepositoryInterface {
 			$post_id_where = "= $post_id";
 		}
 		
+		$wp_gl_widget = WidgetNewRepository::getTable();
+		
 		$sql = "SELECT *, widget_name as name FROM {$layoutTable} wgg
-			LEFT JOIN wp_gl_widget ON wp_gl_widget.id = wgg.widget_id 
+			LEFT JOIN {$wp_gl_widget} ON {$wp_gl_widget}.id = wgg.widget_id 
 			WHERE parent_id {$post_id_where} AND parent_type = '{$parent_type}';";
         
 		$widgets = array();

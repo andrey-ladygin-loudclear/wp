@@ -69,11 +69,8 @@ Class DB {
 		$sql1 = file_get_contents(\GL_Grid_Layout::$DIR.'/assets/sql/wp_gl_grid.sql');
 		$sql2 = file_get_contents(\GL_Grid_Layout::$DIR.'/assets/sql/wp_gl_widget.sql');
 		
-		$table1 = self::getPrefix().LayoutRepository::getTable();
-		$table2 = self::getPrefix().WidgetNewRepository::getTable();
-		
-		$sql1 = str_replace('{{TABLE}}', $table1, $sql1);
-		$sql2 = str_replace('{{TABLE}}', $table2, $sql2);
+		$sql1 = str_replace('{{TABLE}}', LayoutRepository::getTable(), $sql1);
+		$sql2 = str_replace('{{TABLE}}', WidgetNewRepository::getTable(), $sql2);
 		
 		self::$wpdb->query($sql1);
 		self::$wpdb->query($sql2);
