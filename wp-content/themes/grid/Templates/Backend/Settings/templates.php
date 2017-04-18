@@ -7,6 +7,15 @@
 <?php use GL\Classes\View; ?>
 
 
+
+<button onclick="showPopup()">Show Popup</button>
+<script>
+	function showPopup() {
+		jQuery('.modal.select-widget-modal').modal()
+	}
+</script>
+<?php View::load('Templates/Components/layout/selectWidgetPopup'); ?>
+
 	<input type="hidden" name="action" value="gl_save_widget_action">
 	<input type="hidden" name="widget-name" value="">
 	<input type="hidden" name="widget-id" value="">

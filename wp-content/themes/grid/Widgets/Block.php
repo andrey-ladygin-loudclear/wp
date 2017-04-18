@@ -19,12 +19,12 @@ class Block extends Glyph {
 			'default' => '',
 		),
 		'padding' => array(
-			'label' => 'Border',
+			'label' => 'Padding',
 			'type' => 'text',
 			'default' => '',
 		),
 		'margin' => array(
-			'label' => 'Border',
+			'label' => 'Margin',
 			'type' => 'text',
 			'default' => '',
 		),

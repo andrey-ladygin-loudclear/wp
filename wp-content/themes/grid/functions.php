@@ -202,16 +202,6 @@ class GL_Grid_Layout {
 	public function create_grid_post_type() {
 		$post_type = 'grid';
 		
-		add_action( 'pre_get_posts', function ( $q ) {
-			
-			if( !is_admin() && $q->is_main_query() && $q->is_post_type_archive( 'grid' ) ) {
-				
-				$q->set( 'posts_per_page', 2 );
-				
-			}
-			
-		});
-		
 		register_post_type( $post_type,
 			array(
 				'labels' => array(
@@ -234,7 +224,7 @@ class GL_Grid_Layout {
 	public function add_meta_box() {
 		add_meta_box('grid-meta-box-id', 'Grid Layout', array($this->layout, 'grid'), 'grid', 'normal', 'high');
 		
-		if($post_types = $this->settings->get('meta_box')) {
+		if($post_types = $this->settings->get('templates')) {
 			foreach($post_types as $post_type => $val) {
 				add_meta_box("grid-{$post_type}-meta-box-id", "Grid {$post_type} Layout", array($this->layout, 'grid'), $post_type, 'normal', 'high');
 			}

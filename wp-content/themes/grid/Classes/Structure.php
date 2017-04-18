@@ -21,5 +21,11 @@ Class Structure {
         
         return $widgets;
     }
+    
+    public static function check($parent_id, $parent_type = 'page') {
+        $layout = new LayoutRepository();
+        $widgets = $layout->getHierarchy($parent_id, $parent_type);
+        return !empty($widgets);
+    }
 
 }

@@ -254,13 +254,13 @@ var Widget = function(name, id) {
             this.getNode().find('.content').html(content);
         };
 		this.edit = function() {
-            jQuery('.modal .modal-title').html('Edit ' + name);
-            jQuery('.modal .modal-body').html('<iframe src="'+HtmlBuilder.getEditUrl()+'" width="100%" height="100%"></iframe>');
-            jQuery('.modal').modal('show').on('hide.bs.modal', function (e) {
+            jQuery('.config-modal .modal-title').html('Edit ' + name);
+            jQuery('.config-modal .modal-body').html('<iframe src="'+HtmlBuilder.getEditUrl()+'" width="100%" height="100%"></iframe>');
+            jQuery('.config-modal').modal('show').on('hide.bs.modal', function (e) {
 				jQuery.post(ajaxurl, {action: 'gl_ajax_get_widget_preview', name:name, id:id}, function(response) {
 					_this.updateWidgetTitle(response.title);
 					_this.updateWidgetContent(response.preview);
-					jQuery('.modal').unbind('hide');
+					jQuery('.config-modal').unbind('hide');
 				}, 'json');
 			})
         };
