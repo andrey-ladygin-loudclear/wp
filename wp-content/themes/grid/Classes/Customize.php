@@ -89,58 +89,73 @@ Class Customize {
 	}
 	
 	private function addTheme($wp_customize) {
-		$wp_customize->add_section('grid_theme', array(
-			'title'    => 'Theme',
-			'priority' => 30
+		$wp_customize->add_panel('grid_theme', array(
+			'priority'       => 6,
+			'capability'     => 'edit_theme_options',
+			'title'          => 'Theme',
+			'description'    => 'Theme settings',
 		));
 		
-		$wp_customize->add_setting('grid_theme', array('default' => 'light', 'transport' => 'refresh'));
-		$wp_customize->add_setting('grid_theme_color', array('default' => '#000000', 'transport' => 'refresh'));
-		$wp_customize->add_setting('grid_theme_fonts', array('default' => 'Open Sans', 'transport' => 'refresh'));
-		
-		$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'grid_theme',
-			array(
-				'label' => 'Theme Style',
-				'section' => 'grid_theme',
-				'settings' => 'grid_theme',
-				'type' => 'radio',
-				'choices' => array(
-					'light'  => 'Light',
-                    'wood'   => 'Wood',
-                    'dark'   => 'Dark',
-				)
-			)
+		$this->addThemeStyles($wp_customize);
+		$this->addThemeFonts($wp_customize);
+		//$this->addThemeColors($wp_customize);
+	}
+	
+	private function addThemeStyles($wp_customize) {
+		$wp_customize->add_section('grid_theme_styles', array(
+			'title'    => 'Styles',
+			'priority' => 1,
+			'panel' => 'grid_theme'
 		));
-		
-		$wp_customize->add_control(new \WP_Customize_Color_Control($wp_customize, 'grid_theme_color', array(
-			'label'    => 'Header Color',
-			'section'  => 'grid_theme',
-			'settings' => 'grid_theme_color',
+		$wp_customize->add_setting('grid_theme_styles', array(
+			'default' => 'light',
+			'transport' => 'refresh'
+		));
+		$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'grid_theme_styles', array(
+			'label' => 'Theme Style',
+			'section' => 'grid_theme_styles',
+			'settings' => 'grid_theme_styles',
+			'type' => 'radio',
+			'choices' => self::getThemes()
 		)));
-		
+	}
+	
+	private function addThemeFonts($wp_customize) {
+		$wp_customize->add_section('grid_theme_fonts', array(
+			'title' => 'Fonts',
+			'priority' => 2,
+			'panel' => 'grid_theme'
+		));
+		$wp_customize->add_setting('grid_theme_fonts', array(
+			'default' => 'Open Sans',
+			'transport' => 'refresh'
+		));
 		$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'grid_theme_fonts',
 			array(
 				'label' => 'Fonts',
-				'section' => 'grid_theme',
+				'section' => 'grid_theme_fonts',
 				'settings' => 'grid_theme_fonts',
 				'type' => 'radio',
-				'choices' => array(
-					'sans-serif' => 'Open Sans',
-					'Arial' => 'Arial',
-					'Conv_MontserratAlternates-Black' => 'Montserrat Alternates',
-					'Conv_MontserratAlternates-Bold' => 'Montserrat Alternates Bold',
-					'Conv_MontserratAlternates-Light' => 'Montserrat Alternates Light',
-					'Conv_MontserratAlternates-Medium' => 'Montserrat Alternates Medium',
-					'Conv_Montserrat-Bold' => 'Montserrat Bold',
-					'Conv_Montserrat-Medium' => 'Montserrat Medium',
-					'Conv_Montserrat-Regular' => 'Montserrat Regular',
-					'Conv_Roboto-Bold' => 'Roboto Regular',
-					'Conv_Roboto-Light' => 'Roboto Light',
-					'Conv_Roboto-Regular' => 'Roboto Regular',
-//					'Conv_Roboto-Regular' => 'Helvetica Neue',
-				)
+				'choices' => Config::$fonts
 			)
 		));
+	}
+	
+	private function addThemeColors($wp_customize) {
+		$wp_customize->add_section('grid_theme_colors', array(
+			'title' => 'Colors',
+			'priority' => 3,
+			'panel' => 'grid_theme'
+		));
+		$wp_customize->add_setting('grid_theme_colors', array(
+			'default' => $this->getThemeOption('grid_theme_colors'),
+			'transport' => 'refresh'
+		));
+		$wp_customize->add_control(new \WP_Customize_Color_Control($wp_customize, 'grid_theme_colors', array(
+			'label'    => 'Header Color',
+			'section'  => 'grid_theme_colors',
+			'settings' => 'grid_theme_colors',
+		)));
 	}
 	
 	private function addWidgets($wp_customize)
@@ -180,6 +195,7 @@ Class Customize {
 	
 		return $buttons;
 	}
+	
     public function mce_fonts($initArray) {
 		$theme_advanced_fonts = '';
 	
@@ -191,4 +207,24 @@ Class Customize {
 		return $initArray;
 	}
 	
+	private static function getThemes() {
+		$themes = array();
+		
+		foreach(Config::$themes as $name => $theme) {
+			$themes[$name] = ucfirst($name);
+		}
+		
+		return $themes;
+	}
+	
+	private static function getThemeOption($name) {
+		$option = get_theme_mod($name);
+		
+		if($option) {
+			return $option;
+		}
+		
+		$theme = get_theme_mod('grid_theme', 'light');
+		return Config::$themes[$theme][$name];
+	}
 }

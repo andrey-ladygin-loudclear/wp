@@ -63,9 +63,32 @@ Class Config {
 		'Conv_Roboto-Regular' => 'Roboto Regular',
 	);
 	
+	public static $themes = array(
+		'light' => array(
+			'grid_text_color' => '#000000'
+		),
+		'wood' => array(
+			'grid_text_color' => '#d3d3d3'
+		),
+		'dark' => array(
+			'grid_text_color' => '#d3d3d3'
+		),
+	);
+	
 	//add fonts from google docs
 	
 	public static function get($name) {
 		return WidgetFactory::getObject($name);
+	}
+	
+	public static function getWPWidgets() {
+		global $wp_widget_factory;
+		$widgets = array();
+		
+		foreach($wp_widget_factory->widgets as $name => $widget) {
+			$widgets[$name] = $widget->name;
+		}
+		
+		return $widgets;
 	}
 }

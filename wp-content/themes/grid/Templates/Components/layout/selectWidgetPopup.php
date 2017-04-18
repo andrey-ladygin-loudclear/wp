@@ -9,7 +9,7 @@ use GL\Classes\View;
                 <h4 class="modal-title">Select Widget</h4>
             </div>
             <div class="modal-body">
-                <?php View::load('Templates/Components/layout/widgets-grid'); ?>
+                <?php View::load('Templates/Components/layout/widgets-tabs'); ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

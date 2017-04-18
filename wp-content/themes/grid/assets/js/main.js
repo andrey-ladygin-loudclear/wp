@@ -15,6 +15,16 @@ if(typeof tinymce != 'undefined' && tinymce) {
 
 jQuery(document).ready(function($){
 
+	$('.show-add-widget-modal').click(function() {
+		jQuery('.modal.select-widget-modal').modal();
+	});
+
+	$('.select-widget-tab-content .widget').click(function() {
+		var name = $(this).data('name');
+		Layout.add(name);
+		jQuery('.modal.select-widget-modal').modal('hide');
+	});
+
 	var mediaUploader;
 
 	$(document).on('click', '.upload-one-image-btn', function(e) {
