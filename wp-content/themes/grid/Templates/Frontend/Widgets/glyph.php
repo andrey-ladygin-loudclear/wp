@@ -15,6 +15,14 @@ if(!empty($widget->getOption('border'))) {
 	$border = $widget->getOption('border');
 	$style .= "border: {$border};";
 }
+if(!empty($widget->getOption('padding'))) {
+	$border = $widget->getOption('padding');
+	$style .= "padding: {$border};";
+}
+if(!empty($widget->getOption('margin'))) {
+	$border = $widget->getOption('margin');
+	$style .= "margin: {$border};";
+}
 
 $style .= "'";
 ?>

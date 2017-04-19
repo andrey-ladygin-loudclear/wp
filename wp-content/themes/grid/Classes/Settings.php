@@ -39,13 +39,23 @@ Class Settings
 		));
 	}
 	
-	private function save($options)
-	{
+	private function save($options) {
 		update_option(Settings::KEY, $options);
 	}
 	
-	private function getOptions()
-	{
+	private function getOptions() {
 		return get_option(Settings::KEY);
+	}
+	
+	public static function getMetaBoxPostTypes() {
+		$postTypes = array();
+		
+		foreach(get_post_types('', 'names') as $post_type) {
+			if(!in_array($post_type, Config::$excluded_post_types)) {
+				$postTypes[] = $post_type;
+			}
+		}
+		
+		return $postTypes;
 	}
 }

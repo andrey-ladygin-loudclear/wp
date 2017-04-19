@@ -60,9 +60,11 @@ Class Layout extends LayoutRepository {
     public function add_widget() {
         $name = $_POST['name'];
         $id = WidgetFactory::add($name);
+        $widget = WidgetFactory::getObject($name);
 
         echo json_encode(array(
             'name' => $name,
+            'glyph' => $widget instanceof Glyph,
             'id' => $id
         ));
         wp_die();

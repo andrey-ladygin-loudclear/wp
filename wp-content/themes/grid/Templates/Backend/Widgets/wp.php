@@ -15,6 +15,15 @@
 	$settings = $dummy->widget_options;
 	$options = get_option($dummy->option_name);
 	
+//	echo '<pre>';
+//
+//	print_r($options);
+//	print_r($settings);
+//	print_r($dummy);
+//	die;
+//
+//	echo '</pre>';
+	
 	if(!empty($options[2])) {
 		$options = $options[2];
 	}

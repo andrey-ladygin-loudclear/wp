@@ -49,7 +49,7 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
 	}
 	
 	public function getTitle() {
-		return !empty($this->alias) ? $this->alias : $this->getName();
+		return !empty($this->alias) ? $this->alias : str_replace('_', ' ', $this->getName());
 	}
 	
 	public function fill(array $attributes)

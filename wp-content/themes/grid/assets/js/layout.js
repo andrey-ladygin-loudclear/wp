@@ -60,7 +60,8 @@ Layout = new function() {
 	this.widgetToImport = null;
 
     this.add = function(name, opt) {
-        Widget(name).setOptions(opt).create(function(createdWidget) {
+        Widget(name).setOptions(opt).create(function(createdWidget, isGlyph) {
+			createdWidget.setChildOfGlyph(isGlyph);
             gridster.addWidget(createdWidget.baseHtml(), null, null, 1, 1, true);
         });
     };
@@ -186,7 +187,7 @@ var Widget = function(name, id) {
 			html += '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>';
 		};
 		this.addImportAndExportButton = function() {
-			html += '<span class="glyphicon glyphicon-import" aria-hidden="true"></span>';
+			html += '<span class="glyphicon glyphicon-import" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Move to another widget"></span>';
 			//html += '<span class="glyphicon glyphicon-export" aria-hidden="true"></span>';
 		};
 		this.addTrashButton = function() {
@@ -226,18 +227,18 @@ var Widget = function(name, id) {
         };
 		this.create = function(callback) {
 			jQuery.post(ajaxurl, {action: 'gl_ajax_add_widget', name:name, options:options}, function(response) {
-				callback(Widget(name, response.id));
+				callback(Widget(name, response.id), response.glyph);
 			}, 'json');
 		};
-		this.baseHtml = function() {
+		this.baseHtml = function(isGlyph) {
 			HtmlBuilder.addTitle();
 			HtmlBuilder.addContent();
 			HtmlBuilder.addImportAndExportButton();
 
 			//if(id) {
 			    //if(name == 'glyph' && parent.frames.length > 1) {
-			console.log(parent.frames.length);
-			    if(parent.frames.length) {
+			    //if(parent.frames.length) {
+			    if(inIframe()) {
 					HtmlBuilder.addGlyphButtons();
                 } else {
 					HtmlBuilder.addConfigButton();
@@ -360,6 +361,14 @@ jQuery(document).on('click', '.glyphicon', function(e) {
 		return Layout.import(widgetNode, name, id);
     }
 });
+
+function inIframe () {
+	try {
+		return window.self !== window.top;
+	} catch (e) {
+		return true;
+	}
+}
 
 String.prototype.ucFirst = function() {
 	var str = this;

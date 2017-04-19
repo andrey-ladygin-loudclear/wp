@@ -18,7 +18,7 @@ use GL\Facades\WidgetCompositionFacade;
 <body <?php body_class(); ?>>
 	<div class="main-container <?= get_theme_mod('grid_theme', 'light'); ?>">
 		<?php View::load('Templates/Frontend/Components/menu3'); ?>
-				
+		
 		<?php
 		$composition = WidgetCompositionFacade::buildStructure(get_the_ID(), 'page');
 		$composition->draw();

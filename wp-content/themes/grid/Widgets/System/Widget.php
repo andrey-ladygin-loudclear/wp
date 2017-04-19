@@ -70,7 +70,7 @@ class Widget extends Grid_Widget implements GlyphInterface, GridInterface {
 	}
 	
 	public function getClass() {
-		$class = 'widget';
+		$class = 'widget ' . $this->getName();
         
         if(!$this->isFullWidth()) {
             $class .= ' col-md-' . $this->getWidth();

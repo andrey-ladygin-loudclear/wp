@@ -17,7 +17,7 @@
 	
 	//https://developer.wordpress.org/reference/functions/the_content/
 	//the_content('Read more ...');
-	the_content();
+	the_content(false);
 	
 	if(!empty($widget->options['after'])) {
 		echo $widget->options['after'];

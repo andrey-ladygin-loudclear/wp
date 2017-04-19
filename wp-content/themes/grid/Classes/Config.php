@@ -65,14 +65,27 @@ Class Config {
 	
 	public static $themes = array(
 		'light' => array(
-			'grid_text_color' => '#000000'
+			'grid_text_color' => '#000000',
 		),
 		'wood' => array(
-			'grid_text_color' => '#d3d3d3'
+			'grid_text_color' => '#d3d3d3',
 		),
 		'dark' => array(
-			'grid_text_color' => '#d3d3d3'
+			'grid_text_color' => '#d3d3d3',
+			'elements' => array(
+				'h1' => array(
+					'size' => '26px'
+				)
+			),
 		),
+	);
+	
+	public static $elements = array(
+		'h1' => 'Title',
+		'h2' => 'Widget Title',
+		'h3' => 'Head',
+		'a' => 'Link',
+		'p' => 'Text'
 	);
 	
 	//add fonts from google docs

@@ -109,8 +109,14 @@ class GL_Grid_Layout {
 		if($this->settings->get('use_shortcode')) {
 			add_shortcode('gl-grid-tag', array($this, 'shortcode'));
 		}
-        
-        add_theme_support('post-thumbnails');
+		
+		function register_menus() {
+			register_nav_menu('header-menu', __( 'Header Menu' ));
+			register_nav_menu('footer-menu', __( 'Footer Menu' ));
+		}
+		
+		add_action('init', 'register_menus');
+		add_theme_support('post-thumbnails');
 		add_action('after_setup_theme', array(new DB(), 'install'));
         
         //add_image_size('posts-thumbnail-size', 230, 230, TRUE);
@@ -224,10 +230,14 @@ class GL_Grid_Layout {
 	public function add_meta_box() {
 		add_meta_box('grid-meta-box-id', 'Grid Layout', array($this->layout, 'grid'), 'grid', 'normal', 'high');
 		
-		if($post_types = $this->settings->get('templates')) {
-			foreach($post_types as $post_type => $val) {
-				add_meta_box("grid-{$post_type}-meta-box-id", "Grid {$post_type} Layout", array($this->layout, 'grid'), $post_type, 'normal', 'high');
-			}
+//		if($post_types = $this->settings->get('templates')) {
+//			foreach($post_types as $post_type => $val) {
+//				add_meta_box("grid-{$post_type}-meta-box-id", "Grid {$post_type} Layout", array($this->layout, 'grid'), $post_type, 'normal', 'high');
+//			}
+//		}
+		
+		foreach(Settings::getMetaBoxPostTypes() as $postType) {
+			add_meta_box("grid-{$postType}-meta-box-id", "Grid {$postType} Layout", array($this->layout, 'grid'), $postType, 'normal', 'high');
 		}
 	}
 	

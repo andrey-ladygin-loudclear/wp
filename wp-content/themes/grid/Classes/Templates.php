@@ -36,44 +36,10 @@ class Templates {
         return $postTypes;
     }
     
-    public function before() {
-        Assets::addDefaults();
-        Assets::enqueue();
-    }
-    
-	public function page() {
-	    $this->before();
-		View::load('Templates/Backend/Settings/templates', array('post_type' => 'page'));
+    public function __call($name, $arguments)
+	{
+		Assets::addDefaults();
+		Assets::enqueue();
+		View::load('Templates/Backend/Settings/templates', array('post_type' => $name));
 	}
-    
-	public function single() {
-        $this->before();
-		View::load('Templates/Backend/Settings/templates', array('post_type' => 'single'));
-	}
-    
-	public function category() {
-        $this->before();
-		View::load('Templates/Backend/Settings/templates', array('post_type' => 'category'));
-	}
-    
-	public function tag() {
-        $this->before();
-		View::load('Templates/Backend/Settings/templates', array('post_type' => 'tag'));
-	}
-    
-	public function taxonomy() {
-        $this->before();
-		View::load('Templates/Backend/Settings/templates', array('post_type' => 'taxonomy'));
-	}
-    
-	public function archive() {
-        $this->before();
-		View::load('Templates/Backend/Settings/templates', array('post_type' => 'archive'));
-	}
-    
-	public function footer() {
-        $this->before();
-		View::load('Templates/Backend/Settings/templates', array('post_type' => 'footer'));
-	}
-	
 }
