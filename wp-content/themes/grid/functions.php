@@ -56,6 +56,11 @@ class GL_Grid_Layout {
 		'customize_changeset',
 		'grid', // it necessarily for this post type
 	);
+    
+    
+    /*
+    ADD DO SHORTCODE GALLERRY !!!!!!!!!!!!!!!!!!!!
+    */
 	
 	public function __construct() {
 		self::$URL = get_template_directory_uri() . '/';
