@@ -60,6 +60,7 @@ class GL_Grid_Layout {
     
     /*
     ADD DO SHORTCODE GALLERRY !!!!!!!!!!!!!!!!!!!!
+    ADD DO YOUTUBE from SZ !!!!!!!!!!!!!!!!!!!!
     */
 	
 	public function __construct() {
