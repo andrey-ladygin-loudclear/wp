@@ -38,4 +38,8 @@ jQuery(document).ready(function($) {
 	// };
 	//
 	// slider($('.widget.gallery'));
+
+    $('#search-icon').click(function() {
+    	$(this).parent().find('form.searchform').toggleClass('show');
+	});
 });

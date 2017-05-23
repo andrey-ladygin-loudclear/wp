@@ -1,17 +1,39 @@
-<nav role="navigation" class="site-navigation main-navigation primary use-sticky-menu mobile-navigation">
-	
-	<div class="full-container">
-		<div id="search-icon">
-			<div id="search-icon-icon"><div class="vantage-icon-search"></div></div>
-			
-			<form method="get" class="searchform" action="http://demo.siteorigin.com/vantage/" role="search" style="width: 1080px;">
-				<input type="text" class="field" name="s" value="" placeholder="Search">
-			</form>
-		</div>
-		
-		<div id="so-mobilenav-standard-1" data-id="1" class="so-mobilenav-standard"></div><div class="menu-menu-1-container"><ul id="menu-menu-1" class="menu"><li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-26 current_page_item menu-item-30"><a href="http://demo.siteorigin.com/vantage/">Home</a></li>
-				<li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31"><a href="http://demo.siteorigin.com/vantage/blog/">Blog</a></li>
-				<li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33"><a href="http://demo.siteorigin.com/vantage/page-builder/">Page Builder</a></li>
-				<li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34"><a href="http://demo.siteorigin.com/vantage/plugin-intergration/">Plugin Integration</a></li>
-			</ul></div><div id="so-mobilenav-mobile-1" data-id="1" class="so-mobilenav-mobile"></div><div class="menu-mobilenav-container"><ul id="mobile-nav-item-wrap-1" class="menu"><li><a href="#" class="mobilenav-main-link" data-id="1"><span class="mobile-nav-icon"></span>Menu</a></li></ul></div>			</div>
-</nav>
+
+
+<header id="header" class="header">
+    <div class="header-wrapper">
+        <div class="container">
+            <div id="logo" class="logo"><a class="site-logo" href="http://demos.cpothemes.com/brilliance"><img src="http://brilliance-3a0d.kxcdn.com/wp-content/themes/brilliance_pro/images/logo.png" alt="Brilliance" width="170" height="0"></a><h1 class="title site-title  hidden"><a href="http://demos.cpothemes.com/brilliance">Brilliance</a></h1></div><div id="menu-mobile-open" class=" menu-mobile-open menu-mobile-toggle"></div><ul id="menu-main" class="menu-main"><li id="menu-item-1930" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_children has-children menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/"><span class="menu-link"><span class="menu-title">Features</span><span class="menu-description">Stylized pages</span></span></a>
+                    <ul class="sub-menu">
+                        <li id="menu-item-1936" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/custom-shortcodes/"><span class="menu-link"><span class="menu-title">Custom Shortcodes</span><span class="menu-description">Add your own description.</span></span></a></li>
+                        <li id="menu-item-1939" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/customizable-typography/"><span class="menu-link"><span class="menu-title">Customizable Typography</span><span class="menu-description">Over 100 different fonts.</span></span></a></li>
+                        <li id="menu-item-1937" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/demo-content/"><span class="menu-link"><span class="menu-title">Included Demo Content</span><span class="menu-description">Recreate this demo site.</span></span></a></li>
+                        <li id="menu-item-1933" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/multi-language-integration/"><span class="menu-link"><span class="menu-title">Multilingual Ready</span><span class="menu-description">Integrates With WPML.</span></span></a></li>
+                        <li id="menu-item-2082" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/woocommerce-support/"><span class="menu-link"><span class="menu-title">WooCommerce Support</span><span class="menu-description">Integrates with WooCommerce</span></span></a></li>
+                        <li id="menu-item-1940" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/powerful-theme-options/"><span class="menu-link"><span class="menu-title">Powerful Theme Options</span><span class="menu-description">Highly versatile settings.</span></span></a></li>
+                        <li id="menu-item-1935" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/premium-support/"><span class="menu-link"><span class="menu-title">Premium Support</span><span class="menu-description">Extensive help &amp; docs.</span></span></a></li>
+                        <li id="menu-item-1938" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/responsive-design/"><span class="menu-link"><span class="menu-title">Responsive Design</span><span class="menu-description">Adapts to any screen size.</span></span></a></li>
+                        <li id="menu-item-1934" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/features/unlimited-color-palette/"><span class="menu-link"><span class="menu-title">Unlimited Color Palette</span><span class="menu-description">Choose your preferred colors.</span></span></a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-1920" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_children has-children menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/"><span class="menu-link"><span class="menu-title">Pages</span><span class="menu-description">Layouts</span></span></a>
+                    <ul class="sub-menu">
+                        <li id="menu-item-1932" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/wide-page/"><span class="menu-link"><span class="menu-title">Wide Page</span></span></a></li>
+                        <li id="menu-item-2004" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/left-sidebar/"><span class="menu-link"><span class="menu-title">Left Sidebar</span></span></a></li>
+                        <li id="menu-item-1987" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/two-sidebars/"><span class="menu-link"><span class="menu-title">Double Sidebar</span></span></a></li>
+                        <li id="menu-item-1988" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/minimal-page/"><span class="menu-link"><span class="menu-title">Minimal Page</span></span></a></li>
+                        <li id="menu-item-1931" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/blank-page/"><span class="menu-link"><span class="menu-title">Blank Page</span></span></a></li>
+                        <li id="menu-item-2005" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/page-with-comments/"><span class="menu-link"><span class="menu-title">Page With Comments</span></span></a></li>
+                        <li id="menu-item-1929" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/submenu-pages/"><span class="menu-link"><span class="menu-title">Submenu Navigation</span></span></a></li>
+                        <li id="menu-item-1921" class="menu-item menu-item-type-post_type menu-item-object-page menu-normal"><a href="http://demos.cpothemes.com/brilliance/page-templates/sitemap/"><span class="menu-link"><span class="menu-title">Sitemap</span></span></a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-1928" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/shortcodes/"><span class="menu-link"><span class="menu-title">Shortcodes</span><span class="menu-description">Content Design</span></span></a></li>
+                <li id="menu-item-1927" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/portfolio/"><span class="menu-link"><span class="menu-title">Portfolio</span><span class="menu-description">Our work</span></span></a></li>
+                <li id="menu-item-2103" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/services/"><span class="menu-link"><span class="menu-title">Services</span><span class="menu-description">We Can Help</span></span></a></li>
+                <li id="menu-item-1926" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-normal"><a href="http://demos.cpothemes.com/brilliance/blog/"><span class="menu-link"><span class="menu-title">Blog</span><span class="menu-description">News</span></span></a></li>
+                <li id="menu-item-1993" class="menu-item menu-item-type-post_type menu-item-object-page menu-has-description menu-highlight"><a href="http://demos.cpothemes.com/brilliance/contact/"><span class="menu-link"><span class="menu-title">Contact Us</span><span class="menu-description">Get In Touch</span></span></a></li>
+            </ul>						<div class="clear"></div>
+        </div>
+    </div>
+</header>

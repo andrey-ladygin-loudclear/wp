@@ -2,8 +2,8 @@
 
 namespace GL\Classes;
 
-use GL\Compositor\GapCompositor;
 use GL\Compositor\RowGapCompositor;
+use GL\Widgets\Specified\Paralax_posts;
 use GL\Widgets\System\Glyph;
 
 class Composition extends Glyph {
@@ -45,6 +45,7 @@ class Composition extends Glyph {
 	}
 	
 	public function draw() {
+	    $this->insert(new Paralax_posts());
 		$this->childrens = $this->_compositor->compose($this->childrens);
 //		echo '<pre>';
 //		print_r($this->getCurrentStructure());

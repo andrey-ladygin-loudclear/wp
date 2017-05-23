@@ -14,20 +14,15 @@
 	$dummy = new $class();
 	$settings = $dummy->widget_options;
 	$options = get_option($dummy->option_name);
-	
-//	echo '<pre>';
-//
-//	print_r($options);
-//	print_r($settings);
-//	print_r($dummy);
-//	die;
-//
-//	echo '</pre>';
-	
-	if(!empty($options[2])) {
-		$options = $options[2];
-	}
-	
+
+    if(!empty($options[2])) {
+        $options = $options[2];
+    }
+
+	if($class == 'WP_Nav_Menu_Widget') {
+        $options['nav_menu'] = !empty($widget->options['nav_menu']) ? $widget->options['nav_menu'] : 'footer-menu';
+    }
+
 	if(!empty($options)) {
 		foreach($options as $name => $value) { ?>
 			<div class="form-group">
@@ -36,13 +31,6 @@
 			</div>
 		<?php } ?>
 	<?php } ?>
-	
-	<?php /* foreach($dummy->widget_options as $name => $value) { ?>
-		<div class="form-group">
-			<label for="<?= $name; ?>"><?= ucfirst(str_replace('_', ' ', $name)); ?></label>
-			<input type="text" class="form-control" name="instance[<?= $name; ?>]" id="<?= $name; ?>" value='<?= !empty($widget->instance[$name]) ? $widget->instance[$name] : $value; ?>'>
-		</div>
-	<?php } */ ?>
 	
 	<div class="form-group">
 		<label for="before_widget">Before Widget</label>
