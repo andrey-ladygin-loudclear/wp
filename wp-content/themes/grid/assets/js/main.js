@@ -78,6 +78,36 @@ jQuery(document).ready(function($){
 		mediaUploader.open();
 	});
 
+
+	$(document).on('click', '.upload-schema-image-btn', function(e) {
+		var $imagesLayout = $(this).parent();
+		var fieldname = $imagesLayout.data('fieldname') || 'data';
+		var multiple = $imagesLayout.data('multiple') || 0;
+
+		e.preventDefault();
+		// If the uploader object has already been created, reopen the dialog
+		if (mediaUploader) {
+			mediaUploader.open();
+			return;
+		}
+		// Extend the wp.media object
+		mediaUploader = wp.media.frames.file_frame = wp.media({
+			title: 'Choose Image',
+			button: {
+				text: 'Choose Image'
+			}, multiple: false });
+
+		// When a file is selected, grab the URL and set it as the text field's value
+		mediaUploader.on('select', function() {
+			var attachment = mediaUploader.state().get('selection').first().toJSON();
+            $imagesLayout.html('');
+            $imagesLayout.append('<img src="' + attachment.url + '" class="img-thumbnail">');
+            $imagesLayout.append('<input type="hidden" name="' + fieldname + '" value="' + attachment.url + '">');
+		});
+		// Open the uploader dialog
+		mediaUploader.open();
+	});
+
 	$(document).on('click', '.glyphicon-remove', function() {
 		$(this).parent().remove();
 	});

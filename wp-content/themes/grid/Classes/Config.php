@@ -8,20 +8,18 @@ Class Config {
 	
 	public static $widgets = array(
 		'latest_posts' => 'Latest posts',
+        'wp_query' => 'Posts',
 		'blackquote' => 'Blackquote',
 		'comments' => 'Comments',
 		'standart_post_content' => 'Standart Post Content',
+        'text' => 'Text',
 	);
 	
 	public static $widget_components = array(
-		'news' => 'News',
 		'block' => 'Block',
-		'head_block' => 'Head Block',
 		'gallery' => 'gallery',
-		'text' => 'Text',
 		'carousel' => 'Carousel',
 		'background_image' => 'Background Image',
-		'wp_query' => 'WP Query',
 		'paralax' => 'Paralax',
 	);
 	
@@ -34,7 +32,7 @@ Class Config {
 		'post_thumbnail' => 'Post Thumbnail',
 		'post_time' => 'Post Time',
 		'post_title' => 'Post Title',
-		'Post_pagination' => 'Post Pagination',
+		'post_pagination' => 'Post Pagination',
 		'post_iteration' => 'Post Iteration',
 		'sidebar' => 'Sidebar',
 	);

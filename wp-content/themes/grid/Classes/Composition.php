@@ -43,13 +43,13 @@ class Composition extends Glyph {
 	public function isEmpty() {
 		return empty($this->getChildren());
 	}
+
+	public function compose() {
+        return $this->_compositor->compose($this->childrens);
+    }
 	
 	public function draw() {
-	    $this->insert(new Paralax_posts());
-		$this->childrens = $this->_compositor->compose($this->childrens);
-//		echo '<pre>';
-//		print_r($this->getCurrentStructure());
-//		die;
+		$this->childrens = $this->compose();
 		Assets::add('assets/js/scripts.js');
 		Assets::add('https://cdn.colorlib.com/illdy/wp-content/themes/illdy/layout/css/font-awesome.min.css?ver=4.5.0');
 		Assets::add('assets/css/front.css');

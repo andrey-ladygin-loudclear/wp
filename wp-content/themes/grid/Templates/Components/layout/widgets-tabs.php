@@ -6,7 +6,7 @@ use GL\Classes\View;
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#widgets1" aria-controls="widgets1" role="tab" data-toggle="tab">Widgets</a></li>
-    <li role="presentation"><a href="#widgets2" aria-controls="widgets2" role="tab" data-toggle="tab">Components</a></li>
+    <li role="presentation"><a href="#widgets2" aria-controls="widgets2" role="tab" data-toggle="tab">Containers</a></li>
     <li role="presentation"><a href="#widgets3" aria-controls="widgets3" role="tab" data-toggle="tab">Post</a></li>
     <li role="presentation"><a href="#widgets4" aria-controls="widgets4" role="tab" data-toggle="tab">WP Widgets</a></li>
 </ul>

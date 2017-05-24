@@ -9,5 +9,5 @@
 	<?php if(GL_Grid_Layout::DEBUG) { ?>
 		<span class="label label-default"><?= $widget->getName(); ?></span>
 	<?php } ?>
-	<?php $func(); ?>
+	<?php call_user_func($func); ?>
 </div>

@@ -30,6 +30,6 @@ class BasicTemplate extends Widget {
     }
 
     public function draw() {
-        View::load($this->view, $this->args);
+        View::load($this->view, array('widget' => $this, 'args' => $this->args));
     }
 }

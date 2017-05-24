@@ -99,6 +99,16 @@ class Grid_Widget extends WidgetNewRepository implements JsonSerializable {
         
         return '0';
     }
+
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
 	
 	public function jsonSerialize() {
 		return array(

@@ -37,6 +37,7 @@ class FormHelper {
             case 'select': return View::load('Templates/Components/schema/select', array('schema' => $schema));
             case 'multiselect': return View::load('Templates/Components/schema/multipleSelect', array('schema' => $schema));
             case 'textarea': return View::load('Templates/Components/schema/textarea', array('schema' => $schema));
+            case 'image': return View::load('Templates/Components/schema/image', array('schema' => $schema));
             default: View::load('Templates/Components/schema/input', array('schema' => $schema));
         }
     }

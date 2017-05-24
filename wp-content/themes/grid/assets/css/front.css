@@ -444,7 +444,7 @@ label {
   margin-right: auto;
   position: relative;
 }
-.main-navigation #search-icon {
+.main-navigation #search-icon-container {
   position: absolute;
   top: 0;
   right: 0;
@@ -456,10 +456,10 @@ label {
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
-.main-navigation #search-icon .searchform {
+.main-navigation #search-icon-container .searchform {
   display: none;
 }
-.main-navigation #search-icon #search-icon-icon {
+.main-navigation #search-icon-container #search-icon {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -471,7 +471,7 @@ label {
   width: 59px;
   height: 100%;
 }
-.main-navigation #search-icon #search-icon-icon .vantage-icon-search {
+.main-navigation #search-icon-container #search-icon .vantage-icon-search {
   position: absolute;
   display: block;
   width: 17px;
@@ -483,7 +483,7 @@ label {
   margin-left: -8.5px;
   color: #d1d1d1;
 }
-.main-navigation #search-icon #search-icon-icon .vantage-icon-search:before {
+.main-navigation #search-icon-container #search-icon .vantage-icon-search:before {
   content: "\f002";
   font-family: "FontAwesome";
 }
@@ -503,9 +503,25 @@ label {
   font-size: 13px;
   position: relative;
 }
-.main-navigation ul li:hover a {
+.main-navigation ul li ul {
+  display: none;
+  position: absolute;
+  width: 300px;
+  background-color: #343538;
+}
+.main-navigation ul li ul li {
+  display: block;
+}
+.main-navigation ul li ul li ul {
+  left: 100%;
+  top: 0;
+}
+.main-navigation ul li:hover > a {
   background: #00bcff;
-  color: #ffffff;
+  color: #e2e2e2;
+}
+.main-navigation ul li:hover > ul {
+  display: block;
 }
 .main-navigation ul li a {
   -webkit-transition: all 0.4s ease;

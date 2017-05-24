@@ -30,7 +30,7 @@ class SchemaHelper {
         if(empty($field['name'])) {
         	$key = "options[$key]";
 		}
-        
+
         $this->name = $key;
         
         if($value) {

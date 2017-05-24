@@ -21,10 +21,16 @@ Class Layout extends LayoutRepository {
 		if(method_exists($widget, 'getBackendTemplate')) {
 			$file = $widget->getBackendTemplate();
 		}
-		
-		View::load("Templates/Backend/Widgets/{$file}", array(
-            'widget' => $widget,
-        ));
+
+		if(file_exists("Templates/Backend/Widgets/{$file}")) {
+		    View::load("Templates/Backend/Widgets/{$file}", array(
+                'widget' => $widget,
+            ));
+        } else {
+            View::load("Templates/Backend/Widgets/default", array(
+                'widget' => $widget,
+            ));
+        }
     }
 
     public function save_widget() {
