@@ -22,7 +22,7 @@ Class Layout extends LayoutRepository {
 			$file = $widget->getBackendTemplate();
 		}
 
-		if(file_exists("Templates/Backend/Widgets/{$file}")) {
+		if(View::exists("Templates/Backend/Widgets/{$file}")) {
 		    View::load("Templates/Backend/Widgets/{$file}", array(
                 'widget' => $widget,
             ));

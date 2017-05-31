@@ -4,7 +4,7 @@
         <div id="search-icon-container">
             <div id="search-icon"><div class="vantage-icon-search"></div></div>
 
-            <form method="get" class="searchform" action="http://demo.siteorigin.com/vantage/" role="search" style="width: 1080px;">
+            <form method="get" class="searchform" action="http://demo.siteorigin.com/vantage/" role="search">
                 <input type="text" class="field" name="s" value="" placeholder="Search">
             </form>
         </div>

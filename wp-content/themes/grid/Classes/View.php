@@ -18,6 +18,12 @@ Class View {
         include $file;
     }
 
+    public static function exists($file)
+    {
+        $file = dirname(__FILE__)."/../{$file}.php";
+        return file_exists($file);
+    }
+
     public static function make($view, $args = array()) {
         $instance = new self;
         $instance->add_template($view, $args);

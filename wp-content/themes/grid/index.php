@@ -20,7 +20,7 @@ use GL\Facades\WidgetCompositionFacade;
 		<?php View::load('Templates/Frontend/Components/menu'); ?>
 		
 		<?php
-		$composition = WidgetCompositionFacade::buildStructure(get_the_ID(), 'page');
+        $composition = WidgetCompositionFacade::buildStructure(get_the_ID(), 'page');
 		$composition->draw();
 		?>
 		
