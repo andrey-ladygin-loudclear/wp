@@ -7,8 +7,6 @@ use GL\Factories\WidgetFactory;
 Class Config {
 	
 	public static $widgets = array(
-		'latest_posts' => 'Latest posts',
-        'wp_query' => 'Posts',
 		'blackquote' => 'Blackquote',
 		'comments' => 'Comments',
 		'standart_post_content' => 'Standart Post Content',
@@ -22,6 +20,11 @@ Class Config {
 		'background_image' => 'Background Image',
 		'paralax' => 'Paralax',
 	);
+
+	public static $posts = array(
+        'latest_posts' => 'Latest posts',
+        'wp_query' => 'Specified Posts',
+    );
 	
 	public static $post_components = array(
 		'post_author' => 'Post Author',

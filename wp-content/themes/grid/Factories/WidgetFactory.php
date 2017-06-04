@@ -31,39 +31,6 @@ Class WidgetFactory {
         
         return $widget;
     }
-//
-//    public static function getWidget($name) {
-//		$class = "\\GL\\Widgets\\".ucfirst(strtolower($name));
-//		return new $class;
-//	}
-//
-//    public static function getSystemWidget($name) {
-//		$class = "\\GL\\Widgets\\System\\".ucfirst(strtolower($name));
-//		return new $class;
-//	}
-//
-//    public static function getSpecifiedWidget($name) {
-//		$class = "\\GL\\Widgets\\Specified\\".ucfirst(strtolower($name));
-//		return new $class;
-//	}
-//
-//    public static function getStaticWidget($name) {
-//		$class = "\\GL\\Widgets\\Components\\".ucfirst(strtolower($name));
-//		return new $class;
-//	}
-	
-//    public static function getWpWidget($name) {
-//		return new WP();
-//
-//		global $wp_widget_factory;
-//
-//		if(!empty($wp_widget_factory->widgets[$name]))
-//		{
-//			return new WP($name);
-//		}
-//
-//		throw new \Exception();
-//	}
  
 	/**
 	 * @return WidgetRepositoryInterface|GlyphInterface

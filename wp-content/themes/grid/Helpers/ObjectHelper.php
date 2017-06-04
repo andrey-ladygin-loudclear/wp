@@ -27,6 +27,22 @@ class ObjectHelper {
 		
 		return $result;
 	}
+
+	public static function wp_fields_convert_to_options($data) {
+	    if(empty($data['options'])) {
+            $data['options'] = array();
+        }
+
+        if(is_array($data)) {
+            foreach($data as $key => $value) {
+                if(strpos($key, 'widget-') !== false && is_array($value)) {
+                    $data['options'] = array_merge($data['options'], $value);
+                }
+            }
+        }
+
+        return $data;
+    }
 	
 	public static function clear($item) {
 		if(is_array($item)) {

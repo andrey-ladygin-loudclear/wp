@@ -9,29 +9,9 @@
 
 <form action="/wp-admin/admin.php" method="post">
 	<?php View::load('Templates/Components/form/head', array('widget' => $widget)) ?>
-	<?php
-	$class = $widget->name;
-	$dummy = new $class();
-	$settings = $dummy->widget_options;
-	$options = get_option($dummy->option_name);
 
-    if(!empty($options[2])) {
-        $options = $options[2];
-    }
+    <?php $widget->dummy->form($widget->options); ?>
 
-	if($class == 'WP_Nav_Menu_Widget') {
-        $options['nav_menu'] = !empty($widget->options['nav_menu']) ? $widget->options['nav_menu'] : 'footer-menu';
-    }
-
-	if(!empty($options)) {
-		foreach($options as $name => $value) { ?>
-			<div class="form-group">
-				<label for="<?= $name; ?>"><?= ucfirst(str_replace('_', ' ', $name)); ?></label>
-				<input type="text" class="form-control" name="options[<?= $name; ?>]" id="<?= $name; ?>" value='<?= !empty($widget->options[$name]) ? $widget->options[$name] : $value; ?>'>
-			</div>
-		<?php } ?>
-	<?php } ?>
-	
 	<div class="form-group">
 		<label for="before_widget">Before Widget</label>
 		<input type="text" class="form-control" name="args[before_widget]" id="before_widget" value='<?= !empty($widget->args['before_widget']) ? $widget->args['before_widget'] : '<div class="widget %s">'; ?>'>
