@@ -9,7 +9,7 @@ Class Assets {
 	
 	public static function getFileUrl($file) {
 		if(!file_exists($file)) {
-			return \GL_Grid_Layout::$URL . $file;
+			return get_template_directory_uri() . '/' . $file;
 		}
 		
 		return $file;

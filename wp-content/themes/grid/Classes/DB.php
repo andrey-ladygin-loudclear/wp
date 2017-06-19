@@ -66,8 +66,8 @@ Class DB {
 	}
 	
 	public function install() {
-		$sql1 = file_get_contents(\GL_Grid_Layout::$DIR.'/assets/sql/wp_gl_grid.sql');
-		$sql2 = file_get_contents(\GL_Grid_Layout::$DIR.'/assets/sql/wp_gl_widget.sql');
+		$sql1 = file_get_contents(get_template_directory().'/assets/sql/wp_gl_grid.sql');
+		$sql2 = file_get_contents(get_template_directory().'/assets/sql/wp_gl_widget.sql');
 		
 		$sql1 = str_replace('{{TABLE}}', LayoutRepository::getTable(), $sql1);
 		$sql2 = str_replace('{{TABLE}}', WidgetNewRepository::getTable(), $sql2);

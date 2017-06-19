@@ -27,10 +27,7 @@ Class Settings
 		if (!empty($_POST)) {
 			$this->save($_POST);
 		}
-        
-//        Assets::add('assets/plugins/bootstrap/css/bootstrap.min.css');
-//        Assets::add('assets/plugins/bootstrap/css/bootstrap-theme.min.css');
-//        Assets::add('assets/plugins/bootstrap/js/bootstrap.min.js');
+
 		Assets::addDefaults();
 		Assets::enqueue();
         

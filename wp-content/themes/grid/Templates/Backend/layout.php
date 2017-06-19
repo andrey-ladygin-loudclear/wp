@@ -8,17 +8,12 @@
 	</div>
 <?php } ?>
 
-<?php //$currPostInfo = get_post(); ?>
-<?php //if($currPostInfo->post_type != 'grid' && $currPostInfo->post_status == 'publish') { ?>
-<!--	--><?php //View::load('Templates/Components/layout/template-options', array('post_id' => $currPostInfo->ID)); ?>
-<?php //} ?>
-
 <?php if(get_post_type() == 'grid') { ?>
 <div class="pull-right">
     You can use shortcode to this layout: <span class="label label-default">[gl-grid-tag id="<?= get_the_ID(); ?>"]</span>
 </div>
 <?php } ?>
 
-<?php View::load('Templates/Components/layout/widgets-nav'); ?>
-<?php View::load('Templates/Components/grid', array('widgets' => $widgets)); ?>
-<?php View::load('Templates/Components/layout/popup'); ?>
+<?php View::load('Templates/Backend/components/widgets-navigation'); ?>
+<?php View::load('Templates/Backend/components/grid', array('widgets' => $widgets)); ?>
+<?php View::load('Templates/Backend/components/layout-popup'); ?>

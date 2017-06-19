@@ -11,25 +11,17 @@ Class WidgetFactory {
 
     public static function getObject($name) {
     	$classes = array(
-			"\\GL\\Widgets\\Basic\\".ucfirst(strtolower($name)),
-			"\\GL\\Widgets\\System\\".ucfirst(strtolower($name)),
-			"\\GL\\Widgets\\Specified\\".ucfirst(strtolower($name)),
-			"\\GL\\Widgets\\Components\\".ucfirst(strtolower($name)),
-			"\\GL\\Widgets\\Childs\\".ucfirst(strtolower($name)),
+			"\\GL\\Widgets\\Basic\\".$name,
+			"\\GL\\Widgets\\System\\".$name
 		);
 	
     	foreach($classes as $class) {
 			try {
-				$widget = new $class;
-				break;
+				return new $class;
 			} catch (\Exception $e) {}
 		}
     			
-		if(empty($widget)) {
-			$widget = new WP();
-		}
-        
-        return $widget;
+		throw new \Exception("Undefined widget $name");
     }
  
 	/**
@@ -37,7 +29,7 @@ Class WidgetFactory {
 	 */
 	public static function add($name) {
 		$widget = self::getObject($name);
-		return $widget->add();
+		return $widget;//->add();
 	}
 
 	/**
@@ -45,11 +37,12 @@ Class WidgetFactory {
 	 */
 	public static function get($name, $id) {
 		$widget = self::getObject($name);
-		return $widget->find($id);
+		return $widget;//->find($id);
 	}
 
     public static function factory($data = array()) {
         $widget = self::getObject($data['name']);
+	    return $widget;
         $widget->fill($data);
 		return $widget;
     }

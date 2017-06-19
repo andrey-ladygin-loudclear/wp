@@ -2,6 +2,7 @@
 
 namespace GL\Widgets\System;
 
+use GL\Classes\Config;
 use GL\Classes\Grid_Widget;
 use GL\Interfaces\GlyphInterface;
 use GL\Interfaces\GridInterface;
@@ -81,7 +82,7 @@ class Widget extends Grid_Widget implements GlyphInterface, GridInterface {
 			$class .= ' ' . $this->options['classes'];
 		}
 		
-		if(GL_Grid_Layout::DEBUG) {
+		if(Config::DEBUG) {
 			$class .= ' well';
 		}
 		

@@ -17,7 +17,7 @@ $layout = new \GL\Classes\Layout();
 $widgets = $layout->getGrid(NULL, $post_type);
 ?>
 
-<?php View::load('Templates/Components/layout/widgets-nav'); ?>
-<?php View::load('Templates/Components/grid', array('widgets' => $widgets)); ?>
-<?php View::load('Templates/Components/layout/popup'); ?>
+<?php View::load('Templates/Backend/components/widgets-navigation'); ?>
+<?php View::load('Templates/Backend/components/grid', array('widgets' => $widgets)); ?>
+<?php View::load('Templates/Backend/components/layout-popup'); ?>
 

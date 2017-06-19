@@ -457,6 +457,7 @@ label {
   transition: all 0.4s ease;
 }
 .main-navigation #search-icon-container .searchform {
+  width: 200px;
   display: none;
 }
 .main-navigation #search-icon-container #search-icon {
@@ -873,9 +874,6 @@ label {
 .latest_posts .tg-one-half-last {
   float: right;
   margin: 0px;
-}
-.row {
-  padding-bottom: 1em;
 }
 .well {
   min-height: 60px;

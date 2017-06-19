@@ -27,7 +27,7 @@ Class Layout extends LayoutRepository {
                 'widget' => $widget,
             ));
         } else {
-            View::load("Templates/Backend/Widgets/default", array(
+            View::load("Templates/Backend/Widgets/wp", array(
                 'widget' => $widget,
             ));
         }
