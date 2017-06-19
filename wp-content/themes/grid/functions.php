@@ -23,6 +23,10 @@ class GL_Grid_Layout {
 		// Add the autoloader
 		spl_autoload_register(array($this, 'autoloader'));
 
+        add_action( 'widgets_init', function(){
+            //register_widget( 'Foo_Widget' );
+        });
+
 		$this->layout = new Layout();
 		$this->styles = new Styles();
 		$this->assets = new Assets();

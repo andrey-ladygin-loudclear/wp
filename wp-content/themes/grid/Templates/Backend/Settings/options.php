@@ -55,3 +55,13 @@ use GL\Classes\Templates;
         <input type="submit" class="btn btn-success" value="Save">
     </div>
 </form>
+<!---->
+<?php
+//$s = new Foo_Widget();
+//
+//echo '<pre>';
+//print_r($s);
+//echo '</pre>';
+//$s->form();
+//    the_widget('Foo_Widget');
+//?>
