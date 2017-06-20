@@ -34,6 +34,10 @@ Class Layout extends LayoutRepository {
     }
 
     public function save_widget() {
+        var_dump('123');
+        echo '<pre>';
+        print_r($_POST);
+        die;
         $data = ObjectHelper::clear($_POST);
         $data = ObjectHelper::wp_fields_convert_to_options($data);
         $widget_name = $data['widget-name'];

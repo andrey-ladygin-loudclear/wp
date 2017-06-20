@@ -30,6 +30,6 @@ $layout = new \GL\Classes\Layout();
 $widgets = $layout->getGrid($widget->getId(), 'glyph');
 ?>
 
-<?php View::load('Templates/Components/layout/widgets-nav'); ?>
-<?php View::load('Templates/Components/grid', array('widgets' => $widgets)); ?>
-<?php View::load('Templates/Components/layout/popup'); ?>
+<?php View::load('Templates/Backend/components/parts/widgets-navigation'); ?>
+<?php View::load('Templates/Backend/components/grid', array('widgets' => $widgets)); ?>
+<?php View::load('Templates/Backend/components/parts/layout-popup'); ?>

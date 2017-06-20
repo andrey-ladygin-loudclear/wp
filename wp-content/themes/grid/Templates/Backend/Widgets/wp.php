@@ -8,17 +8,11 @@
 <?php View::load('Templates/Backend/components/parts/flashMessage', array('widget' => $widget)) ?>
 
 <form action="/wp-admin/admin.php" method="post">
-	<?php //View::load('Templates/Backend/components/parts/head', array('widget' => $widget)) ?>
-
-	<?php $widget->form(); ?>
-
-<!--	<pre>-->
-<!--		--><?php
-//		print_r($widget);die;
-//		?>
-<!--	</pre>-->
+	<?php View::load('Templates/Backend/components/parts/head', array('widget' => $widget)) ?>
 
     <?php $widget->dummy->form($widget->options); ?>
+
+    <input type="hidden" name="field-name" value="<?= $widget->dummy->get_field_name(''); ?>">
 
 	<div class="form-group">
 		<label for="before_widget">Before Widget</label>

@@ -23,10 +23,10 @@ use GL\Classes\View;
                 <!-- Tab panes -->
                 <div class="tab-content select-widget-tab-content">
                     <div role="tabpanel" class="tab-pane active" id="widgets1">
-                        <?php View::load('Templates/Components/layout/widgets-tab-pane', array('widgets' => Config::$widgets)); ?>
+                        <?php View::load('Templates/Backend/components/parts/widgets-tab-pane', array('widgets' => Config::$widgets)); ?>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="widgets2">
-                        <?php View::load('Templates/Components/layout/widgets-tab-pane', array('widgets' => Config::getWPWidgets())); ?>
+                        <?php View::load('Templates/Backend/components/parts/widgets-tab-pane', array('widgets' => Config::getWPWidgets())); ?>
                     </div>
                 </div>
 

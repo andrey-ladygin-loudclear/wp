@@ -36,9 +36,8 @@ class Templates {
         return $postTypes;
     }
     
-    public function __call($name, $arguments)
-	{
-		Assets::addDefaults();
+    public function __call($name, $arguments) {
+        Assets::addDefaults();
 		Assets::enqueue();
 		View::load('Templates/Backend/Settings/templates', array('post_type' => $name));
 	}
