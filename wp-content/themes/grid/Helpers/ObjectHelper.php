@@ -34,6 +34,17 @@ class ObjectHelper {
         }
 
         if(is_array($data)) {
+
+	        if(!empty($data['wp-widget-field-name'])) {
+                $wp_field_name = str_replace('[]', '', $data['wp-widget-field-name']);
+
+                if(!empty($data[$wp_field_name])) {
+                    foreach($data[$wp_field_name] as $val) {
+                        $data['options'] = array_merge($data['options'], $val);
+                    }
+                }
+            }
+
             foreach($data as $key => $value) {
                 if(strpos($key, 'widget-') !== false && is_array($value)) {
                     $data['options'] = array_merge($data['options'], $value);
